@@ -619,4 +619,309 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 ![separator](https://img.shields.io/badge/-F0F8FF?style=flat-square&color=F0F8FF)
 
 </div>
+<div align="center">
+
+# Library Reference & Imports (Curated)
+
+[![Core Python](https://img.shields.io/badge/Core-Python-FFE4E1?style=for-the-badge)](#core-python)
+[![Data](https://img.shields.io/badge/Data-Handling-E6E6FA?style=for-the-badge)](#data-handling)
+[![Viz](https://img.shields.io/badge/Visualization-Stacks-F0F8FF?style=for-the-badge)](#visualization)
+[![ML/AI](https://img.shields.io/badge/Machine%20Learning-Tooling-FFF0F5?style=for-the-badge)](#machine-learning--ai)
+[![LLMs](https://img.shields.io/badge/Transformers-LLMs-FAFAD2?style=for-the-badge)](#advanced-ai--transformers--llms)
+
+</div>
+
+<div align="center">
+
+[![sep](https://img.shields.io/badge/-FFE4E1?style=flat-square&color=FFE4E1)](#quick-index)
+[![sep](https://img.shields.io/badge/-E6E6FA?style=flat-square&color=E6E6FA)](#quick-index)
+[![sep](https://img.shields.io/badge/-F0F8FF?style=flat-square&color=F0F8FF)](#quick-index)
+[![sep](https://img.shields.io/badge/-FFF0F5?style=flat-square&color=FFF0F5)](#quick-index)
+[![sep](https://img.shields.io/badge/-FAFAD2?style=flat-square&color=FAFAD2)](#quick-index)
+[![sep](https://img.shields.io/badge/-E0FFFF?style=flat-square&color=E0FFFF)](#quick-index)
+
+</div>
+
+## Quick Index
+
+- [Core Python](#core-python)
+- [Data Handling](#data-handling)
+- [Visualization](#visualization)
+- [Machine Learning / AI](#machine-learning--ai)
+- [Math, Statistics, SciPy](#math-statistics-scipy)
+- [NLP / Text](#nlp--text)
+- [Utilities & Workflow](#utilities--workflow)
+- [Data I/O](#data-io)
+- [Visualization Add-ons](#visualization-add-ons)
+- [Advanced Data & Big Data](#advanced-data--big-data)
+- [Deep Learning & GPU](#deep-learning--gpu)
+- [Advanced AI / Transformers / LLMs](#advanced-ai--transformers--llms)
+- [Advanced Visualization & Dashboards](#advanced-visualization--dashboards)
+- [Statistics, Bayesian, Probabilistic](#statistics-bayesian-probabilistic)
+- [Optimization & Math](#optimization--math)
+- [Graphs, Knowledge, Advanced Data](#graphs-knowledge-advanced-data)
+- [Advanced NLP / Text](#advanced-nlp--text)
+- [Advanced Utilities & Parallelism](#advanced-utilities--parallelism)
+- [Computer Vision & Image/Video](#computer-vision--imagevideo)
+- [Geospatial & Maps](#geospatial--maps)
+- [Ultra / Rare Imports (HPC, Research, Frontier)](#ultra--rare-imports-hpc-research-frontier)
+
+<div align="center">
+
+[![sep](https://img.shields.io/badge/-D4E4FC?style=flat-square&color=D4E4FC)](#quick-index)
+[![sep](https://img.shields.io/badge/-E7F3E7?style=flat-square&color=E7F3E7)](#quick-index)
+[![sep](https://img.shields.io/badge/-FFE5CC?style=flat-square&color=FFE5CC)](#quick-index)
+[![sep](https://img.shields.io/badge/-FADADD?style=flat-square&color=FADADD)](#quick-index)
+[![sep](https://img.shields.io/badge/-FFF4E6?style=flat-square&color=FFF4E6)](#quick-index)
+
+</div>
+
+## Core Python
+
+<table>
+<tr style="background-color:#FFE4E1"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>os, sys, Path</td><td>Filesystem, environment, paths</td><td>Portable path handling via <code>pathlib</code></td></tr>
+<tr style="background-color:#F0F8FF"><td>re, json, csv</td><td>Regex, serialization, CSV I/O</td><td>Use <code>jsonlines</code> for large JSONL</td></tr>
+<tr><td>math, random, time, datetime</td><td>Math, RNG, timing</td><td><code>dt</code> alias for concise timestamps</td></tr>
+<tr style="background-color:#FFF0F5"><td>Counter, defaultdict</td><td>Counting, default dicts</td><td>Efficient tallies and grouping</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFE4E1?style=flat-square)](#quick-index)</div>
+
+## Data Handling
+
+<table>
+<tr style="background-color:#E6E6FA"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>numpy</td><td>Arrays, vectorized math</td><td>Foundation for most stacks</td></tr>
+<tr style="background-color:#FAFAD2"><td>pandas</td><td>Tabular data</td><td>Wide ecosystem; groupby, time series</td></tr>
+<tr><td>pyarrow</td><td>Columnar memory, parquet</td><td>High-perf interchange with pandas</td></tr>
+<tr style="background-color:#F0F8FF"><td>polars</td><td>Fast DataFrame (Rust engine)</td><td>Laziness, speed on medium/large data</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E6E6FA?style=flat-square)](#quick-index)</div>
+
+## Visualization
+
+<table>
+<tr style="background-color:#FFE4E1"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>matplotlib, seaborn</td><td>Static plotting</td><td>Seaborn for statistical charts</td></tr>
+<tr style="background-color:#F0F8FF"><td>plotly.express, graph_objects</td><td>Interactive plots</td><td>Browser-ready, tooltips, zoom</td></tr>
+<tr><td>altair</td><td>Declarative grammar</td><td>Readable specs; Vega-Lite backend</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-F0F8FF?style=flat-square)](#quick-index)</div>
+
+## Machine Learning / AI
+
+<table>
+<tr style="background-color:#FFF0F5"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>scikit-learn</td><td>Classical ML, metrics, preprocessing</td><td>Baselines, pipelines, grid search</td></tr>
+<tr style="background-color:#F0F8FF"><td>XGBoost, LightGBM, CatBoost</td><td>Gradient boosting</td><td>SOTA tabular; categorical support (CatBoost)</td></tr>
+<tr><td>PyTorch</td><td>Deep learning</td><td>Define-by-run, custom training loops</td></tr>
+<tr style="background-color:#FAFAD2"><td>TensorFlow / Keras</td><td>Deep learning</td><td>High-level layers, production tooling</td></tr>
+<tr><td>transformers</td><td>LLMs, transfer learning</td><td>Tokenizers, pipelines, model zoo</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFF0F5?style=flat-square)](#quick-index)</div>
+
+## Math, Statistics, SciPy
+
+<table>
+<tr style="background-color:#E6E6FA"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>scipy (stats, signal, optimize, integrate)</td><td>Scientific routines</td><td>Tests, filters, solvers</td></tr>
+<tr style="background-color:#F0F8FF"><td>statistics</td><td>Built-in descriptive stats</td><td>Lightweight helpers</td></tr>
+<tr><td>sympy</td><td>Symbolic math</td><td>Derivations, simplifications</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-D4E4FC?style=flat-square)](#quick-index)</div>
+
+## NLP / Text
+
+<table>
+<tr style="background-color:#FFE4E1"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>nltk, spacy</td><td>Tokenization, parsing</td><td>spaCy for pipelines; NLTK utilities</td></tr>
+<tr style="background-color:#F0F8FF"><td>gensim</td><td>Word2Vec, LDA</td><td>Topic modeling and embeddings</td></tr>
+<tr><td>wordcloud</td><td>Visual summaries</td><td>Exploratory visuals</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E0FFFF?style=flat-square)](#quick-index)</div>
+
+## Utilities & Workflow
+
+<table>
+<tr style="background-color:#FFF0F5"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>tqdm</td><td>Progress bars</td><td>Notebook-friendly via <code>tqdm.notebook</code></td></tr>
+<tr style="background-color:#F0F8FF"><td>logging, warnings</td><td>Diagnostics</td><td>Set handlers, suppress noise selectively</td></tr>
+<tr><td>joblib, pickle</td><td>Model I/O</td><td>Persist artifacts; mind security</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFE5CC?style=flat-square)](#quick-index)</div>
+
+## Data I/O
+
+<table>
+<tr style="background-color:#FAFAD2"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>csv, sqlite3</td><td>Flat files, local DB</td><td>Good for lightweight pipelines</td></tr>
+<tr style="background-color:#F0F8FF"><td>h5py</td><td>HDF5 storage</td><td>Large arrays, hierarchical datasets</td></tr>
+<tr><td>requests</td><td>HTTP APIs</td><td>Timeouts, retries, backoff</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FADADD?style=flat-square)](#quick-index)</div>
+
+## Visualization Add-ons
+
+<table>
+<tr style="background-color:#E6E6FA"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>networkx</td><td>Graphs/networks</td><td>Topology, centrality measures</td></tr>
+<tr style="background-color:#F0F8FF"><td>geopandas, folium</td><td>Geospatial viz</td><td>Interactive maps and overlays</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFF4E6?style=flat-square)](#quick-index)</div>
+
+## Advanced Data & Big Data
+
+<table>
+<tr style="background-color:#FFE4E1"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>dask.dataframe</td><td>Out-of-core pandas</td><td>Parallelize wide workflows</td></tr>
+<tr style="background-color:#F0F8FF"><td>vaex, modin</td><td>Lazy or distributed DataFrame</td><td>Scale on single machine or cluster</td></tr>
+<tr><td>pyspark</td><td>Spark API</td><td>Cluster compute for very large data</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E7F3E7?style=flat-square)](#quick-index)</div>
+
+## Deep Learning & GPU
+
+<table>
+<tr style="background-color:#FFF0F5"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>torch, nn, optim, F</td><td>Core training</td><td>Custom loops, modules</td></tr>
+<tr style="background-color:#F0F8FF"><td>torch.distributed, TensorBoard</td><td>Multi-GPU, logging</td><td>DDP for scale-out</td></tr>
+<tr><td>tensorflow, keras</td><td>DL stacks</td><td>High-level layers and fit loops</td></tr>
+<tr style="background-color:#FAFAD2"><td>jax, jnp, flax, optax</td><td>JIT DL, functional NN</td><td>Fast grad, pure functions</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-D4E4FC?style=flat-square)](#quick-index)</div>
+
+## Advanced AI / Transformers / LLMs
+
+<table>
+<tr style="background-color:#E6E6FA"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>transformers</td><td>LLMs, pipelines</td><td>Text, vision, audio models</td></tr>
+<tr style="background-color:#F0F8FF"><td>peft, bitsandbytes</td><td>Efficient finetuning, quantization</td><td>LoRA, 8-bit/4-bit training</td></tr>
+<tr><td>accelerate, sentence_transformers</td><td>Distributed, embeddings</td><td>Multi-GPU orchestration, retrieval</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFE4E1?style=flat-square)](#quick-index)</div>
+
+## Advanced Visualization & Dashboards
+
+<table>
+<tr style="background-color:#FFE4E1"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>bokeh, holoviews, hvplot</td><td>Interactive viz stacks</td><td>Linked brushing, high-level APIs</td></tr>
+<tr style="background-color:#F0F8FF"><td>panel, dash, streamlit</td><td>Dashboards/apps</td><td>From notebook to app quickly</td></tr>
+<tr><td>pyvis, pyvista</td><td>Networks, 3D</td><td>Explorable graphs and volumes</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E6E6FA?style=flat-square)](#quick-index)</div>
+
+## Statistics, Bayesian, Probabilistic
+
+<table>
+<tr style="background-color:#FFF0F5"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>pymc, arviz</td><td>Bayesian inference, diagnostics</td><td>Priors, posteriors, PPC</td></tr>
+<tr style="background-color:#F0F8FF"><td>statsmodels</td><td>Regression, time series</td><td>GLM, ARIMA families</td></tr>
+<tr><td>lifelines, prophet</td><td>Survival, forecasting</td><td>Kaplan–Meier; components/trends</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFF0F5?style=flat-square)](#quick-index)</div>
+
+## Optimization & Math
+
+<table>
+<tr style="background-color:#FAFAD2"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>cvxpy, pulp, ortools</td><td>Convex, LP/MIP, routing</td><td>Solvers and modeling</td></tr>
+<tr style="background-color:#F0F8FF"><td>numba</td><td>JIT acceleration</td><td>Speed up Python loops</td></tr>
+<tr><td>sympy</td><td>Symbolic math</td><td>Closed forms, derivations</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FAFAD2?style=flat-square)](#quick-index)</div>
+
+## Graphs, Knowledge, Advanced Data
+
+<table>
+<tr style="background-color:#E6E6FA"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>networkx, neo4j</td><td>Graph analysis, DB</td><td>Topology + graph stores</td></tr>
+<tr style="background-color:#F0F8FF"><td>dgl, torch_geometric, stellargraph</td><td>Graph ML</td><td>Message passing, link prediction</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E0FFFF?style=flat-square)](#quick-index)</div>
+
+## Advanced NLP / Text
+
+<table>
+<tr style="background-color:#FFE4E1"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>stanza, flair</td><td>NLP pipelines, embeddings</td><td>Strong pretrained components</td></tr>
+<tr style="background-color:#F0F8FF"><td>yake, textblob</td><td>Keywords, sentiment</td><td>Lightweight tasks</td></tr>
+<tr><td>gensim LdaModel</td><td>Topic modeling</td><td>Classical LDA workflow</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFE5CC?style=flat-square)](#quick-index)</div>
+
+## Advanced Utilities & Parallelism
+
+<table>
+<tr style="background-color:#FFF0F5"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>ray, joblib</td><td>Distributed, parallel pipelines</td><td>Scale compute across cores/nodes</td></tr>
+<tr style="background-color:#F0F8FF"><td>ThreadPoolExecutor, ProcessPoolExecutor</td><td>Concurrency APIs</td><td>IO vs CPU bound tasks</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-F0F8FF?style=flat-square)](#quick-index)</div>
+
+## Computer Vision & Image/Video
+
+<table>
+<tr style="background-color:#E6E6FA"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>opencv</td><td>Image/video processing</td><td>Transforms, codecs, tracking</td></tr>
+<tr style="background-color:#F0F8FF"><td>mediapipe</td><td>Pose/gesture</td><td>Prebuilt inference graphs</td></tr>
+<tr><td>albumentations, skimage</td><td>Augmentation, analysis</td><td>Training-ready pipelines</td></tr>
+<tr style="background-color:#FAFAD2"><td>imageio, tifffile</td><td>I/O, large images</td><td>Microscopy, GeoTIFFs</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFF4E6?style=flat-square)](#quick-index)</div>
+
+## Geospatial & Maps
+
+<table>
+<tr style="background-color:#FFE4E1"><td><strong>Library</strong></td><td><strong>Role</strong></td><td><strong>Notes</strong></td></tr>
+<tr><td>geopandas, shapely</td><td>Geo tables, geometry ops</td><td>Buffers, intersections</td></tr>
+<tr style="background-color:#F0F8FF"><td>rasterio, cartopy</td><td>Rasters, cartography</td><td>CRS management</td></tr>
+<tr><td>folium, contextily</td><td>Interactive maps, basemaps</td><td>Tiles and layers</td></tr>
+</table>
+
+<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E6E6FA?style=flat-square)](#quick-index)</div>
+
+## Ultra / Rare Imports (HPC, Research, Frontier)
+
+<table>
+<tr style="background-color:#FFF0F5"><td><strong>Area</strong></td><td><strong>Examples</strong></td><td><strong>Use</strong></td></tr>
+<tr><td>HPC & GPU Kernels</td><td>triton, mpi4py, pycuda, pyopencl, numexpr</td><td>Custom kernels, multi-node, speed</td></tr>
+<tr style="background-color:#F0F8FF"><td>Large-Scale Training</td><td>deepspeed, fairscale, megatron</td><td>Sharded models, parallelism</td></tr>
+<tr><td>Probabilistic Programming</td><td>pyro, edward2, gpytorch</td><td>Bayesian deep learning, GPs</td></tr>
+<tr style="background-color:#E6E6FA"><td>Causal ML</td><td>dowhy, econml, causalinference</td><td>Effects, policy evaluation</td></tr>
+<tr><td>Science & Bio</td><td>biopython, deepchem, mdtraj, openmm</td><td>Genomics, chemistry, MD</td></tr>
+<tr style="background-color:#FAFAD2"><td>Quantum</td><td>qiskit, cirq, pennylane, qutip</td><td>VQA, simulation</td></tr>
+<tr><td>Advanced Viz</td><td>datashader, mayavi, k3d, fastplotlib</td><td>Huge data, 3D interactive</td></tr>
+<tr style="background-color:#F0F8FF"><td>Privacy & Federated</td><td>opacus, tensorflow_privacy, syft</td><td>Differential privacy, FL</td></tr>
+<tr><td>Infra & MLOps</td><td>prefect, dagster, kedro, mlflow, hydra, feast</td><td>Pipelines, tracking, configs</td></tr>
+</table>
+
+<div align="center">
+
+[![sep](https://img.shields.io/badge/-FFE4E1?style=flat-square&color=FFE4E1)](#quick-index)
+[![sep](https://img.shields.io/badge/-E6E6FA?style=flat-square&color=E6E6FA)](#quick-index)
+[![sep](https://img.shields.io/badge/-F0F8FF?style=flat-square&color=F0F8FF)](#quick-index)
+[![sep](https://img.shields.io/badge/-FFF0F5?style=flat-square&color=FFF0F5)](#quick-index)
+[![sep](https://img.shields.io/badge/-FAFAD2?style=flat-square&color=FAFAD2)](#quick-index)
+[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-D4E4FC?style=flat-square)](#quick-index)
+
+</div>
 
