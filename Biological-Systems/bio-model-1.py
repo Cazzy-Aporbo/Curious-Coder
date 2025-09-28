@@ -15,7 +15,7 @@ This framework demonstrates advanced biological modeling techniques including:
 - Systems biology network analysis
 - Multi-scale temporal dynamics from milliseconds to generations
 
-Author: Advanced Computational Biology Systems
+Author: Cazandra Aporbo
 Version: 3.0.0
 Python Requirements: 3.8+
 Dependencies: numpy, scipy, networkx, pandas
