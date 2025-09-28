@@ -1,1 +1,1 @@
-Algorithms discuseed on read me file found here
+Algorithms discussed on read me file found here
