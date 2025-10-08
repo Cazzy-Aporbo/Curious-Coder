@@ -24,7 +24,7 @@ print(f"Test accuracy: {model.score(X_test, y_test):.3f}")
 # Test accuracy: 0.923
 ```
 
-92.3% test accuracy! I was ready to publish. Then we deployed it.
+92.3% test accuracy! I was ready or so I thought. Then deployment happens.
 
 ### Day 14: The Production Disaster
 
