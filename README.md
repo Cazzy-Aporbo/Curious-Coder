@@ -37,6 +37,13 @@ This is **not** a tutorial farm, a code dump, or a catalog of buzzwords. It’s 
 
 <div align="center">
 
+<div align="center">
+  
+[AI Ethics: Historical Context, Contemporary Challenges, and Future Implications](https://htmlpreview.github.io/?https://github.com/Cazzy-Aporbo/Curious-Coder/blob/main/explore_stuff/ai_ethics_comprehensive.html)
+</div>
+
+<div align="center">
+
 ![separator](https://img.shields.io/badge/-E6E6FA?style=flat&color=E6E6FA)
 ![separator](https://img.shields.io/badge/-F0F8FF?style=flat&color=F0F8FF)
 ![separator](https://img.shields.io/badge/-FFF0F5?style=flat&color=FFF0F5)
