@@ -1,6 +1,6 @@
 """
 Neural Architecture Evolution: Self-Organizing Network Discovery System
-A novel PyTorch implementation that evolves neural architectures through genetic algorithms,
+PyTorch implementation that evolves neural architectures through genetic algorithms,
 discovering optimal network topologies for given tasks while providing real-time visualization
 of the evolutionary process and network performance metrics.
 """
