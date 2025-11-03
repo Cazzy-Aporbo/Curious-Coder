@@ -707,7 +707,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr style="background-color:#F0F8FF"><td>polars</td><td>Fast DataFrame (Rust engine)</td><td>Laziness, speed on medium/large data</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E6E6FA?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Visualization
 
@@ -718,7 +718,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>altair</td><td>Declarative grammar</td><td>Readable specs; Vega-Lite backend</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-F0F8FF?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Machine Learning / AI
 
@@ -731,7 +731,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>transformers</td><td>LLMs, transfer learning</td><td>Tokenizers, pipelines, model zoo</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFF0F5?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Math, Statistics, SciPy
 
@@ -742,7 +742,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>sympy</td><td>Symbolic math</td><td>Derivations, simplifications</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-D4E4FC?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## NLP / Text
 
@@ -753,7 +753,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>wordcloud</td><td>Visual summaries</td><td>Exploratory visuals</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E0FFFF?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Utilities & Workflow
 
@@ -764,7 +764,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>joblib, pickle</td><td>Model I/O</td><td>Persist artifacts; mind security</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFE5CC?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Data I/O
 
@@ -775,7 +775,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>requests</td><td>HTTP APIs</td><td>Timeouts, retries, backoff</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FADADD?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Visualization Add-ons
 
@@ -785,7 +785,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr style="background-color:#F0F8FF"><td>geopandas, folium</td><td>Geospatial viz</td><td>Interactive maps and overlays</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFF4E6?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Advanced Data & Big Data
 
@@ -796,7 +796,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>pyspark</td><td>Spark API</td><td>Cluster compute for very large data</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E7F3E7?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Deep Learning & GPU
 
@@ -808,7 +808,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr style="background-color:#FAFAD2"><td>jax, jnp, flax, optax</td><td>JIT DL, functional NN</td><td>Fast grad, pure functions</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-D4E4FC?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Advanced AI / Transformers / LLMs
 
@@ -819,7 +819,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>accelerate, sentence_transformers</td><td>Distributed, embeddings</td><td>Multi-GPU orchestration, retrieval</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFE4E1?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Advanced Visualization & Dashboards
 
@@ -830,7 +830,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>pyvis, pyvista</td><td>Networks, 3D</td><td>Explorable graphs and volumes</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E6E6FA?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Statistics, Bayesian, Probabilistic
 
@@ -841,7 +841,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>lifelines, prophet</td><td>Survival, forecasting</td><td>Kaplan–Meier; components/trends</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFF0F5?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Optimization & Math
 
@@ -852,7 +852,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>sympy</td><td>Symbolic math</td><td>Closed forms, derivations</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FAFAD2?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Graphs, Knowledge, Advanced Data
 
@@ -862,7 +862,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr style="background-color:#F0F8FF"><td>dgl, torch_geometric, stellargraph</td><td>Graph ML</td><td>Message passing, link prediction</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E0FFFF?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Advanced NLP / Text
 
@@ -873,7 +873,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>gensim LdaModel</td><td>Topic modeling</td><td>Classical LDA workflow</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFE5CC?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Advanced Utilities & Parallelism
 
@@ -883,7 +883,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr style="background-color:#F0F8FF"><td>ThreadPoolExecutor, ProcessPoolExecutor</td><td>Concurrency APIs</td><td>IO vs CPU bound tasks</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-F0F8FF?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Computer Vision & Image/Video
 
@@ -895,7 +895,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr style="background-color:#FAFAD2"><td>imageio, tifffile</td><td>I/O, large images</td><td>Microscopy, GeoTIFFs</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-FFF4E6?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Geospatial & Maps
 
@@ -906,7 +906,7 @@ The intent is clarity: rigorous enough for research, direct enough for practice.
 <tr><td>folium, contextily</td><td>Interactive maps, basemaps</td><td>Tiles and layers</td></tr>
 </table>
 
-<div align="center">[![Back to index](https://img.shields.io/badge/Back_to_Index-Click-E6E6FA?style=flat-square)](#quick-index)</div>
+<div align="center">
 
 ## Ultra / Rare Imports (HPC, Research, Frontier)
 
