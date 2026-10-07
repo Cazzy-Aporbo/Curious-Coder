@@ -1,0 +1,173 @@
+{
+  "retrieved_utc": "2026-10-07T01:48:15.781483+00:00",
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+  "queries": {
+    "prediction_evaluation": "(TITLE_ABS:\"clinical prediction\" AND (TITLE_ABS:validation OR TITLE_ABS:calibration)) AND FIRST_PDATE:[2018-01-01 TO 2025-12-31] AND SRC:MED",
+    "protein_models": "(TITLE_ABS:\"protein language model\" OR TITLE_ABS:\"protein representation\") AND FIRST_PDATE:[2018-01-01 TO 2025-12-31] AND SRC:MED",
+    "measurement_quality": "(TITLE_ABS:\"sequencing quality\" OR TITLE_ABS:\"assay validation\") AND FIRST_PDATE:[2018-01-01 TO 2025-12-31] AND SRC:MED"
+  },
+  "pages_per_query": 2,
+  "page_size": 25,
+  "request_trace": [
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28TITLE_ABS%3A%22clinical+prediction%22+AND+%28TITLE_ABS%3Avalidation+OR+TITLE_ABS%3Acalibration%29%29+AND+FIRST_PDATE%3A%5B2018-01-01+TO+2025-12-31%5D+AND+SRC%3AMED&cursorMark=%2A&pageSize=25&format=json&resultType=core",
+      "response_sha256": "c99cd996aea7de96d839e5f6c99cc93c4559605e0081a53e556edc797e14323c",
+      "query_name": "prediction_evaluation",
+      "hit_count": 1743,
+      "returned": 25,
+      "cursor": "*"
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28TITLE_ABS%3A%22clinical+prediction%22+AND+%28TITLE_ABS%3Avalidation+OR+TITLE_ABS%3Acalibration%29%29+AND+FIRST_PDATE%3A%5B2018-01-01+TO+2025-12-31%5D+AND+SRC%3AMED&cursorMark=AoIIQEr3ESg1NDU0ODYyNA%3D%3D&pageSize=25&format=json&resultType=core",
+      "response_sha256": "276e90883bb5c5fd46a3d4ab5629ed490e421fbb29ccce51c77cf21f1035f5f2",
+      "query_name": "prediction_evaluation",
+      "hit_count": 1743,
+      "returned": 25,
+      "cursor": "AoIIQEr3ESg1NDU0ODYyNA=="
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28TITLE_ABS%3A%22protein+language+model%22+OR+TITLE_ABS%3A%22protein+representation%22%29+AND+FIRST_PDATE%3A%5B2018-01-01+TO+2025-12-31%5D+AND+SRC%3AMED&cursorMark=%2A&pageSize=25&format=json&resultType=core",
+      "response_sha256": "c4e9cfeb8afd5e1693b7efd0a2618439d5adeaac5c323b4c889323c5a17e0715",
+      "query_name": "protein_models",
+      "hit_count": 490,
+      "returned": 25,
+      "cursor": "*"
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28TITLE_ABS%3A%22protein+language+model%22+OR+TITLE_ABS%3A%22protein+representation%22%29+AND+FIRST_PDATE%3A%5B2018-01-01+TO+2025-12-31%5D+AND+SRC%3AMED&cursorMark=AoIIQAz0yyg1MjcxNTY1NA%3D%3D&pageSize=25&format=json&resultType=core",
+      "response_sha256": "afef73dfea30f4985a200a21f2dfa4e95b09e28d075a82a54f38212c7661e8e9",
+      "query_name": "protein_models",
+      "hit_count": 490,
+      "returned": 25,
+      "cursor": "AoIIQAz0yyg1MjcxNTY1NA=="
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28TITLE_ABS%3A%22sequencing+quality%22+OR+TITLE_ABS%3A%22assay+validation%22%29+AND+FIRST_PDATE%3A%5B2018-01-01+TO+2025-12-31%5D+AND+SRC%3AMED&cursorMark=%2A&pageSize=25&format=json&resultType=core",
+      "response_sha256": "7949eef5d7d9f29a66dec38e2e0dceae6825b78a7e004961568e8032547c0962",
+      "query_name": "measurement_quality",
+      "hit_count": 654,
+      "returned": 25,
+      "cursor": "*"
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28TITLE_ABS%3A%22sequencing+quality%22+OR+TITLE_ABS%3A%22assay+validation%22%29+AND+FIRST_PDATE%3A%5B2018-01-01+TO+2025-12-31%5D+AND+SRC%3AMED&cursorMark=AoIIP77kAyg1MzkyOTc5OA%3D%3D&pageSize=25&format=json&resultType=core",
+      "response_sha256": "cc60cea6d1c620ccd77e8496f896f616fbc172b66aef6c3748bd14161af59e96",
+      "query_name": "measurement_quality",
+      "hit_count": 654,
+      "returned": 25,
+      "cursor": "AoIIP77kAyg1MzkyOTc5OA=="
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1136%2Fbmj-2023-078378%22+AND+SRC%3AMED&cursorMark=%2A&pageSize=2&format=json&resultType=core",
+      "response_sha256": "ccbfebacfeb2ed572dcce73397909a86886cf6bdfbccdb79949f3f3ed01ebe01",
+      "query_name": "explicit_anchor",
+      "hit_count": 1,
+      "returned": 1
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1186%2F1471-2105-7-91%22+AND+SRC%3AMED&cursorMark=%2A&pageSize=2&format=json&resultType=core",
+      "response_sha256": "9c9ab6244bef5f4eed74287ffe4bd20c11d9e265b8ae6a3873cc760a41a400e8",
+      "query_name": "explicit_anchor",
+      "hit_count": 1,
+      "returned": 1
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1177%2F0272989x06295361%22+AND+SRC%3AMED&cursorMark=%2A&pageSize=2&format=json&resultType=core",
+      "response_sha256": "deb091b3b018a00d78e02f8ccf7676b3f65449bdd92c7f16003609044581e48c",
+      "query_name": "explicit_anchor",
+      "hit_count": 1,
+      "returned": 1
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1126%2Fscience.ade2574%22+AND+SRC%3AMED&cursorMark=%2A&pageSize=2&format=json&resultType=core",
+      "response_sha256": "afdccfcc16c662f93fa417972532aa79fc78b6d675c1e6d5ae90d978f2c9708a",
+      "query_name": "explicit_anchor",
+      "hit_count": 1,
+      "returned": 1
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1093%2Fnar%2Fgkp1137%22+AND+SRC%3AMED&cursorMark=%2A&pageSize=2&format=json&resultType=core",
+      "response_sha256": "c0f4390ef09ab1824487ae328750efcd3f85d9e9e1e46d8337b431bb4e8b7ca8",
+      "query_name": "explicit_anchor",
+      "hit_count": 1,
+      "returned": 1
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1177%2F108705719900400206%22+AND+SRC%3AMED&cursorMark=%2A&pageSize=2&format=json&resultType=core",
+      "response_sha256": "cb928c93e64928c47678f8aa71bbf137c75356c58f06c45ee37e2dcfe243c459",
+      "query_name": "explicit_anchor",
+      "hit_count": 1,
+      "returned": 1
+    }
+  ],
+  "files": {
+    "corpus.json": "a6a72a3762cddf94f1a61f6217e6f255bb531df03e2e64a5f1b69ac0f350bddf",
+    "queries.json": "d49bafc61c87f5e4b16147b9390afdff15a7f26dd8aeefbc63a35ac40a5b8a81"
+  },
+  "audit": {
+    "records": 156,
+    "years": {
+      "1999": 1,
+      "2006": 2,
+      "2010": 1,
+      "2023": 2,
+      "2024": 10,
+      "2025": 120,
+      "2026": 20
+    },
+    "languages": {
+      "eng": 156
+    },
+    "license_metadata": {
+      "cc by-nc-nd": 38,
+      "cc by": 62,
+      "not supplied": 45,
+      "cc by-nc": 11
+    },
+    "abstract_missing_upstream": 9,
+    "abstract_withheld_by_reuse_policy": 87,
+    "abstract_included": 60,
+    "records_with_notice_links": 29,
+    "top_journals": [
+      [
+        "Bioanalysis",
+        6
+      ],
+      [
+        "Scientific reports",
+        6
+      ],
+      [
+        "The AAPS journal",
+        4
+      ],
+      [
+        "Nature biotechnology",
+        4
+      ],
+      [
+        "Nature communications",
+        4
+      ],
+      [
+        "Computational and structural biotechnology journal",
+        4
+      ],
+      [
+        "Briefings in bioinformatics",
+        4
+      ],
+      [
+        "Frontiers in medicine",
+        4
+      ]
+    ],
+    "journal_concentration_hhi": 0.013888888888888888
+  },
+  "selection_limits": [
+    "MED-indexed records only; default upstream ranking; capped pages; English query vocabulary.",
+    "Six known-item anchors were explicitly added; presence is guaranteed by construction.",
+    "No publisher-site crawling, full-text acquisition, email extraction, or generated scientific answers.",
+    "License metadata and notice links are retained, not independently adjudicated; absence of a notice is not a validity guarantee."
+  ]
+}

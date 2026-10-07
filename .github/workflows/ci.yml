@@ -72,6 +72,15 @@ jobs:
       - name: Reproduce measured-data analysis and figures offline
         if: matrix.python == '3.12'
         run: python -m studies.run --output artifacts/reproduced-results --figures artifacts/reproduced-figures
+      - name: Verify facility and execution contracts offline
+        if: matrix.python == '3.12'
+        run: |
+          python -m biotech.facility_demo --directory artifacts/ci-facility --report artifacts/reproduced-results/facility.json
+          python -m studies.facility_figures --report artifacts/reproduced-results/facility.json --output artifacts/reproduced-figures
+          python -m studies.resource_scheduling --output artifacts/reproduced-results/resource_scheduling.json
+          python -m studies.execution_figures --report artifacts/reproduced-results/resource_scheduling.json --output artifacts/reproduced-figures
+          python -m studies.data_movement --output artifacts/reproduced-results/data_movement.json
+          python -m studies.statistical_validation --output artifacts/reproduced-results/statistical_validation.json
       - name: Verify biotech QC, export, and two-process training
         if: matrix.python == '3.12'
         env:
@@ -88,6 +97,11 @@ jobs:
         run: |
           python -m pip install -r requirements-protein.txt
           python -m studies.protein_transfer --download --output artifacts/reproduced-results/protein_transfer.json
+      - name: Verify pinned retrieval model and precision comparison
+        if: matrix.python == '3.12'
+        run: |
+          python -m studies.evidence_retrieval --download-model --timing-repeats 2 --output artifacts/reproduced-results/evidence_retrieval.json
+          python -m studies.retrieval_figures --report artifacts/reproduced-results/evidence_retrieval.json --output artifacts/reproduced-figures
       - name: Require exercise branch coverage
         run: python -m pytest tests/test_learning_lab.py --cov=patient_leakage_lab --cov-branch --cov-fail-under=85 --cov-report=term --cov-report=xml:coverage-lab.xml
       - name: Upload test evidence

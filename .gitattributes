@@ -1,5 +1,6 @@
 data/snapshots/* -text
 data/protein_fixture/*.fasta -text
 data/biotech_fixture/* -text
+data/literature_evidence/*.json -text
 data/snapshots/*.dly whitespace=-blank-at-eol
 assets/figures/*.png binary

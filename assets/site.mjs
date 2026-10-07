@@ -73,6 +73,33 @@ function initialize() {
     });
     block.prepend(button);
   }
+  const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+  for (const picture of document.querySelectorAll('picture.protocol-motion')) {
+    const image = picture.querySelector('img');
+    const motion = image.getAttribute('src');
+    const still = image.dataset.still;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'protocol-play';
+    let timer;
+    const stop = () => {
+      clearTimeout(timer);
+      image.src = still;
+      picture.dataset.playing = 'false';
+      button.textContent = motionPreference.matches ? 'Reduced motion: static diagram' : 'Play workflow';
+      button.disabled = motionPreference.matches;
+    };
+    stop();
+    button.addEventListener('click', () => {
+      if (picture.dataset.playing === 'true') { stop(); return; }
+      picture.dataset.playing = 'true';
+      image.src = `${motion}?replay=${Date.now()}`;
+      button.textContent = 'Pause workflow';
+      timer = setTimeout(stop, 4600);
+    });
+    motionPreference.addEventListener('change', stop);
+    picture.insertAdjacentElement('afterend', button);
+  }
   const dialog = document.querySelector('#figure-dialog');
   const expanded = dialog.querySelector('img');
   const zoom = document.querySelector('#figure-zoom');
@@ -89,10 +116,10 @@ function initialize() {
     download.href = image.src;
     download.download = image.src.split('/').pop();
     download.className = 'button secondary';
-    download.textContent = 'Download SVG';
+    download.textContent = `Download ${new URL(image.src).pathname.split('.').pop().toUpperCase()}`;
     inspect.addEventListener('click', () => {
       lastFigureButton = inspect;
-      expanded.src = image.src;
+      expanded.src = image.currentSrc || image.src;
       expanded.alt = image.alt;
       document.querySelector('#figure-caption').textContent = image.alt;
       zoom.value = '100';

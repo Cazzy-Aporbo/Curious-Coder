@@ -1,0 +1,143 @@
+{
+  "evidence_type": "synthetic capacity example; no patient data or clinical priority model",
+  "slot_minutes": 15,
+  "cases": [
+    {
+      "case_id": "case-A",
+      "duration": 2,
+      "recovery": 2,
+      "surgeon": "team-1",
+      "instrument_set": "tray-1",
+      "earliest": 0,
+      "latest_start": 10,
+      "room_turnover": 1,
+      "instrument_turnaround": 2
+    },
+    {
+      "case_id": "case-B",
+      "duration": 2,
+      "recovery": 2,
+      "surgeon": "team-2",
+      "instrument_set": "tray-2",
+      "earliest": 0,
+      "latest_start": 10,
+      "room_turnover": 1,
+      "instrument_turnaround": 2
+    },
+    {
+      "case_id": "case-C",
+      "duration": 1,
+      "recovery": 2,
+      "surgeon": "team-1",
+      "instrument_set": "tray-1",
+      "earliest": 1,
+      "latest_start": 10,
+      "room_turnover": 1,
+      "instrument_turnaround": 2
+    },
+    {
+      "case_id": "case-D",
+      "duration": 2,
+      "recovery": 1,
+      "surgeon": "team-2",
+      "instrument_set": "tray-2",
+      "earliest": 0,
+      "latest_start": 10,
+      "room_turnover": 1,
+      "instrument_turnaround": 2
+    }
+  ],
+  "scenarios": {
+    "one_recovery_place": {
+      "status": "optimal_for_declared_model",
+      "schedule": [
+        {
+          "case_id": "case-D",
+          "room": 1,
+          "start": 0,
+          "end": 2,
+          "recovery_end": 3
+        },
+        {
+          "case_id": "case-A",
+          "room": 0,
+          "start": 1,
+          "end": 3,
+          "recovery_end": 5
+        },
+        {
+          "case_id": "case-B",
+          "room": 0,
+          "start": 4,
+          "end": 6,
+          "recovery_end": 8
+        },
+        {
+          "case_id": "case-C",
+          "room": 0,
+          "start": 7,
+          "end": 8,
+          "recovery_end": 10
+        }
+      ],
+      "verification": {
+        "feasible": true,
+        "objective_start_slot_sum": 12,
+        "peak_recovery_occupancy": 1
+      },
+      "solve_ms": 37.12674998678267,
+      "binary_variables": 86,
+      "constraint_rows": 94,
+      "solver_gap": 0.0,
+      "rooms": 2,
+      "recovery_capacity": 1,
+      "horizon": 14
+    },
+    "two_recovery_places": {
+      "status": "optimal_for_declared_model",
+      "schedule": [
+        {
+          "case_id": "case-A",
+          "room": 0,
+          "start": 0,
+          "end": 2,
+          "recovery_end": 4
+        },
+        {
+          "case_id": "case-B",
+          "room": 1,
+          "start": 0,
+          "end": 2,
+          "recovery_end": 4
+        },
+        {
+          "case_id": "case-C",
+          "room": 0,
+          "start": 4,
+          "end": 5,
+          "recovery_end": 7
+        },
+        {
+          "case_id": "case-D",
+          "room": 1,
+          "start": 4,
+          "end": 6,
+          "recovery_end": 7
+        }
+      ],
+      "verification": {
+        "feasible": true,
+        "objective_start_slot_sum": 8,
+        "peak_recovery_occupancy": 2
+      },
+      "solve_ms": 5.126416916027665,
+      "binary_variables": 86,
+      "constraint_rows": 94,
+      "solver_gap": 0.0,
+      "rooms": 2,
+      "recovery_capacity": 2,
+      "horizon": 14
+    }
+  },
+  "limits": "Deterministic durations and simplified availability delays; no live ADT/FHIR feed, emergency triage, staffing-safety validation, sterilization validation, or EHR writes."
+}

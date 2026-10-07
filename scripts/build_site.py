@@ -52,7 +52,7 @@ footer { border-top:1px solid var(--rule); padding:1.5rem; text-align:center; fo
 def content_files(root):
     files = list(root.glob("*.md"))
     files += [p for folder in CONTENT_DIRS for p in (root / folder).rglob("*")
-              if p.is_file() and not p.is_symlink() and p.suffix in {".md", ".html", ".py", ".svg", ".png", ".json", ".csv", ".txt", ".data", ".dly", ".fasta", ".fastq", ".vcf", ".css", ".mjs"}]
+              if p.is_file() and not p.is_symlink() and p.suffix in {".md", ".html", ".py", ".svg", ".png", ".gif", ".json", ".csv", ".txt", ".data", ".dly", ".fasta", ".fastq", ".vcf", ".css", ".mjs", ".sql"}]
     return sorted(p for p in files if p.name != "AGENTS.md")
 
 
@@ -161,6 +161,13 @@ def build_site(root=ROOT, output=None):
     count = 0
     interactive = (root / "assets/site.mjs").exists() and (root / "assets/site.css").exists()
     index = search_index(root) if interactive else []
+    route = [(path, label) for path, label in (
+        ("README.md", "Overview"), ("START_HERE.md", "Begin here"), ("studies/evidence_retrieval.md", "Find the evidence"),
+        ("biotech/README.md", "Inspect the measurement"), ("biotech/facility_workflow.md", "Follow the process record"),
+        ("studies/clinical_benchmark.md", "Compare models"), ("studies/statistical_validation.md", "Examine uncertainty"),
+        ("studies/protein_adaptation.md", "Inspect weight updates"), ("studies/training_math.md", "Check distributed training"),
+        ("studies/engineering.md", "Deliver the result"), ("studies/execution_contracts.md", "Check execution constraints"),
+        ("studies/technology_map.md", "Choose the next integration")) if (root / path).exists()]
     for source in content_files(root):
         relative = source.relative_to(root)
         destination = output / (page_path(relative) if source.suffix == ".md" else relative)
@@ -168,7 +175,7 @@ def build_site(root=ROOT, output=None):
         if source.suffix != ".md":
             shutil.copyfile(source, destination)
             continue
-        renderer = markdown.Markdown(extensions=["fenced_code", "tables", "toc", "sane_lists"])
+        renderer = markdown.Markdown(extensions=["fenced_code", "tables", "toc", "sane_lists", "md_in_html"])
         body = renderer.convert(source.read_text(encoding="utf-8"))
         body = re.sub(r'(href|src)="([^"]*)"',
                       lambda match: f'{match[1]}="{escape(rewrite_link(unquote_html(match[2])), quote=True)}"', body)
@@ -177,7 +184,7 @@ def build_site(root=ROOT, output=None):
         home = os.path.relpath(output / "index.html", destination.parent).replace(os.sep, "/")
         source_url = "https://github.com/Cazzy-Aporbo/Curious-Coder/blob/main/" + relative.as_posix()
         navigation = []
-        for label, target in (("Start here", "START_HERE.md"), ("Biotech QC", "biotech/README.md"), ("Protein adaptation", "studies/protein_adaptation.md"), ("Measured ML", "studies/clinical_benchmark.md")):
+        for label, target in (("Start here", "START_HERE.md"), ("Biotech QC", "biotech/README.md"), ("Protein adaptation", "studies/protein_adaptation.md"), ("Measured ML", "studies/clinical_benchmark.md"), ("Tools & interfaces", "studies/technology_map.md")):
             if (root / target).exists():
                 link = os.path.relpath(output / page_path(Path(target)), destination.parent).replace(os.sep, "/")
                 navigation.append(f'<a href="{link}">{label}</a>')
@@ -188,6 +195,16 @@ def build_site(root=ROOT, output=None):
             resources = f'<link rel="stylesheet" href="{css}"><script type="module" src="{js}"></script>'
             controls = TOOLS + f'<script type="application/json" id="search-data">{inline_json(index)}</script>'
             body = body.replace('<div class="interactive-results"></div>', explorer_markup(root))
+        chapter_links = []
+        route_paths = [path for path, _ in route]
+        if relative.as_posix() in route_paths:
+            position = route_paths.index(relative.as_posix())
+            for adjacent, direction in ((position - 1, "Previous"), (position + 1, "Next")):
+                if 0 <= adjacent < len(route):
+                    path, label = route[adjacent]
+                    link = os.path.relpath(output / page_path(Path(path)), destination.parent).replace(os.sep, "/")
+                    chapter_links.append(f'<a class="button secondary" href="{escape(link, quote=True)}">{direction} · {escape(label)}</a>')
+            body += f'<nav class="chapter-nav" aria-label="Learning route"><p>Learning route · {position + 1} of {len(route)}</p>{"".join(chapter_links)}</nav>'
         page = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{escape(title)} · Curious Coder</title><style>{STYLE}</style>{resources}</head>

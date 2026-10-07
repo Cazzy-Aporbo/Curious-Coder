@@ -102,6 +102,12 @@ python -m pytest tests/test_studies.py -v
 
 These are measured results from the pinned snapshot and configuration, not example numbers typed into a chart. Regenerating the experiment with a different configuration creates a different experiment; update the narrative only after reviewing the changed outputs. Repeatedly tuning against this now-visible test set would invalidate its role as fresh held-out evidence.
 
+## Continue from a point estimate to a statistical argument
+
+I extend this comparison in [the statistical-validation walkthrough](statistical_validation.md). It treats two questions separately: paired uncertainty for these fixed test predictions, and development-only nested evaluation of a declared model-selection procedure. It then derives net benefit and positive predictive value while keeping their clinical assumptions visible.
+
+That extension does not turn the original test set back into fresh evidence. It is an explanatory follow-up, with all fitting kept out of the original 114 test records. The underlying image features are post-FNA measurements, so neither study supports a claim of pre-FNA screening benefit.
+
 ## What this study supports
 
 For this fixed benchmark and selection rule, a regularized linear baseline is the better-supported starting point. The neural implementation remains useful for learning optimization and checkpoint discipline, not as evidence that deep learning is necessary here. The larger unanswered question is external validity, not squeezing another decimal place from a familiar dataset.

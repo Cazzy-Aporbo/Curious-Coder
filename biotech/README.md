@@ -92,4 +92,6 @@ This separation also matters commercially. Avoiding an invalid downstream analys
 
 For regulated or accredited work, software tests are only one part of the evidence. Approved procedures, intended use, risk assessment, validation records, access control, change control, traceability, retention, and qualified review belong to the organization's quality system. I do not label these examples ISO-, CLIA-, GxP-, or 21 CFR Part 11-compliant.
 
+Continue with [the facility evidence workflow](facility_workflow.md) to inspect calibration-aware ingestion, a relational schema, signed decisions, a read-only API, and a conserved particle model. Its [console](facility_console.html) makes the source-to-decision path inspectable without presenting the fixture as a validated manufacturing system.
+
 Continue with [pretrained protein adaptation](../studies/protein_adaptation.md), where I inspect exactly which weights change, or [training mathematics](../studies/training_math.md), where I test whether a distributed implementation still optimizes the intended objective.

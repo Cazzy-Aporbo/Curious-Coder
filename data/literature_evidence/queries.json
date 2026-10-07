@@ -1,0 +1,44 @@
+[
+  {
+    "key": "reporting",
+    "doi": "10.1136/bmj-2023-078378",
+    "question": "What should a report disclose about the population, intended use, and evaluation of a clinical prediction model?",
+    "target": "MED:38626948",
+    "judgment_scope": "Authored known-item teaching query; not a complete or blinded relevance judgment."
+  },
+  {
+    "key": "selection_bias",
+    "doi": "10.1186/1471-2105-7-91",
+    "question": "Why can tuning a classifier and estimating its error with the same cross validation give an optimistic result?",
+    "target": "MED:16504092",
+    "judgment_scope": "Authored known-item teaching query; not a complete or blinded relevance judgment."
+  },
+  {
+    "key": "decision_utility",
+    "doi": "10.1177/0272989x06295361",
+    "question": "How can the consequences of false positive decisions be weighed against correct detection when comparing prediction models?",
+    "target": "MED:17099194",
+    "judgment_scope": "Authored known-item teaching query; not a complete or blinded relevance judgment."
+  },
+  {
+    "key": "protein_model",
+    "doi": "10.1126/science.ade2574",
+    "question": "Can a model trained on protein sequences learn information about atomic structure without relying on a multiple sequence alignment at inference?",
+    "target": "MED:36927031",
+    "judgment_scope": "Authored known-item teaching query; not a complete or blinded relevance judgment."
+  },
+  {
+    "key": "read_encoding",
+    "doi": "10.1093/nar/gkp1137",
+    "question": "Why do sequencing quality strings need an explicit encoding convention when exchanging FASTQ files?",
+    "target": "MED:20015970",
+    "judgment_scope": "Authored known-item teaching query; not a complete or blinded relevance judgment."
+  },
+  {
+    "key": "assay_window",
+    "doi": "10.1177/108705719900400206",
+    "question": "Which screening assay statistic combines variability of controls with the distance between their signals?",
+    "target": "MED:10838414",
+    "judgment_scope": "Authored known-item teaching query; not a complete or blinded relevance judgment."
+  }
+]

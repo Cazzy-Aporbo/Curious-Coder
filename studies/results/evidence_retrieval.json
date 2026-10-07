@@ -1,0 +1,1709 @@
+{
+  "schema_version": 1,
+  "snapshot_sha256": {
+    "corpus.json": "a6a72a3762cddf94f1a61f6217e6f255bb531df03e2e64a5f1b69ac0f350bddf",
+    "queries.json": "d49bafc61c87f5e4b16147b9390afdff15a7f26dd8aeefbc63a35ac40a5b8a81"
+  },
+  "source_audit": {
+    "records": 156,
+    "years": {
+      "1999": 1,
+      "2006": 2,
+      "2010": 1,
+      "2023": 2,
+      "2024": 10,
+      "2025": 120,
+      "2026": 20
+    },
+    "languages": {
+      "eng": 156
+    },
+    "license_metadata": {
+      "cc by-nc-nd": 38,
+      "cc by": 62,
+      "not supplied": 45,
+      "cc by-nc": 11
+    },
+    "abstract_missing_upstream": 9,
+    "abstract_withheld_by_reuse_policy": 87,
+    "abstract_included": 60,
+    "records_with_notice_links": 29,
+    "top_journals": [
+      [
+        "Bioanalysis",
+        6
+      ],
+      [
+        "Scientific reports",
+        6
+      ],
+      [
+        "The AAPS journal",
+        4
+      ],
+      [
+        "Nature biotechnology",
+        4
+      ],
+      [
+        "Nature communications",
+        4
+      ],
+      [
+        "Computational and structural biotechnology journal",
+        4
+      ],
+      [
+        "Briefings in bioinformatics",
+        4
+      ],
+      [
+        "Frontiers in medicine",
+        4
+      ]
+    ],
+    "journal_concentration_hhi": 0.013888888888888888
+  },
+  "model": {
+    "id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "weights_sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+    "max_wordpieces": 256,
+    "parameter_count_fp32": 22713216,
+    "quantized_linear_modules": 37,
+    "quantization_engine": "qnnpack",
+    "load_fp32_ms": 106.05920804664493,
+    "quantization_ms": 108.79037505947053
+  },
+  "environment": {
+    "python": "3.12.8",
+    "system": "Darwin",
+    "machine": "arm64",
+    "torch_threads": 1,
+    "packages": {
+      "torch": "2.8.0",
+      "transformers": "4.55.4",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "input_audit": {
+    "records_truncated_at_256_wordpieces": 52,
+    "max_wordpieces_before_truncation": 877
+  },
+  "methods": {
+    "TF-IDF": {
+      "known_target_hit_at_5": 0.8333333333333334,
+      "mean_anchor_reciprocal_rank": 0.5134920634920636,
+      "target_ranks": [
+        21,
+        1,
+        1,
+        5,
+        2,
+        3
+      ],
+      "warm_query_mean_ms": 0.5598738838064795,
+      "warm_query_p50_ms": 0.5258329911157489,
+      "warm_query_p95_ms": 0.7248002279084176,
+      "timed_requests": 72,
+      "raw_warm_query_ms": [
+        0.4916249308735132,
+        0.4937500925734639,
+        0.49116695299744606,
+        0.6442079320549965,
+        0.5513340001925826,
+        0.7090840954333544,
+        0.5137500120326877,
+        0.5080000264570117,
+        0.30466692987829447,
+        0.6608749972656369,
+        0.505582895129919,
+        0.3130830591544509,
+        0.5048329476267099,
+        0.4839579341933131,
+        0.5174590041860938,
+        0.540125067345798,
+        0.5991250509396195,
+        0.532875070348382,
+        0.5433749174699187,
+        0.5135000683367252,
+        0.5253339186310768,
+        0.3939999733120203,
+        0.5289169494062662,
+        1.2946249917149544,
+        0.5147909978404641,
+        0.7288339547812939,
+        0.5135419778525829,
+        0.5033330526202917,
+        0.6384999724105,
+        0.530000077560544,
+        1.4732920099049807,
+        0.6155830342322588,
+        0.5259159952402115,
+        0.49579108599573374,
+        0.4920000210404396,
+        0.5318339681252837,
+        0.5257499869912863,
+        0.4771669628098607,
+        0.5004580598324537,
+        0.49941695760935545,
+        0.5356669425964355,
+        0.5137920379638672,
+        0.5523329600691795,
+        0.5406249547377229,
+        0.5916249938309193,
+        0.6071249954402447,
+        0.571124954149127,
+        0.525499926880002,
+        0.9261670056730509,
+        0.6455000257119536,
+        0.5129579221829772,
+        0.49816700629889965,
+        0.54041703697294,
+        0.3528749803081155,
+        0.4873330472037196,
+        0.5006670253351331,
+        0.5116250831633806,
+        0.5118339322507381,
+        0.5449999589473009,
+        0.5097909597679973,
+        0.7214999059215188,
+        0.5376249318942428,
+        0.543292029760778,
+        0.5340420175343752,
+        0.5406250711530447,
+        0.5345409736037254,
+        0.5157500272616744,
+        0.5010419990867376,
+        0.5734160076826811,
+        0.5447500152513385,
+        0.5025420105084777,
+        0.5502089625224471
+      ],
+      "index_build_ms": 42.937417048960924,
+      "numeric_index_bytes": 199356,
+      "serialized_model_state_bytes": 0
+    },
+    "MiniLM FP32": {
+      "known_target_hit_at_5": 0.8333333333333334,
+      "mean_anchor_reciprocal_rank": 0.861111111111111,
+      "target_ranks": [
+        1,
+        1,
+        6,
+        1,
+        1,
+        1
+      ],
+      "warm_query_mean_ms": 9.025059640407562,
+      "warm_query_p50_ms": 8.770833490416408,
+      "warm_query_p95_ms": 12.085487484000623,
+      "timed_requests": 72,
+      "raw_warm_query_ms": [
+        10.65929199103266,
+        12.066249968484044,
+        10.245125042274594,
+        8.384417043998837,
+        14.081083936616778,
+        15.51841595210135,
+        15.564125031232834,
+        12.109000002965331,
+        10.050084092654288,
+        7.999249966815114,
+        8.6893750121817,
+        7.523665903136134,
+        7.5732499826699495,
+        9.756125044077635,
+        9.336707997135818,
+        8.603540947660804,
+        9.734874940477312,
+        9.287249995395541,
+        9.35379194561392,
+        8.37545795366168,
+        8.824208052828908,
+        8.395249955356121,
+        8.46820801962167,
+        10.119582992047071,
+        7.93495902325958,
+        7.373583037406206,
+        9.692249936051667,
+        7.538334000855684,
+        8.920833934098482,
+        7.807750022038817,
+        7.83454196061939,
+        6.8952079163864255,
+        6.553999963216484,
+        8.638500003144145,
+        6.552584003657103,
+        8.811832987703383,
+        10.621833032928407,
+        8.751166984438896,
+        8.788916980847716,
+        6.457542069256306,
+        7.675500004552305,
+        8.356666075997055,
+        7.884667022153735,
+        8.934292010962963,
+        7.72262504324317,
+        9.929041960276663,
+        10.194458067417145,
+        10.16208401415497,
+        8.813166059553623,
+        7.138667046092451,
+        8.752749999985099,
+        8.975708042271435,
+        9.362583979964256,
+        7.21775006968528,
+        9.459082968533039,
+        9.381833020597696,
+        9.121084003709257,
+        8.348958916030824,
+        8.79345799330622,
+        7.8810000559315085,
+        8.543208008632064,
+        8.172041969373822,
+        9.516749996691942,
+        10.23812498897314,
+        7.230249932035804,
+        8.531542029231787,
+        9.257958037778735,
+        9.35875007417053,
+        8.229792001657188,
+        7.238375023007393,
+        11.695457971654832,
+        7.794500095769763
+      ],
+      "index_build_ms": 5376.367083983496,
+      "numeric_index_bytes": 239616,
+      "serialized_model_state_bytes": 90892017
+    },
+    "MiniLM INT8-linear": {
+      "known_target_hit_at_5": 0.8333333333333334,
+      "mean_anchor_reciprocal_rank": 0.8484848484848485,
+      "target_ranks": [
+        1,
+        1,
+        11,
+        1,
+        1,
+        1
+      ],
+      "warm_query_mean_ms": 12.023059083730914,
+      "warm_query_p50_ms": 12.056729465257376,
+      "warm_query_p95_ms": 13.25621628202498,
+      "timed_requests": 72,
+      "raw_warm_query_ms": [
+        11.322958045639098,
+        10.632458026520908,
+        10.542665957473218,
+        11.375291971489787,
+        13.644042075611651,
+        12.189000030048192,
+        10.139791993424296,
+        10.717792087234557,
+        12.33508309815079,
+        10.938041028566658,
+        11.073332978412509,
+        12.463666964322329,
+        11.685207951813936,
+        13.786124996840954,
+        12.255041976459324,
+        12.05766701605171,
+        11.951792053878307,
+        11.532917036674917,
+        11.537541984580457,
+        11.935124988667667,
+        11.165541014634073,
+        12.464459054172039,
+        11.492500081658363,
+        11.426083045080304,
+        12.675915961153805,
+        12.245916994288564,
+        11.213958961889148,
+        13.15391599200666,
+        12.444082996807992,
+        11.288334033451974,
+        12.40008301101625,
+        11.588666937313974,
+        12.807167018763721,
+        11.567083070985973,
+        12.599332956597209,
+        11.808292008936405,
+        12.552708969451487,
+        12.511624954640865,
+        11.532208998687565,
+        11.06449996586889,
+        13.381249969825149,
+        11.82945806067437,
+        12.570833088830113,
+        12.454250012524426,
+        12.147083063609898,
+        12.3391670640558,
+        16.14141697064042,
+        12.10524991620332,
+        12.14745792094618,
+        12.308041914366186,
+        11.195290950126946,
+        12.184291961602867,
+        11.040334007702768,
+        11.812916956841946,
+        11.746290954761207,
+        12.25762499962002,
+        11.562166968360543,
+        12.76862493250519,
+        12.017959030345082,
+        12.652999954298139,
+        12.402208987623453,
+        12.345041963271797,
+        12.86812499165535,
+        11.653332971036434,
+        11.788667063228786,
+        11.42979203723371,
+        12.055791914463043,
+        12.165584019385278,
+        12.681916006840765,
+        11.879792087711394,
+        11.17820804938674,
+        12.431166949681938
+      ],
+      "index_build_ms": 17637.062499998137,
+      "numeric_index_bytes": 239616,
+      "serialized_model_state_bytes": 58626717
+    },
+    "Hybrid RRF": {
+      "known_target_hit_at_5": 0.8333333333333334,
+      "mean_anchor_reciprocal_rank": 0.6944444444444445,
+      "target_ranks": [
+        6,
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "warm_query_mean_ms": 9.683144775206326,
+      "warm_query_p50_ms": 9.327479521743953,
+      "warm_query_p95_ms": 13.91736076329835,
+      "timed_requests": 72,
+      "raw_warm_query_ms": [
+        9.362207958474755,
+        12.053332990035415,
+        9.680458926595747,
+        14.218417112715542,
+        12.284249998629093,
+        15.88833297137171,
+        14.518040930852294,
+        11.471375008113682,
+        8.543457952328026,
+        9.377375012263656,
+        9.443000075407326,
+        9.731416939757764,
+        8.257542038336396,
+        13.671041931957006,
+        17.1663339715451,
+        9.724208037368953,
+        8.496582973748446,
+        8.518041926436126,
+        9.223875007592142,
+        9.354209061712027,
+        10.261166957207024,
+        8.164666942320764,
+        8.59050010330975,
+        8.873708080500364,
+        9.699333924800158,
+        9.30074998177588,
+        10.912499972619116,
+        8.578334003686905,
+        9.750000084750354,
+        9.538209065794945,
+        9.074833942577243,
+        9.853833937086165,
+        9.77833301294595,
+        9.449625038541853,
+        8.569958969019353,
+        8.678041049279273,
+        9.374167071655393,
+        7.897250005044043,
+        10.332708014175296,
+        9.61162499152124,
+        9.717166889458895,
+        8.485250058583915,
+        9.457208099775016,
+        8.554999949410558,
+        7.689167046919465,
+        8.354707970283926,
+        9.506582980975509,
+        9.15125000756234,
+        9.67812491580844,
+        10.042916983366013,
+        8.909584023058414,
+        8.841792005114257,
+        8.603084017522633,
+        10.480082943104208,
+        8.957916987128556,
+        8.692750008776784,
+        8.55137500911951,
+        7.021832978352904,
+        8.914415957406163,
+        9.638542076572776,
+        9.036000003106892,
+        9.646542021073401,
+        8.842124952934682,
+        9.055583039298654,
+        7.621083990670741,
+        9.10316698718816,
+        8.35500005632639,
+        9.215916972607374,
+        11.400624993257225,
+        9.139791945926845,
+        10.086499969474971,
+        9.162292000837624
+      ],
+      "index_build_ms": 5419.304501032457,
+      "numeric_index_bytes": 438972,
+      "serialized_model_state_bytes": 90892017
+    }
+  },
+  "query_results": [
+    {
+      "method": "TF-IDF",
+      "query_key": "reporting",
+      "question": "What should a report disclose about the population, intended use, and evaluation of a clinical prediction model?",
+      "target": "MED:38626948",
+      "target_rank": 21,
+      "top5": [
+        {
+          "key": "MED:40370646",
+          "title": "Establishment and validation of a clinical prediction model for colorectal adenoma risk factors.",
+          "source_url": "https://europepmc.org/article/MED/40370646",
+          "score": 0.1759347766637802,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41448796",
+          "title": "Development of a clinical prediction model for falls in individuals with COPD.",
+          "source_url": "https://europepmc.org/article/MED/41448796",
+          "score": 0.16440579295158386,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40937344",
+          "title": "Development and Validation of a Clinical Prediction Model for Growth Hormone Deficiency in Children with Short Stature: A Retrospective Study in China.",
+          "source_url": "https://europepmc.org/article/MED/40937344",
+          "score": 0.1276320070028305,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40456833",
+          "title": "Development and validation of a clinical prediction model for Iliac vein compression syndrome in outpatients with varicose veins of the lower extremities.",
+          "source_url": "https://europepmc.org/article/MED/40456833",
+          "score": 0.12409410625696182,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41113144",
+          "title": "Development and Internal Validation of a Clinical Prediction Model for Refeeding Syndrome in Adult Intensive Care Unit Patients: A Retrospective Observational Study.",
+          "source_url": "https://europepmc.org/article/MED/41113144",
+          "score": 0.12349878996610641,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "TF-IDF",
+      "query_key": "selection_bias",
+      "question": "Why can tuning a classifier and estimating its error with the same cross validation give an optimistic result?",
+      "target": "MED:16504092",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:16504092",
+          "title": "Bias in error estimation when using cross-validation for model selection.",
+          "source_url": "https://europepmc.org/article/MED/16504092",
+          "score": 0.16388042271137238,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41028689",
+          "title": "Why is Biomarker Assay Validation Different from that of Pharmacokinetic Assays?",
+          "source_url": "https://europepmc.org/article/MED/41028689",
+          "score": 0.0838008001446724,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41133271",
+          "title": "Phage evolutionary relationships emerge from protein language model-based proteome representation.",
+          "source_url": "https://europepmc.org/article/MED/41133271",
+          "score": 0.06616974622011185,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40171157",
+          "title": "Development and validation of a clinical prediction model for pneumonia - associated bloodstream infections.",
+          "source_url": "https://europepmc.org/article/MED/40171157",
+          "score": 0.0617075078189373,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40328890",
+          "title": "Leveraging pretrained deep protein language model to predict peptide collision cross section.",
+          "source_url": "https://europepmc.org/article/MED/40328890",
+          "score": 0.06021338328719139,
+          "notice_links": [
+            {
+              "type": "Preprint in",
+              "source": "PPR",
+              "id": "PPR910845"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "method": "TF-IDF",
+      "query_key": "decision_utility",
+      "question": "How can the consequences of false positive decisions be weighed against correct detection when comparing prediction models?",
+      "target": "MED:17099194",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:17099194",
+          "title": "Decision curve analysis: a novel method for evaluating prediction models.",
+          "source_url": "https://europepmc.org/article/MED/17099194",
+          "score": 0.08619838207960129,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40913603",
+          "title": "Lack of Calibration Degrades the Performance of Clinical Prediction Models: A Case of CTO Scores.",
+          "source_url": "https://europepmc.org/article/MED/40913603",
+          "score": 0.08160140365362167,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40061223",
+          "title": "Investigating passive eDNA samplers and submergence times for marine surveillance.",
+          "source_url": "https://europepmc.org/article/MED/40061223",
+          "score": 0.06358656287193298,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41465959",
+          "title": "Establishment and validation of clinical prediction models for preterm birth in patients with intrahepatic cholestasis of pregnancy: Single-center retrospective observational study.",
+          "source_url": "https://europepmc.org/article/MED/41465959",
+          "score": 0.05982833355665207,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40891324",
+          "title": "A Comprehensive Assessment of Plasma CXCL9 and CXCL10 in Improving Clinical Prediction Models for Kidney Allograft Rejection.",
+          "source_url": "https://europepmc.org/article/MED/40891324",
+          "score": 0.05864765867590904,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "TF-IDF",
+      "query_key": "protein_model",
+      "question": "Can a model trained on protein sequences learn information about atomic structure without relying on a multiple sequence alignment at inference?",
+      "target": "MED:36927031",
+      "target_rank": 5,
+      "top5": [
+        {
+          "key": "MED:41133271",
+          "title": "Phage evolutionary relationships emerge from protein language model-based proteome representation.",
+          "source_url": "https://europepmc.org/article/MED/41133271",
+          "score": 0.12112998962402344,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41218076",
+          "title": "Zero-shot segmentation using embeddings from a protein language model identifies functional regions in the human proteome.",
+          "source_url": "https://europepmc.org/article/MED/41218076",
+          "score": 0.11938570439815521,
+          "notice_links": [
+            {
+              "type": "Preprint in",
+              "source": "PPR",
+              "id": "PPR987464"
+            }
+          ]
+        },
+        {
+          "key": "MED:40601261",
+          "title": "PLMSearch and PLMAlign: Protein Language Model (PLM)-Based Homologous Protein Sequence Search and Alignment.",
+          "source_url": "https://europepmc.org/article/MED/40601261",
+          "score": 0.10232958942651749,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40728611",
+          "title": "NetGO 3.0: A Recent Protein Function Prediction Tool Based on Protein Language Model.",
+          "source_url": "https://europepmc.org/article/MED/40728611",
+          "score": 0.09281919151544571,
+          "notice_links": []
+        },
+        {
+          "key": "MED:36927031",
+          "title": "Evolutionary-scale prediction of atomic-level protein structure with a language model.",
+          "source_url": "https://europepmc.org/article/MED/36927031",
+          "score": 0.09238017350435257,
+          "notice_links": [
+            {
+              "type": "Preprint in",
+              "source": "PPR",
+              "id": "PPR521568"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "method": "TF-IDF",
+      "query_key": "read_encoding",
+      "question": "Why do sequencing quality strings need an explicit encoding convention when exchanging FASTQ files?",
+      "target": "MED:20015970",
+      "target_rank": 2,
+      "top5": [
+        {
+          "key": "MED:40808602",
+          "title": "NanoporeInspect: An interactive tool for evaluating nanopore sequencing quality and ligation efficiency.",
+          "source_url": "https://europepmc.org/article/MED/40808602",
+          "score": 0.12790913879871368,
+          "notice_links": []
+        },
+        {
+          "key": "MED:20015970",
+          "title": "The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants.",
+          "source_url": "https://europepmc.org/article/MED/20015970",
+          "score": 0.12601441144943237,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41277813",
+          "title": "Mycobacterium tuberculosis cultured in MGIT media for whole-genome sequencing application: a systematic literature review and meta-analysis.",
+          "source_url": "https://europepmc.org/article/MED/41277813",
+          "score": 0.11834292113780975,
+          "notice_links": []
+        },
+        {
+          "key": "MED:39641788",
+          "title": "Correction to: Analysis of the sequencing quality of next-generation sequencing for the entire mitochondrial genome in decomposed human samples.",
+          "source_url": "https://europepmc.org/article/MED/39641788",
+          "score": 0.11027093976736069,
+          "notice_links": [
+            {
+              "type": "Erratum for",
+              "source": "MED",
+              "id": "39607452"
+            }
+          ]
+        },
+        {
+          "key": "MED:41028689",
+          "title": "Why is Biomarker Assay Validation Different from that of Pharmacokinetic Assays?",
+          "source_url": "https://europepmc.org/article/MED/41028689",
+          "score": 0.10080600529909134,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "TF-IDF",
+      "query_key": "assay_window",
+      "question": "Which screening assay statistic combines variability of controls with the distance between their signals?",
+      "target": "MED:10838414",
+      "target_rank": 3,
+      "top5": [
+        {
+          "key": "MED:41468144",
+          "title": "Circulating Clues: The Role of Cell-free DNA in Contemporary Prenatal Screening.",
+          "source_url": "https://europepmc.org/article/MED/41468144",
+          "score": 0.05883502587676048,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41488805",
+          "title": "Increased transmembrane protein 119 (TMEM119) levels in the cerebrospinal fluid of patients with mild cognitive impairment due to Alzheimer's disease suggest early microglial involvement.",
+          "source_url": "https://europepmc.org/article/MED/41488805",
+          "score": 0.057043712586164474,
+          "notice_links": []
+        },
+        {
+          "key": "MED:10838414",
+          "title": "A Simple Statistical Parameter for Use in Evaluation and Validation of High Throughput Screening Assays.",
+          "source_url": "https://europepmc.org/article/MED/10838414",
+          "score": 0.0478673130273819,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38743704",
+          "title": "Increased scalability and sequencing quality of an epigenetic age prediction assay.",
+          "source_url": "https://europepmc.org/article/MED/38743704",
+          "score": 0.044399507343769073,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38167772",
+          "title": "In Silico Options for Assay Validation.",
+          "source_url": "https://europepmc.org/article/MED/38167772",
+          "score": 0.04344552010297775,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM FP32",
+      "query_key": "reporting",
+      "question": "What should a report disclose about the population, intended use, and evaluation of a clinical prediction model?",
+      "target": "MED:38626948",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:38626948",
+          "title": "TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods.",
+          "source_url": "https://europepmc.org/article/MED/38626948",
+          "score": 0.6240472197532654,
+          "notice_links": [
+            {
+              "type": "Comment in",
+              "source": "MED",
+              "id": "38626949"
+            },
+            {
+              "type": "Erratum in",
+              "source": "MED",
+              "id": "38636956"
+            }
+          ]
+        },
+        {
+          "key": "MED:40913603",
+          "title": "Lack of Calibration Degrades the Performance of Clinical Prediction Models: A Case of CTO Scores.",
+          "source_url": "https://europepmc.org/article/MED/40913603",
+          "score": 0.5486609935760498,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41199337",
+          "title": "Will large language models transform clinical prediction?",
+          "source_url": "https://europepmc.org/article/MED/41199337",
+          "score": 0.4927758276462555,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41416087",
+          "title": "Correction: Establishment and validation of a clinical prediction model for predicting early postpartum pelvic floor muscle weakness among primiparous women after vaginal delivery: a retrospective study.",
+          "source_url": "https://europepmc.org/article/MED/41416087",
+          "score": 0.4597597122192383,
+          "notice_links": [
+            {
+              "type": "Erratum for",
+              "source": "MED",
+              "id": "41070082"
+            }
+          ]
+        },
+        {
+          "key": "MED:40916049",
+          "title": "Predicting venous thromboembolism among hospitalized adults: a protocol for development and validation of an implementable real-time prognostic model.",
+          "source_url": "https://europepmc.org/article/MED/40916049",
+          "score": 0.45309874415397644,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM FP32",
+      "query_key": "selection_bias",
+      "question": "Why can tuning a classifier and estimating its error with the same cross validation give an optimistic result?",
+      "target": "MED:16504092",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:16504092",
+          "title": "Bias in error estimation when using cross-validation for model selection.",
+          "source_url": "https://europepmc.org/article/MED/16504092",
+          "score": 0.5620080232620239,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40913603",
+          "title": "Lack of Calibration Degrades the Performance of Clinical Prediction Models: A Case of CTO Scores.",
+          "source_url": "https://europepmc.org/article/MED/40913603",
+          "score": 0.3467268645763397,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41028689",
+          "title": "Why is Biomarker Assay Validation Different from that of Pharmacokinetic Assays?",
+          "source_url": "https://europepmc.org/article/MED/41028689",
+          "score": 0.2979217767715454,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41193684",
+          "title": "Development and validation of a risk prediction model for re-tear after arthroscopic rotator cuff repair.",
+          "source_url": "https://europepmc.org/article/MED/41193684",
+          "score": 0.2847577631473541,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41001025",
+          "title": "Development and validation of a risk prediction model for distant metastasis in muscle-invasive bladder cancer: a retrospective study integrating SEER data with external validation cohort and biomarker analysis.",
+          "source_url": "https://europepmc.org/article/MED/41001025",
+          "score": 0.2758166790008545,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM FP32",
+      "query_key": "decision_utility",
+      "question": "How can the consequences of false positive decisions be weighed against correct detection when comparing prediction models?",
+      "target": "MED:17099194",
+      "target_rank": 6,
+      "top5": [
+        {
+          "key": "MED:40913603",
+          "title": "Lack of Calibration Degrades the Performance of Clinical Prediction Models: A Case of CTO Scores.",
+          "source_url": "https://europepmc.org/article/MED/40913603",
+          "score": 0.40605759620666504,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38626948",
+          "title": "TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods.",
+          "source_url": "https://europepmc.org/article/MED/38626948",
+          "score": 0.35061967372894287,
+          "notice_links": [
+            {
+              "type": "Comment in",
+              "source": "MED",
+              "id": "38626949"
+            },
+            {
+              "type": "Erratum in",
+              "source": "MED",
+              "id": "38636956"
+            }
+          ]
+        },
+        {
+          "key": "MED:41199337",
+          "title": "Will large language models transform clinical prediction?",
+          "source_url": "https://europepmc.org/article/MED/41199337",
+          "score": 0.3423096835613251,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41317739",
+          "title": "Joint detection of risk for psychotic disorders or bipolar disorders in clinical practice in the UK: development and validation of a clinical prediction model.",
+          "source_url": "https://europepmc.org/article/MED/41317739",
+          "score": 0.3391512632369995,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41237963",
+          "title": "A clinical prediction model for risk of depressive episode based on facial behavioral features: A cross-sectional study.",
+          "source_url": "https://europepmc.org/article/MED/41237963",
+          "score": 0.3340998888015747,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM FP32",
+      "query_key": "protein_model",
+      "question": "Can a model trained on protein sequences learn information about atomic structure without relying on a multiple sequence alignment at inference?",
+      "target": "MED:36927031",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:36927031",
+          "title": "Evolutionary-scale prediction of atomic-level protein structure with a language model.",
+          "source_url": "https://europepmc.org/article/MED/36927031",
+          "score": 0.6772792339324951,
+          "notice_links": [
+            {
+              "type": "Preprint in",
+              "source": "PPR",
+              "id": "PPR521568"
+            }
+          ]
+        },
+        {
+          "key": "MED:40601261",
+          "title": "PLMSearch and PLMAlign: Protein Language Model (PLM)-Based Homologous Protein Sequence Search and Alignment.",
+          "source_url": "https://europepmc.org/article/MED/40601261",
+          "score": 0.5301772952079773,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40181111",
+          "title": "Scaling a foundational protein language model to 100 billion parameters.",
+          "source_url": "https://europepmc.org/article/MED/40181111",
+          "score": 0.5247710943222046,
+          "notice_links": []
+        },
+        {
+          "key": "MED:37052532",
+          "title": "Structure-aware protein self-supervised learning.",
+          "source_url": "https://europepmc.org/article/MED/37052532",
+          "score": 0.5129419565200806,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41039041",
+          "title": "A trimodal protein language model enables advanced protein searches.",
+          "source_url": "https://europepmc.org/article/MED/41039041",
+          "score": 0.4925360679626465,
+          "notice_links": [
+            {
+              "type": "Preprint in",
+              "source": "PPR",
+              "id": "PPR861142"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "method": "MiniLM FP32",
+      "query_key": "read_encoding",
+      "question": "Why do sequencing quality strings need an explicit encoding convention when exchanging FASTQ files?",
+      "target": "MED:20015970",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:20015970",
+          "title": "The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants.",
+          "source_url": "https://europepmc.org/article/MED/20015970",
+          "score": 0.5800164937973022,
+          "notice_links": []
+        },
+        {
+          "key": "MED:39927290",
+          "title": "Sequali: efficient and comprehensive quality control of short- and long-read sequencing data.",
+          "source_url": "https://europepmc.org/article/MED/39927290",
+          "score": 0.45645543932914734,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40359008",
+          "title": "The Next-Generation Sequencing Quality Initiative and Challenges in Clinical and Public Health Laboratories.",
+          "source_url": "https://europepmc.org/article/MED/40359008",
+          "score": 0.44247573614120483,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41469779",
+          "title": "Comparison of automated and manual mRNA enrichment to automated rRNA depletion for whole-blood RNA-sequencing.",
+          "source_url": "https://europepmc.org/article/MED/41469779",
+          "score": 0.3815962076187134,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40601261",
+          "title": "PLMSearch and PLMAlign: Protein Language Model (PLM)-Based Homologous Protein Sequence Search and Alignment.",
+          "source_url": "https://europepmc.org/article/MED/40601261",
+          "score": 0.3733797073364258,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM FP32",
+      "query_key": "assay_window",
+      "question": "Which screening assay statistic combines variability of controls with the distance between their signals?",
+      "target": "MED:10838414",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:10838414",
+          "title": "A Simple Statistical Parameter for Use in Evaluation and Validation of High Throughput Screening Assays.",
+          "source_url": "https://europepmc.org/article/MED/10838414",
+          "score": 0.5947020053863525,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38167772",
+          "title": "In Silico Options for Assay Validation.",
+          "source_url": "https://europepmc.org/article/MED/38167772",
+          "score": 0.4789636731147766,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40830303",
+          "title": "Beyond Accuracy, Precision and TAE: Direct assay Validation Against Product Specification Aligned with USP < 1033> .",
+          "source_url": "https://europepmc.org/article/MED/40830303",
+          "score": 0.45156002044677734,
+          "notice_links": [
+            {
+              "type": "Preprint in",
+              "source": "PPR",
+              "id": "PPR1026000"
+            }
+          ]
+        },
+        {
+          "key": "MED:39060472",
+          "title": "Recommendations for Development and Validation of a Fit-For-Purpose Biomarker Assays Using Western Blotting; An-AAPS Sponsored Initiative to Harmonize Industry Practices.",
+          "source_url": "https://europepmc.org/article/MED/39060472",
+          "score": 0.419261634349823,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41028689",
+          "title": "Why is Biomarker Assay Validation Different from that of Pharmacokinetic Assays?",
+          "source_url": "https://europepmc.org/article/MED/41028689",
+          "score": 0.39763396978378296,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM INT8-linear",
+      "query_key": "reporting",
+      "question": "What should a report disclose about the population, intended use, and evaluation of a clinical prediction model?",
+      "target": "MED:38626948",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:38626948",
+          "title": "TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods.",
+          "source_url": "https://europepmc.org/article/MED/38626948",
+          "score": 0.6094220876693726,
+          "notice_links": [
+            {
+              "type": "Comment in",
+              "source": "MED",
+              "id": "38626949"
+            },
+            {
+              "type": "Erratum in",
+              "source": "MED",
+              "id": "38636956"
+            }
+          ]
+        },
+        {
+          "key": "MED:40913603",
+          "title": "Lack of Calibration Degrades the Performance of Clinical Prediction Models: A Case of CTO Scores.",
+          "source_url": "https://europepmc.org/article/MED/40913603",
+          "score": 0.4834556579589844,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41199337",
+          "title": "Will large language models transform clinical prediction?",
+          "source_url": "https://europepmc.org/article/MED/41199337",
+          "score": 0.45362693071365356,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41416087",
+          "title": "Correction: Establishment and validation of a clinical prediction model for predicting early postpartum pelvic floor muscle weakness among primiparous women after vaginal delivery: a retrospective study.",
+          "source_url": "https://europepmc.org/article/MED/41416087",
+          "score": 0.4391630291938782,
+          "notice_links": [
+            {
+              "type": "Erratum for",
+              "source": "MED",
+              "id": "41070082"
+            }
+          ]
+        },
+        {
+          "key": "MED:40916049",
+          "title": "Predicting venous thromboembolism among hospitalized adults: a protocol for development and validation of an implementable real-time prognostic model.",
+          "source_url": "https://europepmc.org/article/MED/40916049",
+          "score": 0.4329228103160858,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM INT8-linear",
+      "query_key": "selection_bias",
+      "question": "Why can tuning a classifier and estimating its error with the same cross validation give an optimistic result?",
+      "target": "MED:16504092",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:16504092",
+          "title": "Bias in error estimation when using cross-validation for model selection.",
+          "source_url": "https://europepmc.org/article/MED/16504092",
+          "score": 0.5954891443252563,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40913603",
+          "title": "Lack of Calibration Degrades the Performance of Clinical Prediction Models: A Case of CTO Scores.",
+          "source_url": "https://europepmc.org/article/MED/40913603",
+          "score": 0.3375817835330963,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40978054",
+          "title": "Construction of predictive models for contralateral occult thyroid carcinoma and central lymph node metastasis in unilateral papillary thyroid carcinoma using machine learning.",
+          "source_url": "https://europepmc.org/article/MED/40978054",
+          "score": 0.31309977173805237,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41193684",
+          "title": "Development and validation of a risk prediction model for re-tear after arthroscopic rotator cuff repair.",
+          "source_url": "https://europepmc.org/article/MED/41193684",
+          "score": 0.3011484742164612,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41028689",
+          "title": "Why is Biomarker Assay Validation Different from that of Pharmacokinetic Assays?",
+          "source_url": "https://europepmc.org/article/MED/41028689",
+          "score": 0.2905314564704895,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM INT8-linear",
+      "query_key": "decision_utility",
+      "question": "How can the consequences of false positive decisions be weighed against correct detection when comparing prediction models?",
+      "target": "MED:17099194",
+      "target_rank": 11,
+      "top5": [
+        {
+          "key": "MED:40913603",
+          "title": "Lack of Calibration Degrades the Performance of Clinical Prediction Models: A Case of CTO Scores.",
+          "source_url": "https://europepmc.org/article/MED/40913603",
+          "score": 0.3884226083755493,
+          "notice_links": []
+        },
+        {
+          "key": "MED:16504092",
+          "title": "Bias in error estimation when using cross-validation for model selection.",
+          "source_url": "https://europepmc.org/article/MED/16504092",
+          "score": 0.36409178376197815,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41482239",
+          "title": "Interpretable machine learning for cognitive impairment screening: Development and external validation of a clinical prediction model based on NHANES data.",
+          "source_url": "https://europepmc.org/article/MED/41482239",
+          "score": 0.35284724831581116,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41376080",
+          "title": "HemPepPred: Quantitative Prediction of Peptide Hemolytic Activity Based on Machine Learning and Protein Language Model-Derived Features.",
+          "source_url": "https://europepmc.org/article/MED/41376080",
+          "score": 0.35021668672561646,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38626948",
+          "title": "TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods.",
+          "source_url": "https://europepmc.org/article/MED/38626948",
+          "score": 0.3478674590587616,
+          "notice_links": [
+            {
+              "type": "Comment in",
+              "source": "MED",
+              "id": "38626949"
+            },
+            {
+              "type": "Erratum in",
+              "source": "MED",
+              "id": "38636956"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "method": "MiniLM INT8-linear",
+      "query_key": "protein_model",
+      "question": "Can a model trained on protein sequences learn information about atomic structure without relying on a multiple sequence alignment at inference?",
+      "target": "MED:36927031",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:36927031",
+          "title": "Evolutionary-scale prediction of atomic-level protein structure with a language model.",
+          "source_url": "https://europepmc.org/article/MED/36927031",
+          "score": 0.6393741369247437,
+          "notice_links": [
+            {
+              "type": "Preprint in",
+              "source": "PPR",
+              "id": "PPR521568"
+            }
+          ]
+        },
+        {
+          "key": "MED:37052532",
+          "title": "Structure-aware protein self-supervised learning.",
+          "source_url": "https://europepmc.org/article/MED/37052532",
+          "score": 0.5180783271789551,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40181111",
+          "title": "Scaling a foundational protein language model to 100 billion parameters.",
+          "source_url": "https://europepmc.org/article/MED/40181111",
+          "score": 0.5102314949035645,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40601261",
+          "title": "PLMSearch and PLMAlign: Protein Language Model (PLM)-Based Homologous Protein Sequence Search and Alignment.",
+          "source_url": "https://europepmc.org/article/MED/40601261",
+          "score": 0.5072505474090576,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41184947",
+          "title": "ProGraphTrans: multimodal dynamic collaborative framework for protein representation learning.",
+          "source_url": "https://europepmc.org/article/MED/41184947",
+          "score": 0.4949115812778473,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM INT8-linear",
+      "query_key": "read_encoding",
+      "question": "Why do sequencing quality strings need an explicit encoding convention when exchanging FASTQ files?",
+      "target": "MED:20015970",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:20015970",
+          "title": "The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants.",
+          "source_url": "https://europepmc.org/article/MED/20015970",
+          "score": 0.5786900520324707,
+          "notice_links": []
+        },
+        {
+          "key": "MED:39927290",
+          "title": "Sequali: efficient and comprehensive quality control of short- and long-read sequencing data.",
+          "source_url": "https://europepmc.org/article/MED/39927290",
+          "score": 0.48466756939888,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40359008",
+          "title": "The Next-Generation Sequencing Quality Initiative and Challenges in Clinical and Public Health Laboratories.",
+          "source_url": "https://europepmc.org/article/MED/40359008",
+          "score": 0.4370150566101074,
+          "notice_links": []
+        },
+        {
+          "key": "MED:39237508",
+          "title": "Author Correction: PLMSearch: Protein language model powers accurate and fast sequence search for remote homology.",
+          "source_url": "https://europepmc.org/article/MED/39237508",
+          "score": 0.39423668384552,
+          "notice_links": [
+            {
+              "type": "Erratum for",
+              "source": "MED",
+              "id": "38555371"
+            }
+          ]
+        },
+        {
+          "key": "MED:40601261",
+          "title": "PLMSearch and PLMAlign: Protein Language Model (PLM)-Based Homologous Protein Sequence Search and Alignment.",
+          "source_url": "https://europepmc.org/article/MED/40601261",
+          "score": 0.3799850642681122,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "MiniLM INT8-linear",
+      "query_key": "assay_window",
+      "question": "Which screening assay statistic combines variability of controls with the distance between their signals?",
+      "target": "MED:10838414",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:10838414",
+          "title": "A Simple Statistical Parameter for Use in Evaluation and Validation of High Throughput Screening Assays.",
+          "source_url": "https://europepmc.org/article/MED/10838414",
+          "score": 0.6015838384628296,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38167772",
+          "title": "In Silico Options for Assay Validation.",
+          "source_url": "https://europepmc.org/article/MED/38167772",
+          "score": 0.4987991452217102,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40830303",
+          "title": "Beyond Accuracy, Precision and TAE: Direct assay Validation Against Product Specification Aligned with USP < 1033> .",
+          "source_url": "https://europepmc.org/article/MED/40830303",
+          "score": 0.4571568965911865,
+          "notice_links": [
+            {
+              "type": "Preprint in",
+              "source": "PPR",
+              "id": "PPR1026000"
+            }
+          ]
+        },
+        {
+          "key": "MED:39060472",
+          "title": "Recommendations for Development and Validation of a Fit-For-Purpose Biomarker Assays Using Western Blotting; An-AAPS Sponsored Initiative to Harmonize Industry Practices.",
+          "source_url": "https://europepmc.org/article/MED/39060472",
+          "score": 0.4418409466743469,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38100186",
+          "title": "Editorial on IVD cellular assay validation.",
+          "source_url": "https://europepmc.org/article/MED/38100186",
+          "score": 0.40710780024528503,
+          "notice_links": [
+            {
+              "type": "Comment on",
+              "source": "MED",
+              "id": "38217297"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "method": "Hybrid RRF",
+      "query_key": "reporting",
+      "question": "What should a report disclose about the population, intended use, and evaluation of a clinical prediction model?",
+      "target": "MED:38626948",
+      "target_rank": 6,
+      "top5": [
+        {
+          "key": "MED:40370646",
+          "title": "Establishment and validation of a clinical prediction model for colorectal adenoma risk factors.",
+          "source_url": "https://europepmc.org/article/MED/40370646",
+          "score": 0.030886196246139225,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41416087",
+          "title": "Correction: Establishment and validation of a clinical prediction model for predicting early postpartum pelvic floor muscle weakness among primiparous women after vaginal delivery: a retrospective study.",
+          "source_url": "https://europepmc.org/article/MED/41416087",
+          "score": 0.029709507042253523,
+          "notice_links": [
+            {
+              "type": "Erratum for",
+              "source": "MED",
+              "id": "41070082"
+            }
+          ]
+        },
+        {
+          "key": "MED:41237963",
+          "title": "A clinical prediction model for risk of depressive episode based on facial behavioral features: A cross-sectional study.",
+          "source_url": "https://europepmc.org/article/MED/41237963",
+          "score": 0.029437229437229435,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41448796",
+          "title": "Development of a clinical prediction model for falls in individuals with COPD.",
+          "source_url": "https://europepmc.org/article/MED/41448796",
+          "score": 0.029116045245077504,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40913603",
+          "title": "Lack of Calibration Degrades the Performance of Clinical Prediction Models: A Case of CTO Scores.",
+          "source_url": "https://europepmc.org/article/MED/40913603",
+          "score": 0.02878726010616578,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "Hybrid RRF",
+      "query_key": "selection_bias",
+      "question": "Why can tuning a classifier and estimating its error with the same cross validation give an optimistic result?",
+      "target": "MED:16504092",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:16504092",
+          "title": "Bias in error estimation when using cross-validation for model selection.",
+          "source_url": "https://europepmc.org/article/MED/16504092",
+          "score": 0.03278688524590164,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41028689",
+          "title": "Why is Biomarker Assay Validation Different from that of Pharmacokinetic Assays?",
+          "source_url": "https://europepmc.org/article/MED/41028689",
+          "score": 0.03200204813108039,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40978054",
+          "title": "Construction of predictive models for contralateral occult thyroid carcinoma and central lymph node metastasis in unilateral papillary thyroid carcinoma using machine learning.",
+          "source_url": "https://europepmc.org/article/MED/40978054",
+          "score": 0.02964426877470356,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41001025",
+          "title": "Development and validation of a risk prediction model for distant metastasis in muscle-invasive bladder cancer: a retrospective study integrating SEER data with external validation cohort and biomarker analysis.",
+          "source_url": "https://europepmc.org/article/MED/41001025",
+          "score": 0.027730294396961064,
+          "notice_links": []
+        },
+        {
+          "key": "MED:41358665",
+          "title": "Risk Models for Adverse Events in Microsurgery for Intracranial Unruptured Aneurysms.",
+          "source_url": "https://europepmc.org/article/MED/41358665",
+          "score": 0.027106227106227107,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "Hybrid RRF",
+      "query_key": "decision_utility",
+      "question": "How can the consequences of false positive decisions be weighed against correct detection when comparing prediction models?",
+      "target": "MED:17099194",
+      "target_rank": 2,
+      "top5": [
+        {
+          "key": "MED:40913603",
+          "title": "Lack of Calibration Degrades the Performance of Clinical Prediction Models: A Case of CTO Scores.",
+          "source_url": "https://europepmc.org/article/MED/40913603",
+          "score": 0.03252247488101534,
+          "notice_links": []
+        },
+        {
+          "key": "MED:17099194",
+          "title": "Decision curve analysis: a novel method for evaluating prediction models.",
+          "source_url": "https://europepmc.org/article/MED/17099194",
+          "score": 0.031544957774465976,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38626948",
+          "title": "TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods.",
+          "source_url": "https://europepmc.org/article/MED/38626948",
+          "score": 0.031054405392392875,
+          "notice_links": [
+            {
+              "type": "Comment in",
+              "source": "MED",
+              "id": "38626949"
+            },
+            {
+              "type": "Erratum in",
+              "source": "MED",
+              "id": "38636956"
+            }
+          ]
+        },
+        {
+          "key": "MED:41199337",
+          "title": "Will large language models transform clinical prediction?",
+          "source_url": "https://europepmc.org/article/MED/41199337",
+          "score": 0.02976190476190476,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40124630",
+          "title": "Establishment and validation of post-PCI nomogram in elderly patients with acute coronary syndromes.",
+          "source_url": "https://europepmc.org/article/MED/40124630",
+          "score": 0.02964426877470356,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "Hybrid RRF",
+      "query_key": "protein_model",
+      "question": "Can a model trained on protein sequences learn information about atomic structure without relying on a multiple sequence alignment at inference?",
+      "target": "MED:36927031",
+      "target_rank": 2,
+      "top5": [
+        {
+          "key": "MED:40601261",
+          "title": "PLMSearch and PLMAlign: Protein Language Model (PLM)-Based Homologous Protein Sequence Search and Alignment.",
+          "source_url": "https://europepmc.org/article/MED/40601261",
+          "score": 0.03200204813108039,
+          "notice_links": []
+        },
+        {
+          "key": "MED:36927031",
+          "title": "Evolutionary-scale prediction of atomic-level protein structure with a language model.",
+          "source_url": "https://europepmc.org/article/MED/36927031",
+          "score": 0.03177805800756621,
+          "notice_links": [
+            {
+              "type": "Preprint in",
+              "source": "PPR",
+              "id": "PPR521568"
+            }
+          ]
+        },
+        {
+          "key": "MED:37052532",
+          "title": "Structure-aware protein self-supervised learning.",
+          "source_url": "https://europepmc.org/article/MED/37052532",
+          "score": 0.030776515151515152,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40728611",
+          "title": "NetGO 3.0: A Recent Protein Function Prediction Tool Based on Protein Language Model.",
+          "source_url": "https://europepmc.org/article/MED/40728611",
+          "score": 0.029709507042253523,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40165821",
+          "title": "bindNode24: Competitive binding residue prediction with 60 % smaller model.",
+          "source_url": "https://europepmc.org/article/MED/40165821",
+          "score": 0.028438886647841874,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "Hybrid RRF",
+      "query_key": "read_encoding",
+      "question": "Why do sequencing quality strings need an explicit encoding convention when exchanging FASTQ files?",
+      "target": "MED:20015970",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:20015970",
+          "title": "The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants.",
+          "source_url": "https://europepmc.org/article/MED/20015970",
+          "score": 0.03252247488101534,
+          "notice_links": []
+        },
+        {
+          "key": "MED:39927290",
+          "title": "Sequali: efficient and comprehensive quality control of short- and long-read sequencing data.",
+          "source_url": "https://europepmc.org/article/MED/39927290",
+          "score": 0.031054405392392875,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40359008",
+          "title": "The Next-Generation Sequencing Quality Initiative and Challenges in Clinical and Public Health Laboratories.",
+          "source_url": "https://europepmc.org/article/MED/40359008",
+          "score": 0.031024531024531024,
+          "notice_links": []
+        },
+        {
+          "key": "MED:39641788",
+          "title": "Correction to: Analysis of the sequencing quality of next-generation sequencing for the entire mitochondrial genome in decomposed human samples.",
+          "source_url": "https://europepmc.org/article/MED/39641788",
+          "score": 0.030330882352941176,
+          "notice_links": [
+            {
+              "type": "Erratum for",
+              "source": "MED",
+              "id": "39607452"
+            }
+          ]
+        },
+        {
+          "key": "MED:41277813",
+          "title": "Mycobacterium tuberculosis cultured in MGIT media for whole-genome sequencing application: a systematic literature review and meta-analysis.",
+          "source_url": "https://europepmc.org/article/MED/41277813",
+          "score": 0.030158730158730156,
+          "notice_links": []
+        }
+      ]
+    },
+    {
+      "method": "Hybrid RRF",
+      "query_key": "assay_window",
+      "question": "Which screening assay statistic combines variability of controls with the distance between their signals?",
+      "target": "MED:10838414",
+      "target_rank": 1,
+      "top5": [
+        {
+          "key": "MED:10838414",
+          "title": "A Simple Statistical Parameter for Use in Evaluation and Validation of High Throughput Screening Assays.",
+          "source_url": "https://europepmc.org/article/MED/10838414",
+          "score": 0.032266458495966696,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38167772",
+          "title": "In Silico Options for Assay Validation.",
+          "source_url": "https://europepmc.org/article/MED/38167772",
+          "score": 0.0315136476426799,
+          "notice_links": []
+        },
+        {
+          "key": "MED:38100186",
+          "title": "Editorial on IVD cellular assay validation.",
+          "source_url": "https://europepmc.org/article/MED/38100186",
+          "score": 0.029211087420042643,
+          "notice_links": [
+            {
+              "type": "Comment on",
+              "source": "MED",
+              "id": "38217297"
+            }
+          ]
+        },
+        {
+          "key": "MED:41028689",
+          "title": "Why is Biomarker Assay Validation Different from that of Pharmacokinetic Assays?",
+          "source_url": "https://europepmc.org/article/MED/41028689",
+          "score": 0.02871794871794872,
+          "notice_links": []
+        },
+        {
+          "key": "MED:40872556",
+          "title": "Bioanalytical Method Validations of Three Alpha1-Antitrypsin Measurement Methods Required for Clinical Sample Analysis.",
+          "source_url": "https://europepmc.org/article/MED/40872556",
+          "score": 0.028577260665441927,
+          "notice_links": []
+        }
+      ]
+    }
+  ],
+  "precision_comparison": {
+    "mean_document_cosine_agreement": 0.948164701461792,
+    "min_document_cosine_agreement": 0.9116486310958862,
+    "mean_top5_overlap_fraction": 0.7666666666666666
+  },
+  "implementation_sha256": "54860f46b31889e55b079ea4c97554961c9a7ceac7b66188f1482ee121a20c4b",
+  "acquisition_and_normalization_sha256": "a6c9ef3fae927258e6256c0bffcfa7333402fec32757d4444baa08b434e02af8",
+  "input_text_policy": "Title plus explicitly reusable abstract; decode presentation entities/markup at load time; neural encoders truncate at 256 wordpieces; lexical index uses the full supplied text.",
+  "latency_projection": {
+    "assumed_requests": 10000,
+    "serial_wall_seconds": {
+      "TF-IDF": 5.598738838064795,
+      "MiniLM FP32": 90.25059640407562,
+      "MiniLM INT8-linear": 120.23059083730914,
+      "Hybrid RRF": 96.83144775206327
+    },
+    "assumptions": "Repeated same query mix and corpus, already loaded and indexed; additive observed mean wall time, no concurrency, review time, SLA, or monetary estimate."
+  },
+  "limits": [
+    "Six authored known-item tasks with injected anchors; not complete relevance labels, a systematic review, or a general retrieval benchmark.",
+    "Scores are ranking signals, not evidence quality or clinical probabilities. No generated scientific answers.",
+    "Timing is local, warmed, single-threaded CPU query encoding plus ranking; excludes network, cold start, concurrency, and human review.",
+    "Storage measures serialized model state and numeric index arrays, not process RSS or total deployment footprint.",
+    "INT8 conversion targets Linear layers; embeddings and other operations remain floating point. No retraining or medical validation.",
+    "MiniLM is a compact text encoder, not a generative clinical LLM. Its training sources include scientific text; overlap has not been excluded."
+  ]
+}

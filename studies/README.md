@@ -5,10 +5,15 @@ I keep the runnable investigations here, alongside their methods and recorded ou
 | Study | Start with | Implementation | Evidence |
 | --- | --- | --- | --- |
 | Diagnostic-feature classification | [Measured-data ML study](clinical_benchmark.md) | [modeling.py](modeling.py) | [Recorded benchmark](results/benchmark.json), [held-out predictions](results/test_predictions.csv) |
+| Statistical comparison and decision context | [Paired evidence and nested selection](statistical_validation.md) | [statistical_validation.py](statistical_validation.py), [statistical_figures.py](statistical_figures.py) | [Statistical report](results/statistical_validation.json), [nested OOF predictions](results/nested_predictions.csv) |
 | Environmental observations and spatial state | [Spatial/system-design study](spatial_systems.md) | [systems.py](systems.py) | Quality-filtered NOAA snapshot and transaction/geometry regression tests |
 | Protein adaptation | [Weights, masks, and low-rank updates](protein_adaptation.md) | [protein_transfer.py](protein_transfer.py), [adapters.py](adapters.py) | [Pinned-checkpoint audit](results/protein_transfer.json) |
 | Distributed training | [Global objective and accumulation](training_math.md) | [distributed_training.py](distributed_training.py) | [Actual two-rank result](results/distributed.json) |
 | Model delivery and asynchronous work | [End-to-end walkthrough](engineering.md) | [inference.py](inference.py), [async_pipeline.py](async_pipeline.py) | Export parity, schema, retry, timeout, and cancellation tests |
+| Literature evidence retrieval | [Sources, precision, and operating cost](evidence_retrieval.md) | [literature_data.py](literature_data.py), [evidence_retrieval.py](evidence_retrieval.py) | [Known-item ranks and measured latency](results/evidence_retrieval.json) |
+| Facility evidence | [Calibration, signed state, and particle balance](../biotech/facility_workflow.md) | [Telemetry](../biotech/bioprocess_telemetry.py), [audit](../biotech/audit_ledger.py), [physics](../biotech/airflow_dynamics.py) | [Recorded fixture](results/facility.json), [inspection console](../biotech/facility_console.html) |
+| Execution and resource constraints | [Memory boundaries and OR/PACU scheduling](execution_contracts.md) | [data_movement.py](data_movement.py), [resource_scheduling.py](resource_scheduling.py) | [Buffer proofs](results/data_movement.json), [verified schedules](results/resource_scheduling.json) |
+| Technology and clinical interfaces | [Capability and validation map](technology_map.md) | Implemented versus optional or unvalidated capabilities | Explicit DICOM/FHIR/CDS, robotics, GPU, and compliance boundaries |
 | Data lineage | [Data provenance](../data/README.md) | [data.py](data.py) | [Acquisition manifest](../data/snapshots/manifest.json) |
 | Figure production | [figures.py](figures.py) | One shared palette, typography, label, and source convention | SVG for sharp rendering; PNG for compatibility |
 

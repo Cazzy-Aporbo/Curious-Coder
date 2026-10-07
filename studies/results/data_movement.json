@@ -1,0 +1,29 @@
+{
+  "evidence_type": "synthetic float32 array; two columns, no medical images or patient records",
+  "shape": [
+    1000000,
+    2
+  ],
+  "numeric_bytes": 8000000,
+  "contracts": {
+    "basic_slice_shares_memory": true,
+    "advanced_index_shares_memory": false,
+    "dtype_conversion_shares_memory": false,
+    "tensor_shares_cpu_pointer": true,
+    "tensor_mutation_visible_in_view": true,
+    "copy_on_write_preserves_disk": true,
+    "mode": "copy-on-write; CPU only; no GPU transfer or cross-host shared address space"
+  },
+  "mapped_child_result": {
+    "sum": 499999500000.0,
+    "rows": 1000000
+  },
+  "analytic_sum": 499999500000.0,
+  "spawn_map_reduce_wall_ms": 1254.7599580138922,
+  "environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "numpy": "2.2.6"
+  },
+  "limits": "IPC sends a path and small result, not the array. Page faults, filesystem cache, process startup, dtype conversion, private copy-on-write pages, and device transfer are not free."
+}
