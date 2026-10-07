@@ -1,0 +1,17 @@
+learning-content:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.md'
+scientific-code:
+  - changed-files:
+      - any-glob-to-any-file:
+          - Core-algorithms/*.py
+          - Biological-Systems/*.py
+          - Environmental/*.py
+          - Explore-PyTorch/*.py
+verification:
+  - changed-files:
+      - any-glob-to-any-file:
+          - tests/**
+          - scripts/**
+          - .github/**
+          - requirements*.txt

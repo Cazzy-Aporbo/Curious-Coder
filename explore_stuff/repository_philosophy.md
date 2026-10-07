@@ -97,7 +97,9 @@ def learning_approach():
     return "Learning through discovery, not instruction"
 ```
 
-### Repository Structure as Learning Journey
+### Conceptual Learning Journey
+
+The tree below is a conceptual map, not the current directory structure. Use the root README's learning path and reading map for links to the actual materials. The executable entry point is the patient-leakage lab; most historical narrative examples remain reading exercises rather than reproduced experiments.
 
 ```
 Journey Stage 1: Confusion

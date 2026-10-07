@@ -1,6 +1,8 @@
 # Discovery Chronicle: The Generalization Catastrophe
 ## My Journey from 99% Training Accuracy to 52% in the Real World
 
+> **Reproducibility status:** the narrative percentages below are not accompanied by a dataset or execution record in this repository. Treat them as illustrative, not verified clinical results. For a reproducible synthetic investigation of patient overlap, run [the patient-leakage lab](../Core-algorithms/patient_leakage_lab.py). It addresses group leakage, not all the temporal and causal issues discussed here.
+
 ### Day 1: The Perfect Model
 
 I built a model to predict patient readmission. The results were incredible:

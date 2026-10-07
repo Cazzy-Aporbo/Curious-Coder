@@ -1,0 +1,26 @@
+UniProt sequence attribution and reuse notice
+
+Source: https://www.uniprot.org/help/license
+License notice also reproduced at https://www.spec.org/cpu2026/docs/benchmarks/838.diamond_s/Uniprot.license.txt
+
+We have chosen to apply the Creative Commons Attribution (CC BY 4.0) License
+(https://creativecommons.org/licenses/by/4.0/) to all copyrightable parts of
+our databases.
+
+All databases and documents in the UniProt FTP directory may be copied and
+redistributed freely, without advance permission, provided that this copyright
+statement is reproduced with each copy.
+
+(c) 2002-2023 UniProt Consortium
+
+We make no warranties regarding the correctness of the data, and disclaim
+liability for damages resulting from its use. We cannot provide unrestricted
+permission regarding the use of the data, as some data may be covered by patents
+or other rights.
+
+Any medical or genetic information is provided for research, educational and
+informational purposes only. It is not in any way intended to be used as a
+substitute for professional medical advice, diagnosis, treatment or care.
+
+The retained P69905 and P68871 FASTA records are unmodified downloads. Their
+accessions, retrieval time, source URLs, and hashes are recorded in manifest.json.

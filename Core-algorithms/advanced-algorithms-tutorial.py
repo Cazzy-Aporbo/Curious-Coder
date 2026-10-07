@@ -4,7 +4,7 @@ Author: Cazzy Aporbo 2025
 Python 3.8+
 Dependencies: numpy, scipy, sklearn, torch (optional for deep learning sections)
 
-This file provides production-ready implementations of cutting-edge ML algorithms
+This file provides exploratory educational implementations of ML algorithms
 with detailed explanations of when, why, and how to use each one.
 """
 

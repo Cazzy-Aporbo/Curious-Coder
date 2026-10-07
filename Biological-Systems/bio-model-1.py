@@ -1073,7 +1073,7 @@ class ImmuneCell(ABC):
         return False
 
 
-class TCel(ImmuneCell):
+class TCell(ImmuneCell):
     """
     T lymphocyte with antigen recognition and cytotoxic capabilities.
     Can be CD4+ (helper) or CD8+ (cytotoxic).

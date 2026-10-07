@@ -1,0 +1,50 @@
+{
+  "files": {
+    "ghcn_version.txt": {
+      "bytes": 270,
+      "sha256": "d10aba55808a1d0a097ad7556799ad37218f9d211ccac8b28e3aa23876dd9b82"
+    },
+    "phoenix_2023_2024.dly": {
+      "bytes": 12960,
+      "sha256": "15e27dc82e6904d0cf4c73f25cb7fde55df58b1c964b946e4f111dff213fca1a"
+    },
+    "phoenix_daily.csv": {
+      "bytes": 42194,
+      "sha256": "1da060e53659c0053ed7537be5763830f8fb89af9bd8dc524d27c8b95d70a125"
+    },
+    "station.json": {
+      "bytes": 123,
+      "sha256": "6e325ff6b07ab18a3c22a558fe2d2f276637b26558cad0301612b7a6c4e511bb"
+    },
+    "wdbc.data": {
+      "bytes": 124103,
+      "sha256": "d606af411f3e5be8a317a5a8b652b425aaf0ff38ca683d5327ffff94c3695f4a"
+    }
+  },
+  "retrieved_utc": "2026-10-06T23:59:51.906227+00:00",
+  "sources": {
+    "ghcn_station": {
+      "doi": "10.7289/V5D21VHZ",
+      "reuse": "NOAA public-access US station observations; cite NOAA/NCEI; no endorsement",
+      "sha256_full_download": "1881c66dcaac668a8c6961204cbb17866a2ba93fd58864230e3bb51664113ae9",
+      "subset": "2023-2024 TMIN/TMAX; USW00023183",
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/USW00023183.dly"
+    },
+    "station_catalog": {
+      "sha256_full_download": "428eabc955883187935bce283766d5646e3ed7484b92eb0803874c0e8dd9b342",
+      "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt"
+    },
+    "wdbc": {
+      "doi": "10.24432/C5DW2B",
+      "license": "CC BY 4.0",
+      "sha256": "d606af411f3e5be8a317a5a8b652b425aaf0ff38ca683d5327ffff94c3695f4a",
+      "url": "https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data"
+    }
+  },
+  "transformations": [
+    "WDBC bytes unchanged; ID excluded from predictors; malignant becomes positive class 1 at load time.",
+    "GHCN original monthly records subset to one station, two years, TMIN/TMAX.",
+    "Daily CSV preserves raw values and all three flags; -9999 or nonblank quality flag becomes missing.",
+    "Temperature converted from tenths of degrees Celsius to degrees Celsius; no imputation."
+  ]
+}

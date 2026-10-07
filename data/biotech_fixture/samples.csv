@@ -1,0 +1,6 @@
+sample_id,biological_unit,condition,batch
+sample-01,unit-01,control,batch-A
+sample-02,unit-02,treated,batch-A
+sample-03,unit-03,control,batch-B
+sample-04,unit-04,treated,batch-B
+sample-05,unit-01,control,batch-B

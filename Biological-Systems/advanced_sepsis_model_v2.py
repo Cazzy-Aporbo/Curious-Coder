@@ -52,6 +52,17 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset
+import importlib.util
+from pathlib import Path
+import sys
+
+_spec = importlib.util.spec_from_file_location("sepsis_risk_model", Path(__file__).with_name("sepsis-risk-model.py"))
+_base_model = importlib.util.module_from_spec(_spec)
+sys.modules[_spec.name] = _base_model
+_spec.loader.exec_module(_base_model)
+CardiovascularSystem = _base_model.CardiovascularSystem
+InflammatoryCascade = _base_model.InflammatoryCascade
+OrganDysfunctionScoring = _base_model.OrganDysfunctionScoring
 
 # Configure enhanced logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(module)s - %(message)s')

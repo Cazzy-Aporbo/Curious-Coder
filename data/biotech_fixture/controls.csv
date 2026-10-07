@@ -1,0 +1,17 @@
+plate,well,control,signal
+plate-A,A01,positive,98
+plate-A,A02,positive,100
+plate-A,A03,positive,102
+plate-A,A04,positive,100
+plate-A,H01,negative,4
+plate-A,H02,negative,5
+plate-A,H03,negative,6
+plate-A,H04,negative,5
+plate-B,A01,positive,40
+plate-B,A02,positive,60
+plate-B,A03,positive,80
+plate-B,A04,positive,60
+plate-B,H01,negative,20
+plate-B,H02,negative,40
+plate-B,H03,negative,60
+plate-B,H04,negative,40
