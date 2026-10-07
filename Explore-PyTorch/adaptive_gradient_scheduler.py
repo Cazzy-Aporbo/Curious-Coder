@@ -124,7 +124,11 @@ class AdaptiveGradientScheduler:
         # Warmup phase
         if self.global_step < self.warmup_steps:
             warmup_factor = self.global_step / self.warmup_steps
-            return self.base_lr * warmup_factor * self.current_lr_multiplier
+            warmup_lr = self.base_lr * warmup_factor * self.current_lr_multiplier
+            for param_group in self.optimizer.param_groups:
+                param_group['lr'] = warmup_lr
+            self.lr_history.append(warmup_lr)
+            return warmup_lr
         
         # Detect loss spikes
         if len(self.loss_history) >= 20:
@@ -193,8 +197,10 @@ class AdaptiveGradientScheduler:
 
 class ImbalancedDatasetSampler(torch.utils.data.Sampler):
     """
-    Adaptive sampling strategy for imbalanced datasets that adjusts
-    sampling probabilities based on class performance during training.
+    CPU sampler with adaptive probability mass per observed class.
+    Labels are nonnegative int64 indices into model output columns; gaps are
+    supported. Initial weights are positive class masses in sorted-label order,
+    not per-example weights. Uniform class masses are used by default.
     """
     
     def __init__(self, 
@@ -203,49 +209,66 @@ class ImbalancedDatasetSampler(torch.utils.data.Sampler):
                  adaptation_rate: float = 0.01,
                  min_sample_rate: float = 0.1):
         
-        self.labels = dataset_labels
-        self.num_classes = len(torch.unique(dataset_labels))
-        self.num_samples = len(dataset_labels)
+        if dataset_labels.ndim != 1 or dataset_labels.numel() == 0 or dataset_labels.dtype != torch.long:
+            raise ValueError("dataset_labels must be a nonempty 1D int64 tensor.")
+        if (dataset_labels < 0).any():
+            raise ValueError("Class labels must be nonnegative output indices.")
+        if not 0 <= adaptation_rate <= 1 or not 0 <= min_sample_rate <= 1:
+            raise ValueError("adaptation_rate and min_sample_rate must lie in [0, 1].")
+        self.labels = dataset_labels.detach().cpu().clone()
+        self.classes, self.label_indices, self.class_counts = torch.unique(
+            self.labels, sorted=True, return_inverse=True, return_counts=True
+        )
+        self.num_classes = len(self.classes)
+        self.num_samples = len(self.labels)
         self.adaptation_rate = adaptation_rate
         self.min_sample_rate = min_sample_rate
         
         # Initialize class weights
         if initial_weights is None:
-            class_counts = torch.bincount(dataset_labels)
-            self.class_weights = 1.0 / (class_counts.float() + 1)
-            self.class_weights /= self.class_weights.sum()
+            self.class_weights = torch.ones(self.num_classes) / self.num_classes
         else:
-            self.class_weights = initial_weights
+            weights = initial_weights.detach().cpu().float().clone()
+            if weights.shape != (self.num_classes,) or not torch.isfinite(weights).all() or (weights <= 0).any():
+                raise ValueError("initial_weights must contain one finite positive mass per observed class.")
+            self.class_weights = weights / weights.sum()
         
         # Track class performance
         self.class_errors = torch.zeros(self.num_classes)
         self.class_samples_seen = torch.zeros(self.num_classes)
         
         # Precompute sample weights
-        self.sample_weights = self.class_weights[self.labels]
+        self.sample_weights = self.class_weights[self.label_indices] / self.class_counts[self.label_indices]
         
     def update_weights(self, predictions: torch.Tensor, targets: torch.Tensor):
-        """Update sampling weights based on class-wise performance."""
+        """Update from logits indexed by original label, using training batches only."""
+        predictions, targets = predictions.detach().cpu(), targets.detach().cpu()
+        if targets.ndim != 1 or targets.dtype != torch.long or not torch.isin(targets, self.classes).all():
+            raise ValueError("targets must be int64 labels observed by this sampler.")
+        if predictions.ndim != 2 or predictions.shape[0] != len(targets) or predictions.shape[1] <= self.classes.max():
+            raise ValueError("predictions must contain one row per target and a column for every original label.")
+        if not torch.isfinite(predictions).all():
+            raise ValueError("predictions must be finite logits.")
         
         with torch.no_grad():
-            for cls in range(self.num_classes):
-                mask = targets == cls
+            for cls, label in enumerate(self.classes):
+                mask = targets == label
                 if mask.any():
                     class_error = (predictions[mask].argmax(dim=1) != targets[mask]).float().mean()
                     self.class_errors[cls] = 0.9 * self.class_errors[cls] + 0.1 * class_error
                     self.class_samples_seen[cls] += mask.sum()
             
             # Adjust weights based on errors
-            if self.class_samples_seen.min() > 100:
-                error_weights = self.class_errors / (self.class_errors.sum() + 1e-10)
+            if self.class_samples_seen.min() > 100 and self.class_errors.sum() > 0:
+                error_weights = self.class_errors / self.class_errors.sum()
                 self.class_weights = (1 - self.adaptation_rate) * self.class_weights + self.adaptation_rate * error_weights
                 
                 # Ensure minimum sampling rate
-                self.class_weights = torch.maximum(self.class_weights, torch.tensor(self.min_sample_rate / self.num_classes))
                 self.class_weights /= self.class_weights.sum()
+                self.class_weights = (1 - self.min_sample_rate) * self.class_weights + self.min_sample_rate / self.num_classes
                 
                 # Update sample weights
-                self.sample_weights = self.class_weights[self.labels]
+                self.sample_weights = self.class_weights[self.label_indices] / self.class_counts[self.label_indices]
     
     def __iter__(self):
         indices = torch.multinomial(self.sample_weights, self.num_samples, replacement=True)
@@ -257,12 +280,17 @@ class ImbalancedDatasetSampler(torch.utils.data.Sampler):
 
 class FeatureSpaceRegularizer(nn.Module):
     """
-    Regularization module that encourages diverse feature representations
-    by maximizing entropy in the feature space while maintaining class separation.
+    Experimental negative spectral-entropy loss plus class-centroid separation.
+    Temperature-scaled log-eigenvalues of the normalized Gram matrix define
+    spectral probabilities; a zero spectrum has zero entropy. Current-batch class means
+    provide a differentiable cosine hinge penalty. Historical prototypes are
+    diagnostics only, updated in training mode. This is not a validated objective.
     """
     
     def __init__(self, feature_dim: int, num_classes: int, temperature: float = 0.1):
         super().__init__()
+        if feature_dim < 1 or num_classes < 1 or not math.isfinite(temperature) or temperature <= 0:
+            raise ValueError("Require positive feature_dim, num_classes, and finite temperature.")
         self.feature_dim = feature_dim
         self.num_classes = num_classes
         self.temperature = temperature
@@ -290,31 +318,43 @@ class FeatureSpaceRegularizer(nn.Module):
         Compute regularization loss that balances diversity and separation.
         """
         
-        batch_size = features.size(0)
+        if features.ndim != 2 or features.shape[0] == 0 or features.shape[1] != self.feature_dim:
+            raise ValueError("features must have shape (nonempty batch, feature_dim).")
+        if labels.shape != (features.shape[0],) or labels.dtype != torch.long or labels.device != features.device:
+            raise ValueError("labels must be int64 with one label per feature row on the same device.")
+        if not torch.isfinite(features).all() or (labels < 0).any() or (labels >= self.num_classes).any():
+            raise ValueError("Require finite features and labels within num_classes.")
         
         # Normalize features
         features_norm = torch.nn.functional.normalize(features, p=2, dim=1)
         
         # Diversity loss: maximize entropy of feature correlations
-        feature_similarity = torch.mm(features_norm, features_norm.t()) / self.temperature
-        feature_probs = torch.nn.functional.softmax(feature_similarity, dim=1)
-        diversity_loss = -torch.mean(torch.sum(feature_probs * torch.log(feature_probs + 1e-10), dim=1))
+        feature_similarity = torch.mm(features_norm, features_norm.t())
+        spectrum = torch.linalg.eigvalsh(feature_similarity).clamp_min(0)
+        if spectrum.sum() > 0:
+            spectral_logits = torch.log(spectrum.clamp_min(torch.finfo(spectrum.dtype).eps)) / self.temperature
+            feature_probs = torch.nn.functional.softmax(spectral_logits, dim=0)
+            diversity_loss = torch.sum(feature_probs * torch.log(feature_probs + 1e-10))
+        else:
+            diversity_loss = features.sum() * 0
         
         # Separation loss: maximize distance between different classes
-        if self.class_counts.sum() > 0:
-            separation_loss = 0
-            valid_prototypes = self.class_prototypes[self.class_counts > 0]
-            
-            if len(valid_prototypes) > 1:
-                prototype_similarity = torch.mm(valid_prototypes, valid_prototypes.t())
-                prototype_similarity.fill_diagonal_(-float('inf'))
-                max_similarity = prototype_similarity.max()
-                separation_loss = torch.relu(max_similarity + 0.5)
+        batch_classes = torch.unique(labels)
+        if len(batch_classes) > 1:
+            valid_prototypes = torch.stack([features_norm[labels == cls].mean(dim=0) for cls in batch_classes])
+            valid_prototypes = torch.nn.functional.normalize(valid_prototypes, p=2, dim=1)
+            prototype_similarity = torch.mm(valid_prototypes, valid_prototypes.t())
+            prototype_similarity = prototype_similarity.masked_fill(
+                torch.eye(len(batch_classes), dtype=torch.bool, device=features.device), -torch.inf
+            )
+            max_similarity = prototype_similarity.max()
+            separation_loss = torch.relu(max_similarity + 0.5)
         else:
-            separation_loss = torch.tensor(0.0, device=features.device)
+            separation_loss = features.new_zeros(())
         
         # Update prototypes
-        self.update_prototypes(features, labels)
+        if self.training:
+            self.update_prototypes(features, labels)
         
         # Combined loss
         total_loss = diversity_loss + 0.5 * separation_loss
@@ -395,4 +435,4 @@ if __name__ == "__main__":
             diagnostics = scheduler.get_diagnostics()
             print(f"Step {step}: Loss={ce_loss.item():.4f}, LR={current_lr:.6f}, Health Scores={len(diagnostics['layer_health_scores'])}")
     
-    print("\nSystem functional. Ready for deployment.")
+    print("\nSynthetic training demonstration complete; this is not deployment validation.")

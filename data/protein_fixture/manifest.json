@@ -1,0 +1,17 @@
+{
+  "retrieved_utc": "2026-10-07T00:32:39.090997+00:00",
+  "attribution": "Copyright UniProt Consortium; CC BY 4.0; https://www.uniprot.org/help/license",
+  "purpose": "Human hemoglobin mechanics fixtures; not independent evaluation samples.",
+  "records": {
+    "P69905": {
+      "source": "https://rest.uniprot.org/uniprotkb/P69905.fasta",
+      "sha256": "aecc3cb75f840f242f6b4489d501384d0c50cf0d61a8dab5a1dab81a80aa4bae",
+      "residues": 142
+    },
+    "P68871": {
+      "source": "https://rest.uniprot.org/uniprotkb/P68871.fasta",
+      "sha256": "a976e8ef07b298781398d4a66d52ddf13b796e991baa7e4e499732ecc6689107",
+      "residues": 147
+    }
+  }
+}

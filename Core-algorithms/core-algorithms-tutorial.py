@@ -17,7 +17,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import mean_squared_error, accuracy_score, roc_auc_score, silhouette_score
 import warnings
-warnings.filterwarnings('ignore')
+
 
 # Linear Regression
 class LinearRegressionTutorial:
@@ -58,6 +58,7 @@ class LinearRegressionTutorial:
         - Gradient: dJ/dw = (1/m) * X^T * (predictions - y)
         """
         n_samples, n_features = X.shape
+        self.losses = []
         
         # Initialize parameters with small random values
         # Xavier initialization scaled by input dimension
@@ -161,6 +162,7 @@ class LogisticRegressionTutorial:
         - Gradient similar to linear regression due to sigmoid derivative
         """
         n_samples, n_features = X.shape
+        self.losses = []
         
         # Initialize parameters
         self.weights = np.zeros(n_features)
@@ -860,6 +862,11 @@ class PCATutorial:
         4. Sort by eigenvalues (descending)
         5. Select top k eigenvectors
         """
+        X = np.asarray(X, dtype=float)
+        if X.ndim != 2 or X.shape[0] < 2 or not np.isfinite(X).all():
+            raise ValueError("PCA requires at least two finite observations in a 2D array.")
+        if not 1 <= self.n_components <= min(X.shape):
+            raise ValueError("n_components must be between 1 and min(X.shape).")
         # Step 1: Center the data
         self.mean_ = np.mean(X, axis=0)
         X_centered = X - self.mean_
@@ -872,7 +879,8 @@ class PCATutorial:
         print(f"Covariance matrix shape: {cov_matrix.shape}")
         
         # Step 3: Eigendecomposition
-        eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+        eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
+        eigenvalues = np.maximum(eigenvalues, 0)
         
         # Step 4: Sort by eigenvalues (descending order)
         idx = np.argsort(eigenvalues)[::-1]
@@ -885,7 +893,8 @@ class PCATutorial:
         
         # Calculate explained variance ratio
         total_variance = np.sum(eigenvalues)
-        explained_ratio = self.explained_variance_ / total_variance
+        explained_ratio = self.explained_variance_ / total_variance if total_variance > 0 else np.zeros(self.n_components)
+        self.explained_variance_ratio_ = explained_ratio
         cumulative_ratio = np.cumsum(explained_ratio)
         
         print(f"Explained variance ratio: {explained_ratio}")
@@ -945,18 +954,22 @@ class KMeansTutorial:
         - random: Randomly select k points from data
         - k-means++: Smart initialization for faster convergence
         """
-        np.random.seed(self.random_state)
+        rng = np.random.default_rng(self.random_state)
         n_samples = X.shape[0]
+        if method not in ('random', 'k-means++'):
+            raise ValueError("Unknown initialization method.")
+        if not 1 <= self.n_clusters <= n_samples:
+            raise ValueError("n_clusters must be between 1 and the number of observations.")
         
         if method == 'random':
             # Randomly select k points as initial centroids
-            indices = np.random.choice(n_samples, self.n_clusters, replace=False)
+            indices = rng.choice(n_samples, self.n_clusters, replace=False)
             centroids = X[indices].copy()
         
         elif method == 'k-means++':
             centroids = []
             # Choose first centroid randomly
-            centroids.append(X[np.random.randint(n_samples)])
+            centroids.append(X[rng.integers(n_samples)])
             
             # Choose remaining centroids with probability proportional to squared distance
             for _ in range(1, self.n_clusters):
@@ -968,11 +981,15 @@ class KMeansTutorial:
                 
                 # Convert to probabilities
                 distances = np.array(distances)
+                if distances.sum() == 0:
+                    centroids.extend([X[0].copy() for _ in range(self.n_clusters - len(centroids))])
+                    break
                 probabilities = distances / distances.sum()
                 
                 # Choose next centroid
                 cumulative_probs = probabilities.cumsum()
-                r = np.random.rand()
+                cumulative_probs[-1] = 1.0
+                r = rng.random()
                 for j, p in enumerate(cumulative_probs):
                     if r < p:
                         centroids.append(X[j])
@@ -1029,6 +1046,11 @@ class KMeansTutorial:
            a. Assign points to nearest centroid
            b. Update centroids as cluster means
         """
+        X = np.asarray(X, dtype=float)
+        if X.ndim != 2 or X.shape[1] == 0 or not np.isfinite(X).all():
+            raise ValueError("K-means requires finite observations in a 2D array.")
+        if self.max_iters < 1:
+            raise ValueError("max_iters must be positive.")
         # Initialize centroids using k-means++
         self.centroids = self.initialize_centroids(X, method='k-means++')
         
@@ -1052,8 +1074,8 @@ class KMeansTutorial:
                 inertia = self.calculate_inertia(X, labels)
                 print(f"Iteration {iteration + 1}, Inertia: {inertia:.2f}")
         
-        self.labels_ = labels
-        self.inertia_ = self.calculate_inertia(X, labels)
+        self.labels_ = self.assign_clusters(X)
+        self.inertia_ = self.calculate_inertia(X, self.labels_)
     
     def calculate_inertia(self, X: np.ndarray, labels: np.ndarray) -> float:
         """

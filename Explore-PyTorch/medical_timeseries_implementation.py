@@ -12,9 +12,9 @@ from adaptive_gradient_scheduler import (
 
 class TemporalAttentionBlock(nn.Module):
     """
-    Self-attention mechanism for capturing temporal dependencies in 
-    physiological time series data. Particularly useful for irregular
-    sampling rates common in medical monitoring.
+    Self-attention over regularly indexed signal representations.
+    A boolean key-padding mask excludes unavailable time steps from attention.
+    Irregular timestamps require a separate time representation or resampling.
     """
     
     def __init__(self, embed_dim: int, num_heads: int = 8, dropout: float = 0.1):
@@ -44,9 +44,12 @@ class TemporalAttentionBlock(nn.Module):
 
 class MedicalTimeSeriesEncoder(nn.Module):
     """
-    Encoder for multivariate medical time series with varying sampling rates
-    and missing data patterns. Handles common sensor data like ECG, PPG,
-    respiration rate, and accelerometer readings.
+    Educational encoder for finite, regularly sampled multichannel signals.
+    Inputs have shape (batch, channels, time), with time <= sequence_length.
+    A boolean (batch, time) mask marks excluded positions with True. It is
+    not a per-channel missingness mask. Impute valid-channel gaps upstream.
+    Padded values are ignored, but training BatchNorm still depends on the
+    padding fraction; this is not an irregular-time or causal forecasting model.
     """
     
     def __init__(self, 
@@ -86,23 +89,42 @@ class MedicalTimeSeriesEncoder(nn.Module):
         self.global_avg_pool = nn.AdaptiveAvgPool1d(1)
         
     def forward(self, x: torch.Tensor, mask: Optional[torch.Tensor] = None) -> Tuple[torch.Tensor, torch.Tensor]:
+        if x.ndim != 3 or x.shape[1] != self.input_channels or not 1 <= x.shape[2] <= self.sequence_length:
+            raise ValueError("Expected (batch, input_channels, time) with time within sequence_length.")
         batch_size = x.size(0)
+        if batch_size == 0:
+            raise ValueError("At least one sequence is required.")
+        if mask is not None:
+            if mask.dtype != torch.bool or mask.shape != (batch_size, x.shape[2]):
+                raise ValueError("mask must be boolean with shape (batch, time).")
+            mask = mask.to(x.device)
+            if mask.all(dim=1).any():
+                raise ValueError("Each sequence must contain at least one unmasked time step.")
+            x = x.masked_fill(mask.unsqueeze(1), 0)
+        if not torch.isfinite(x).all():
+            raise ValueError("Unmasked signal values must be finite; impute missing channels upstream.")
         
         # Convolutional encoding
         conv_features = self.conv_encoder(x)
         
         # Reshape for attention layers
         features = conv_features.transpose(1, 2)
-        features = features + self.positional_encoding
+        features = features + self.positional_encoding[:, :x.shape[2]]
         
         # Apply temporal attention blocks
         for block in self.temporal_blocks:
             features = block(features, mask)
         
         # Global pooling for classification
+        if mask is not None:
+            features = features.masked_fill(mask.unsqueeze(-1), 0)
         features_transposed = features.transpose(1, 2)
-        max_pooled = self.global_max_pool(features_transposed).squeeze(-1)
-        avg_pooled = self.global_avg_pool(features_transposed).squeeze(-1)
+        if mask is None:
+            max_pooled = self.global_max_pool(features_transposed).squeeze(-1)
+            avg_pooled = self.global_avg_pool(features_transposed).squeeze(-1)
+        else:
+            max_pooled = features_transposed.masked_fill(mask.unsqueeze(1), -torch.inf).amax(dim=2)
+            avg_pooled = features_transposed.sum(dim=2) / (~mask).sum(dim=1, keepdim=True)
         global_features = torch.cat([max_pooled, avg_pooled], dim=1)
         
         return global_features, features
@@ -191,6 +213,7 @@ class MedicalDataAugmentation:
         """Simulate motion artifacts in wearable sensor data."""
         
         batch_size, channels, length = signal.shape
+        signal = signal.clone()
         
         # Random spike locations
         num_artifacts = torch.randint(0, 5, (batch_size,))
@@ -202,7 +225,7 @@ class MedicalDataAugmentation:
                 
                 for pos, mag in zip(artifact_positions, artifact_magnitudes):
                     window_size = min(20, length - pos)
-                    artifact_window = torch.exp(-torch.arange(window_size).float() / 5)
+                    artifact_window = torch.exp(-torch.arange(window_size, device=signal.device, dtype=signal.dtype) / 5)
                     signal[i, :, pos:pos+window_size] += mag * artifact_window
         
         return signal
@@ -213,25 +236,23 @@ class MedicalDataAugmentation:
         batch_size, channels, length = signal.shape
         
         # Generate smooth warping function
-        control_points = torch.randn(batch_size, 10) * self.time_warp_factor
+        control_points = torch.randn(batch_size, 10, device=signal.device, dtype=signal.dtype) * self.time_warp_factor
         control_points = torch.nn.functional.interpolate(
             control_points.unsqueeze(1), size=length, mode='linear'
         ).squeeze(1)
         
         # Create warped time indices
-        original_indices = torch.arange(length).float()
+        original_indices = torch.arange(length, device=signal.device, dtype=signal.dtype)
         warped_indices = original_indices + control_points
         warped_indices = torch.clamp(warped_indices, 0, length - 1)
         
         # Apply warping
-        warped_signal = torch.zeros_like(signal)
-        for i in range(batch_size):
-            for c in range(channels):
-                warped_signal[i, c] = torch.nn.functional.interpolate(
-                    signal[i:i+1, c:c+1], 
-                    size=length, 
-                    mode='linear'
-                ).squeeze()
+        left = warped_indices.floor().long()
+        right = (left + 1).clamp(max=length - 1)
+        fraction = (warped_indices - left).unsqueeze(1)
+        left_values = signal.gather(2, left.unsqueeze(1).expand(-1, channels, -1))
+        right_values = signal.gather(2, right.unsqueeze(1).expand(-1, channels, -1))
+        warped_signal = left_values + fraction * (right_values - left_values)
         
         return warped_signal
     
@@ -270,7 +291,7 @@ class TrainingPipeline:
         self.num_classes = num_classes
         
         # Initialize adaptive components
-        self.optimizer = torch.optim.AdamW(model.parameters(), weight_decay=0.01)
+        self.optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=0.01)
         self.scheduler = AdaptiveGradientScheduler(self.optimizer, base_lr=learning_rate)
         self.regularizer = FeatureSpaceRegularizer(
             model.feature_dim, num_classes
@@ -328,6 +349,7 @@ class TrainingPipeline:
     def validate(self, val_loader: torch.utils.data.DataLoader) -> Tuple[float, float]:
         """Validation with metrics computation."""
         
+        was_training = self.model.training
         self.model.eval()
         total_loss = 0
         correct = 0
@@ -342,15 +364,17 @@ class TrainingPipeline:
                 outputs = self.model(signals)
                 loss = self.risk_criterion(outputs['risk_logits'], risk_labels)
                 
-                total_loss += loss.item()
+                total_loss += loss.item() * risk_labels.size(0)
                 predictions = outputs['risk_logits'].argmax(dim=1)
                 correct += (predictions == risk_labels).sum().item()
                 total += risk_labels.size(0)
         
-        avg_loss = total_loss / len(val_loader)
+        self.model.train(was_training)
+        if total == 0:
+            raise ValueError("Validation requires at least one observation.")
+        avg_loss = total_loss / total
         accuracy = correct / total
         
-        self.model.train()
         return avg_loss, accuracy
 
 
@@ -362,6 +386,10 @@ def generate_synthetic_medical_data(num_samples: int = 1000,
     Channels: ECG, PPG, Respiration, Temperature, Movement
     """
     
+    if num_channels != 5:
+        raise ValueError("This synthetic generator defines exactly five channels.")
+    if num_samples < 1 or sequence_length < 2:
+        raise ValueError("Require positive num_samples and sequence_length >= 2.")
     # Base frequencies for different physiological signals
     ecg_freq = 1.2  # Hz (72 bpm)
     ppg_freq = 1.2  # Hz
@@ -457,4 +485,4 @@ if __name__ == "__main__":
               f"Val Loss={val_loss:.4f}, Val Acc={val_acc:.3f}, "
               f"LR={diagnostics['current_lr']:.6f}")
     
-    print("\nTraining complete. System operational.")
+    print("\nSynthetic training complete. Random labels do not establish clinical predictive value.")

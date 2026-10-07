@@ -1,0 +1,9 @@
+##fileformat=VCFv4.3
+##reference=synthetic-contig-not-a-human-assembly
+##contig=<ID=synthetic-contig,length=32>
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read depth">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	synthetic-sample
+synthetic-contig	1	.	A	G	60	PASS	.	GT:DP:AD	0/1:25:12,13
+synthetic-contig	4	.	T	C	15	.	.	GT:DP:AD	0/1:10:9,1

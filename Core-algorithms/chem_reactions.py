@@ -41,6 +41,20 @@ def parse_formula(formula: str) -> Dict[str, int]:
     Parse a chemical formula into a dict of element -> count.
     Examples: H2O, Ca(OH)2, CuSO4·5H2O
     """
+    formula = formula.replace(" ", "")
+    if not formula or any(not part for part in formula.split("·")):
+        raise ValueError("Formula and hydrate groups must not be empty.")
+    depth = 0
+    for token in formula:
+        if token == '(':
+            depth += 1
+        elif token == ')':
+            depth -= 1
+        if depth < 0:
+            raise ValueError("Unmatched closing parenthesis.")
+    if depth:
+        raise ValueError("Unmatched opening parenthesis.")
+
     def parse_tokens(tokens: List[str], i: int = 0) -> Tuple[Dict[str, int], int]:
         counts: Dict[str, int] = {}
         while i < len(tokens):
@@ -49,6 +63,8 @@ def parse_formula(formula: str) -> Dict[str, int]:
                 break
             elif tok == "(":
                 inner, j = parse_tokens(tokens, i + 1)
+                if not inner:
+                    raise ValueError("Parenthesized groups must not be empty.")
                 i = j
                 # parse multiplier after closing )
                 mult = 1
@@ -88,13 +104,15 @@ def parse_formula(formula: str) -> Dict[str, int]:
     # To keep parser simple, wrap number+formula after dot as "(formula)*number" by duplicating tokens.
     # Instead, we handle it inline inside parse_tokens above by merging counts; we need to expand multiplier.
     # We'll do a lightweight pre-pass to convert '·5H2O' into '·(H2O)5'
-    formula = re.sub(r"·\s*(\d+)\s*([A-Z][a-z]?|\()", lambda m: "·(" + (m.group(2)) + ")" + m.group(1), formula)
+    formula = re.sub(r"·(\d+)([^·]+)", lambda m: "·(" + m.group(2) + ")" + m.group(1), formula)
 
-    toks = TOKEN.findall(formula.replace(" ", ""))
+    toks = TOKEN.findall(formula)
+    if ''.join(toks) != formula or any(t.isdigit() and int(t) == 0 for t in toks):
+        raise ValueError("Unsupported formula token or zero atom count.")
     counts, idx = parse_tokens(toks, 0)
     if idx != len(toks):
         # there may be trailing multiplier; parse once more
-        pass
+        raise ValueError("Unexpected trailing formula tokens.")
     return counts
 
 
@@ -108,6 +126,8 @@ def parse_equation(eq: str) -> Tuple[List[Tuple[str,int]], List[Tuple[str,int]]]
     """
     if ARROW.search(eq) is None:
         raise ValueError("Equation must contain an arrow like '->' or '<->'")
+    if len(ARROW.findall(eq)) != 1:
+        raise ValueError("Equation must contain exactly one arrow.")
     left, right = ARROW.split(eq)[0], ARROW.split(eq)[-1]
     def side(s: str) -> List[Tuple[str,int]]:
         terms = []
@@ -123,6 +143,10 @@ def parse_equation(eq: str) -> Tuple[List[Tuple[str,int]], List[Tuple[str,int]]]
                     terms.append((m2.group(2).strip(), int(m2.group(1))))
                 else:
                     terms.append((part, 1))
+        for species, coefficient in terms:
+            if coefficient <= 0:
+                raise ValueError("Coefficients must be positive.")
+            parse_formula(species)
         return terms
     return side(left), side(right)
 
@@ -186,7 +210,9 @@ def nullspace_integer(A: List[List[Fraction]]) -> List[int]:
     free_cols = [c for c in range(n) if c not in pivot_cols]
     if not free_cols:
         # trivial or fully determined; set the last variable as free
-        free_cols = [n-1]
+        raise ValueError("Reaction has no nonzero atom-conserving balance.")
+    if len(free_cols) != 1:
+        raise ValueError("Reaction is underdetermined; specify a single independent reaction.")
     x = [Fraction(0) for _ in range(n)]
     free = free_cols[0]
     x[free] = Fraction(1)
@@ -209,6 +235,8 @@ def nullspace_integer(A: List[List[Fraction]]) -> List[int]:
     # make all positive (flip sign if needed)
     if any(v < 0 for v in xi):
         xi = [-v for v in xi]
+    if any(v <= 0 for v in xi):
+        raise ValueError("No strictly positive balance on the specified reaction sides.")
     return xi
 
 def balance_equation(eq: str) -> str:
@@ -227,27 +255,37 @@ def balance_equation(eq: str) -> str:
 def kinetics_sim(eq: str, k: float = 0.1, t_end: float = 50.0, dt: float = 0.1, init: Dict[str,float] | None = None) -> Tuple[List[float], Dict[str,List[float]]]:
     """
     Simulate irreversible reaction under mass-action: aA + bB -> ... with rate v = k * [A]^a * [B]^b ...
-    Uses RK4 integrator with fixed dt.
+    Uses RK4 with step dt and a shortened final step. Reduce dt if positivity fails.
+    The mass-action exponents assume an elementary reaction, not arbitrary overall chemistry.
     init: optional initial concentrations dict; if not provided, start reactants at 1.0 and products at 0.0
     """
+    if not all(math.isfinite(v) for v in (k, t_end, dt)) or k < 0 or t_end < 0 or dt <= 0:
+        raise ValueError("Require finite k >= 0, t_end >= 0, and dt > 0.")
     lhs, rhs = parse_equation(eq)
     # If unbalanced, auto-balance just for stoichiometry tracking
     try:
         species, A = build_matrix(lhs, rhs)
         coeffs = nullspace_integer(A)
-    except Exception:
+    except ValueError:
         # fallback to coefficient hints
         species = [s for s,_ in lhs] + [s for s,_ in rhs]
         coeffs = [c for _,c in lhs] + [c for _,c in rhs]
+        _, A = build_matrix(lhs, rhs)
+        if any(sum(value * coefficient for value, coefficient in zip(row, coeffs)) != 0 for row in A):
+            raise
 
     L = len(lhs)
     stoich_lhs = {species[i]: coeffs[i] for i in range(L)}
     stoich_rhs = {species[L+i]: coeffs[L+i] for i in range(len(rhs))}
-    all_species = [*stoich_lhs.keys(), *stoich_rhs.keys()]
+    all_species = list(dict.fromkeys([*stoich_lhs, *stoich_rhs]))
+    if len(stoich_lhs) != len(lhs) or len(stoich_rhs) != len(rhs):
+        raise ValueError("Combine repeated species on each side before simulation.")
 
     # initial concentrations
     conc = {s: (1.0 if s in stoich_lhs else 0.0) for s in all_species}
     if init:
+        if set(init) - set(all_species) or any(not math.isfinite(v) or v < 0 for v in init.values()):
+            raise ValueError("Initial concentrations must be finite, nonnegative, and belong to the reaction.")
         conc.update(init)
 
     def rate(c: Dict[str,float]) -> float:
@@ -269,19 +307,21 @@ def kinetics_sim(eq: str, k: float = 0.1, t_end: float = 50.0, dt: float = 0.1, 
     times = [0.0]
     traces = {s: [conc[s]] for s in all_species}
 
-    steps = int(t_end / dt)
-    for _ in range(steps):
+    steps = math.ceil(t_end / dt)
+    for step in range(steps):
+        t = min((step + 1) * dt, t_end)
+        h = t - times[-1]
         # RK4 on dict state
         def add(c, k1, a=1.0):
-            return {s: c[s] + a*dt*k1[s] for s in all_species}
+            return {s: c[s] + a*h*k1[s] for s in all_species}
         k1 = deriv(conc)
         k2 = deriv(add(conc, k1, 0.5))
         k3 = deriv(add(conc, k2, 0.5))
         k4 = deriv(add(conc, k3, 1.0))
         for s in all_species:
-            conc[s] += (dt/6.0)*(k1[s] + 2*k2[s] + 2*k3[s] + k4[s])
-            conc[s] = max(conc[s], 0.0)
-        t = times[-1] + dt
+            conc[s] += (h/6.0)*(k1[s] + 2*k2[s] + 2*k3[s] + k4[s])
+            if not math.isfinite(conc[s]) or conc[s] < 0:
+                raise ValueError("Unstable integration step; reduce dt instead of clipping concentrations.")
         times.append(t)
         for s in all_species:
             traces[s].append(conc[s])
@@ -292,16 +332,20 @@ def kinetics_sim(eq: str, k: float = 0.1, t_end: float = 50.0, dt: float = 0.1, 
 def equilibrium_single(eq: str, Ka: float, A0: float, B0: float, C0: float = 0.0) -> Dict[str,float]:
     """
     Solve equilibrium for A + B <-> C with association constant Ka = [C]/([A][B]) at equilibrium.
-    Supports general stoichiometry aA + bB <-> cC (but solved under single-product assumption).
+    Only supports explicitly specified 1:1:1 stoichiometry; A, B, C may be symbolic species.
 
     Returns equilibrium concentrations via ICE table logic.
     """
+    if not all(math.isfinite(v) for v in (Ka, A0, B0, C0)) or Ka <= 0 or min(A0, B0, C0) < 0:
+        raise ValueError("Require finite Ka > 0 and nonnegative initial concentrations.")
     lhs, rhs = parse_equation(eq)
-    if len(rhs) != 1:
-        raise ValueError("This simple solver supports a single product on the right side.")
+    if len(lhs) != 2 or len(rhs) != 1 or any(c != 1 for _, c in lhs + rhs):
+        raise ValueError("This solver supports only explicit 1:1:1 stoichiometry: A + B <-> C.")
+    if len({s for s, _ in lhs + rhs}) != 3:
+        raise ValueError("The three species must be distinct.")
     # Pull stoichiometric coefficients (auto-balance if needed)
-    species, A = build_matrix(lhs, rhs)
-    coeffs = nullspace_integer(A)
+    species = [s for s, _ in lhs + rhs]
+    coeffs = [c for _, c in lhs + rhs]
     L = len(lhs)
     a = sum(coeffs[i] for i in range(L))  # total reactant order (for simple K expression)
     c = coeffs[L]  # product stoich (assumes single product)
@@ -328,9 +372,9 @@ def equilibrium_single(eq: str, Ka: float, A0: float, B0: float, C0: float = 0.0
     if disc < 0:
         raise ValueError("No real equilibrium solution for given parameters.")
     x1 = (-qb + math.sqrt(disc)) / (2*qa)
-    x2 = (-qb - math.sqrt(disc)) / (2*qa)
+    x2 = 2 * qc / (-qb + math.sqrt(disc))
     # Choose physically valid root (within feasible range)
-    candidates = [x for x in (x1, x2) if 0 <= x <= min(A0f, B0f)]
+    candidates = [x for x in (x1, x2) if -C0f <= x <= min(A0f, B0f)]
     if not candidates:
         raise ValueError("No physically valid equilibrium extent (check Ka and initial amounts).")
     x = max(candidates)  # typically the larger root is valid for association
@@ -342,6 +386,18 @@ def equilibrium_single(eq: str, Ka: float, A0: float, B0: float, C0: float = 0.0
 
 
 # ----------------------------- CLI & Interactive ----------------------------
+def maybe_plot(xs, ys_list, labels, title, xlab, ylab):
+    if plt is None:
+        return
+    fig, ax = plt.subplots()
+    for values, label in zip(ys_list, labels):
+        ax.plot(xs, values, label=label)
+    ax.set(title=title, xlabel=xlab, ylabel=ylab)
+    ax.legend()
+    fig.tight_layout()
+    plt.show()
+
+
 def main():
     ap = argparse.ArgumentParser(description="Chemistry reactions: balance, kinetics, and equilibrium")
     ap.add_argument("--balance", type=str, help='Equation to balance, e.g. "C3H8 + O2 -> CO2 + H2O"')

@@ -1,0 +1,42 @@
+{
+  "fixture": "four synthetic token representations; shard sizes 1 and 3",
+  "reference_gradient": [
+    [
+      0.12083978164064971,
+      0.008499494795869963
+    ],
+    [
+      -0.05918975957528827,
+      0.08783091269806417
+    ],
+    [
+      -0.06165002206536151,
+      -0.09633040749393407
+    ]
+  ],
+  "naive_rank_mean_gradient": [
+    [
+      -0.13750194152039696,
+      0.005666329863913314
+    ],
+    [
+      0.10133313398356505,
+      0.058553941798709444
+    ],
+    [
+      0.036168807536831854,
+      -0.06422027166262272
+    ]
+  ],
+  "naive_max_error": 0.25834172316104664,
+  "weighted_max_error": 2.7755575615628914e-17,
+  "accumulated_max_error": 2.7755575615628914e-17,
+  "scope": "Numerical objective-equivalence fixture; not protein-model accuracy.",
+  "backend": "gloo",
+  "world_size": 2,
+  "global_valid_tokens": 4,
+  "ddp_max_error_by_rank": [
+    2.7755575615628914e-17,
+    2.7755575615628914e-17
+  ]
+}

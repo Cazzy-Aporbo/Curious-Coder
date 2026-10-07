@@ -1,0 +1,52 @@
+{
+  "model_id": "facebook/esm2_t6_8M_UR50D",
+  "revision": "c731040fcd8d73dceaa04b0a8e6329b345b0f5df",
+  "base_weights_sha256": "24c5fa474c48f3b754b86efe752d5f189d2bcd88190fa2270fc92b2ef3034189",
+  "sequence_accessions": [
+    "P69905",
+    "P68871"
+  ],
+  "residue_counts": [
+    142,
+    147
+  ],
+  "masked_residue_count": 27,
+  "adapted_projections": [
+    "esm.encoder.layer.0.attention.self.query",
+    "esm.encoder.layer.0.attention.self.value",
+    "esm.encoder.layer.1.attention.self.query",
+    "esm.encoder.layer.1.attention.self.value",
+    "esm.encoder.layer.2.attention.self.query",
+    "esm.encoder.layer.2.attention.self.value",
+    "esm.encoder.layer.3.attention.self.query",
+    "esm.encoder.layer.3.attention.self.value",
+    "esm.encoder.layer.4.attention.self.query",
+    "esm.encoder.layer.4.attention.self.value",
+    "esm.encoder.layer.5.attention.self.query",
+    "esm.encoder.layer.5.attention.self.value"
+  ],
+  "rank": 4,
+  "alpha": 8,
+  "steps": 3,
+  "seed": 42,
+  "learning_rate": 0.001,
+  "trainable_parameters": 30720,
+  "total_parameters_with_adapters": 7543194,
+  "training_loss_before_each_step": [
+    2.549677610397339,
+    2.5281484127044678,
+    2.5028746128082275
+  ],
+  "same_fixture_loss_after": 2.47312068939209,
+  "initial_adapter_output_max_error": 0.0,
+  "changed_output_max_difference": 0.5786666870117188,
+  "frozen_parameters_unchanged": true,
+  "frozen_parameter_digest": "639dbd4425d474c9aa7f4dccb5842980c20ce23b61b8a2d007c08c9594572b92",
+  "adapter_sha256": "0fad07a77343533fb41aec0c70297d076bae80c4cca6dc2ce015cc8dcf2cdc9b",
+  "torch_version": "2.8.0",
+  "source_code_sha256": {
+    "adapters.py": "3869f48d7f9c8345ed5d302d35fb24ea1d8d4cc08f70173bde4155f14b3d6714",
+    "protein_transfer.py": "5b6efb67dc904f5ea9ff4f92c4d60174e61186f266cd01f76259a5acecbc6d46"
+  },
+  "interpretation": "Training-mechanics audit only. Homologous proteins; possible pretraining overlap; no held-out biological evaluation or efficacy claim."
+}

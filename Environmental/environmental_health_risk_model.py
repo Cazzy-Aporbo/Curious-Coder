@@ -34,6 +34,7 @@ import logging
 from collections import defaultdict
 import warnings
 import math
+import random
 from scipy.interpolate import interp1d
 from scipy.stats import norm, lognorm
 

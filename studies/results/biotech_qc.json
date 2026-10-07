@@ -1,0 +1,150 @@
+{
+  "fixture": "synthetic R&D acceptance/review cases, not patient or laboratory validation data",
+  "inputs": {
+    "reads_R1.fastq": "3e2aea4d9d87d3a08b949bf62bf192697350a737df2cf301b9edff7749acefe1",
+    "reads_R2.fastq": "1f834798b167ffc96f644e4bfdd612bf5d6da67b13dd76701219f70609cf86ae",
+    "samples.csv": "2fe459d105833719ec74c1b9248e5584279f1438841bf275037ad382dc625be6",
+    "reference.fasta": "4a1de276cec229ff554f79592b47844043e90d0d206ea6f378821453b667f152",
+    "calls.vcf": "ab8ec4d3ad05da897310f9376d2cf07db456040c950b6cfa79ead23ac126c646",
+    "controls.csv": "6142da1b0cfe1f006e60507c9edd0e20b12d24a8eb096d097fe9f9bf04304cc4"
+  },
+  "reads": {
+    "read_pairs": 2,
+    "bases": 48,
+    "n_fraction": 0.0,
+    "q30_fraction": 1.0,
+    "gc_fraction_called_bases": 0.5,
+    "expected_base_errors_from_reported_phred": 0.0048000000000000004,
+    "error_probability_equivalent_phred": 40.0,
+    "min_read_length": 12,
+    "max_read_length": 12,
+    "flags": [],
+    "status": "PASS",
+    "policy": {
+      "max_n_fraction": 0.05,
+      "min_q30_fraction": 0.8
+    }
+  },
+  "sample_design": {
+    "samples": 5,
+    "biological_units": 4,
+    "technical_replicates": 1,
+    "design_columns": [
+      "intercept",
+      "condition_treated",
+      "batch_batch-B"
+    ],
+    "design_rank": 3,
+    "rank_deficient": false,
+    "condition_by_batch": {
+      "batch-A": {
+        "control": 1,
+        "treated": 1
+      },
+      "batch-B": {
+        "control": 2,
+        "treated": 1
+      }
+    },
+    "status": "PASS"
+  },
+  "variants": [
+    {
+      "contig": "synthetic-contig",
+      "position_1based": 1,
+      "interval_0based_half_open": [
+        0,
+        1
+      ],
+      "reference": "A",
+      "alternate": "G",
+      "sample": "synthetic-sample",
+      "depth": 25,
+      "alt_fraction_of_allele_depths": 0.52,
+      "flags": [],
+      "status": "PASS"
+    },
+    {
+      "contig": "synthetic-contig",
+      "position_1based": 4,
+      "interval_0based_half_open": [
+        3,
+        4
+      ],
+      "reference": "T",
+      "alternate": "C",
+      "sample": "synthetic-sample",
+      "depth": 10,
+      "alt_fraction_of_allele_depths": 0.1,
+      "flags": [
+        "FILTER_NOT_PASS",
+        "LOW_DEPTH",
+        "HET_ALLELE_BALANCE_REVIEW"
+      ],
+      "status": "REVIEW"
+    }
+  ],
+  "assays": [
+    {
+      "plate": "plate-A",
+      "control_counts": [
+        4,
+        4
+      ],
+      "control_means": [
+        100.0,
+        5.0
+      ],
+      "sample_standard_deviations": [
+        1.632993161855452,
+        0.816496580927726
+      ],
+      "z_prime": 0.9226476923331628,
+      "control_cv": [
+        0.01632993161855452,
+        0.16329931618554522
+      ],
+      "status": "PASS",
+      "policy_z_prime_min": 0.5
+    },
+    {
+      "plate": "plate-B",
+      "control_counts": [
+        4,
+        4
+      ],
+      "control_means": [
+        60.0,
+        40.0
+      ],
+      "sample_standard_deviations": [
+        16.32993161855452,
+        16.32993161855452
+      ],
+      "z_prime": -3.8989794855663558,
+      "control_cv": [
+        0.2721655269759087,
+        0.408248290463863
+      ],
+      "status": "REVIEW",
+      "policy_z_prime_min": 0.5
+    }
+  ],
+  "multiple_testing_example": {
+    "p_values": [
+      0.01,
+      0.04,
+      0.03,
+      0.002
+    ],
+    "bh_adjusted": [
+      0.02,
+      0.04,
+      0.04,
+      0.008
+    ]
+  },
+  "decision_boundary": "PASS means these configured checks passed. It is not specimen identity, pathogenicity, assay validation, or compliance certification.",
+  "overall_status": "REVIEW",
+  "implementation_sha256": "4c4c5f7f78a9ba4ee41e96a9ec8e1046b0dbfb3eea85e7b7d7afcc177efb4218"
+}

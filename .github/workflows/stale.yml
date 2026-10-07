@@ -18,10 +18,13 @@ jobs:
       pull-requests: write
 
     steps:
-    - uses: actions/stale@v5
+    - uses: actions/stale@5bef64f19d7facfb25b37b414482c7164d639639
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Stale issue message'
-        stale-pr-message: 'Stale pull request message'
+        days-before-stale: 90
+        days-before-close: -1
+        exempt-issue-labels: 'bug,scientific-correction,help wanted'
+        stale-issue-message: 'Is this question still open? A reproduction, source, or updated learning goal would help. Inactivity alone will not close it.'
+        stale-pr-message: 'This contribution has been quiet. Please note any blockers; it will not be closed automatically.'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'

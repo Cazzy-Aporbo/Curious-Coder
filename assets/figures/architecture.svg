@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="933.12pt" height="422.71975pt" viewBox="0 0 933.12 422.71975" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>A retry is ordinary. A duplicate mutation is a bug.</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>A retry is ordinary. A duplicate mutation is a bug.</dc:title>
+    <dc:description>Reference architecture · solid arrows show intended flow · only the local SQLite transaction and replay contracts are implemented here The authorization boundary precedes tenant-scoped idempotency. The journal is not a queue acknowledgement and does not make external side effects atomic.
+Deployment, identity provider, broker, outbox relay, replicas, CDN, and regional recovery remain explicit design work—not claimed infrastructure.</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.6, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 422.71975
+L 933.12 422.71975
+L 933.12 0
+L 0 0
+z
+" style="fill: #faf8f2"/>
+  </g>
+  <g id="axes_1">
+   <g id="text_1">
+    <g id="patch_2">
+     <path d="M 132.396244 195.458023
+L 191.082181 195.458023
+Q 197.582181 195.458023 197.582181 188.958023
+L 197.582181 164.282866
+Q 197.582181 157.782866 191.082181 157.782866
+L 132.396244 157.782866
+Q 125.896244 157.782866 125.896244 164.282866
+L 125.896244 188.958023
+Q 125.896244 195.458023 132.396244 195.458023
+z
+" style="fill: #e5eee5; stroke: #8aaa9b; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(147.264213 171.881304)">Client</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(132.396244 186.878335)">request key</text>
+   </g>
+   <g id="text_2">
+    <g id="patch_3">
+     <path d="M 289.264513 195.458023
+L 407.570763 195.458023
+Q 414.070763 195.458023 414.070763 188.958023
+L 414.070763 164.282866
+Q 414.070763 157.782866 407.570763 157.782866
+L 289.264513 157.782866
+Q 282.764513 157.782866 282.764513 164.282866
+L 282.764513 188.958023
+Q 282.764513 195.458023 289.264513 195.458023
+z
+" style="fill: #e5eee5; stroke: #8aaa9b; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(326.330138 171.881304)">Gateway</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(289.264513 186.878335)">identity + tenant policy</text>
+   </g>
+   <g id="text_3">
+    <g id="patch_4">
+     <path d="M 520.180034 195.458023
+L 603.348784 195.458023
+Q 609.848784 195.458023 609.848784 188.958023
+L 609.848784 164.282866
+Q 609.848784 157.782866 603.348784 157.782866
+L 520.180034 157.782866
+Q 513.680034 157.782866 513.680034 164.282866
+L 513.680034 188.958023
+Q 513.680034 195.458023 520.180034 195.458023
+z
+" style="fill: #e5eee5; stroke: #8aaa9b; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(520.180034 171.881304)">Mutation service</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(525.375347 186.878335)">validate intent</text>
+   </g>
+   <g id="text_4">
+    <g id="patch_5">
+     <path d="M 750.742028 195.458023
+L 852.817028 195.458023
+Q 859.317028 195.458023 859.317028 188.958023
+L 859.317028 164.282866
+Q 859.317028 157.782866 852.817028 157.782866
+L 750.742028 157.782866
+Q 744.242028 157.782866 744.242028 164.282866
+L 744.242028 188.958023
+Q 744.242028 195.458023 750.742028 195.458023
+z
+" style="fill: #e5eee5; stroke: #8aaa9b; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(754.585778 171.881304)">Atomic transaction</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(750.742028 186.878335)">asset + event + key</text>
+   </g>
+   <g id="text_5">
+    <g id="patch_6">
+     <path d="M 741.80609 298.825134
+L 861.752965 298.825134
+Q 868.252965 298.825134 868.252965 292.325134
+L 868.252965 267.649977
+Q 868.252965 261.149977 861.752965 261.149977
+L 741.80609 261.149977
+Q 735.30609 261.149977 735.30609 267.649977
+L 735.30609 292.325134
+Q 735.30609 298.825134 741.80609 298.825134
+z
+" style="fill: #e5eee5; stroke: #8aaa9b; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(763.205309 275.248415)">Durable journal</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(741.80609 290.245446)">replay + anchored hash</text>
+   </g>
+   <g id="text_6">
+    <g id="patch_7">
+     <path d="M 520.304253 298.825134
+L 603.224566 298.825134
+Q 609.724566 298.825134 609.724566 292.325134
+L 609.724566 267.649977
+Q 609.724566 261.149977 603.224566 261.149977
+L 520.304253 261.149977
+Q 513.804253 261.149977 513.804253 267.649977
+L 513.804253 292.325134
+Q 513.804253 298.825134 520.304253 298.825134
+z
+" style="fill: #e5eee5; stroke: #8aaa9b; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(520.304253 275.248415)">Async projection</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(520.638628 290.245446)">H3 tiles + cache</text>
+   </g>
+   <g id="text_7">
+    <g id="patch_8">
+     <path d="M 287.043419 298.825134
+L 409.791857 298.825134
+Q 416.291857 298.825134 416.291857 292.325134
+L 416.291857 267.649977
+Q 416.291857 261.149977 409.791857 261.149977
+L 287.043419 261.149977
+Q 280.543419 261.149977 280.543419 267.649977
+L 280.543419 292.325134
+Q 280.543419 298.825134 287.043419 298.825134
+z
+" style="fill: #e5eee5; stroke: #8aaa9b; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(310.409825 275.248415)">Read API / CDN</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #203a3b" transform="translate(287.043419 290.245446)">versioned, stale-tolerant</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 204.081771 176.620444
+Q 240.174445 176.620444 274.254659 176.620444
+" style="fill: none; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+    <path d="M 267.054659 173.020444
+L 274.254659 176.620444
+L 267.054659 180.220444
+z
+" style="fill: #728c83; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 420.568666 176.620444
+Q 463.875899 176.620444 505.170672 176.620444
+" style="fill: none; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+    <path d="M 497.970672 173.020444
+L 505.170672 176.620444
+L 497.970672 180.220444
+z
+" style="fill: #728c83; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 616.341809 176.620444
+Q 677.041931 176.620444 735.729592 176.620444
+" style="fill: none; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+    <path d="M 728.529592 173.020444
+L 735.729592 176.620444
+L 728.529592 180.220444
+z
+" style="fill: #728c83; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 801.779528 201.958283
+Q 801.779528 228.304097 801.779528 252.637449
+" style="fill: none; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+    <path d="M 805.379528 245.437449
+L 801.779528 252.637449
+L 798.179528 245.437449
+z
+" style="fill: #728c83; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 728.803028 279.987556
+Q 672.515193 279.987556 618.239819 279.987556
+" style="fill: none; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+    <path d="M 625.439819 283.587556
+L 618.239819 279.987556
+L 625.439819 276.387556
+z
+" style="fill: #728c83; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 507.301703 279.987556
+Q 465.048304 279.987556 424.807366 279.987556
+" style="fill: none; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+    <path d="M 432.007366 283.587556
+L 424.807366 279.987556
+L 432.007366 276.387556
+z
+" style="fill: #728c83; stroke: #728c83; stroke-width: 1.8; stroke-linecap: round"/>
+   </g>
+  </g>
+  <g id="text_8">
+   <text style="font-size: 23px; font-family: 'DejaVu Serif'; text-anchor: start; fill: #203a3b" x="18" y="35.476406" transform="rotate(-0 18 35.476406)">A retry is ordinary. A duplicate mutation is a bug.</text>
+  </g>
+  <g id="text_9">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #203a3b" x="18" y="64.016" transform="rotate(-0 18 64.016)">Reference architecture · solid arrows show intended flow · only the local SQLite transaction and replay contracts are implemented here</text>
+  </g>
+  <g id="text_10">
+   <text style="font-size: 8px; font-family: 'DejaVu Sans'; fill: #526867" transform="translate(18 394.09775)">The authorization boundary precedes tenant-scoped idempotency. The journal is not a queue acknowledgement and does not make external side effects atomic.</text>
+   <text style="font-size: 8px; font-family: 'DejaVu Sans'; fill: #526867" transform="translate(18 403.056)">Deployment, identity provider, broker, outbox relay, replicas, CDN, and regional recovery remain explicit design work—not claimed infrastructure.</text>
+  </g>
+ </g>
+</svg>
