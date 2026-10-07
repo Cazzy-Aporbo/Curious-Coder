@@ -1,0 +1,395 @@
+{
+  "evidence_type": "Synthetic policy exercise over a recorded software fixture; approval labels and logical clock are not real QA approvals or dates.",
+  "source_file": "studies/results/facility.json",
+  "source_file_sha256": "ec6db0bda483e78427f68b0b7d61cdb56b3e9d4255b7bdcc5a3a9bdd2754d544",
+  "cases": {
+    "supported": {
+      "decision": "supported_within_contract",
+      "facts": [
+        {
+          "key": "accepted_observations",
+          "value": 480,
+          "unit": "records",
+          "context": "synthetic-facility-run",
+          "support": [
+            {
+              "value": 480,
+              "source_id": "facility-record",
+              "revision": "fixture-v1",
+              "sha256": "ec6db0bda483e78427f68b0b7d61cdb56b3e9d4255b7bdcc5a3a9bdd2754d544",
+              "pointer": "/counts/accepted"
+            }
+          ]
+        },
+        {
+          "key": "quarantined_observations",
+          "value": 4,
+          "unit": "records",
+          "context": "synthetic-facility-run",
+          "support": [
+            {
+              "value": 4,
+              "source_id": "facility-record",
+              "revision": "fixture-v1",
+              "sha256": "ec6db0bda483e78427f68b0b7d61cdb56b3e9d4255b7bdcc5a3a9bdd2754d544",
+              "pointer": "/counts/quarantined"
+            }
+          ]
+        }
+      ],
+      "missing_facts": [],
+      "conflicting_facts": [],
+      "trace": [
+        {
+          "source_id": "facility-record",
+          "revision": "fixture-v1",
+          "eligible": true,
+          "reasons": []
+        }
+      ],
+      "purpose": "software_review",
+      "context": "synthetic-facility-run",
+      "policy_revision": "demo-policy-v1",
+      "snapshot_sha256": "4c314ffe26a16dc6a83e1fd93de6737aa5ff6773732df8ed228ef9f05a1d85f3",
+      "limits": [
+        "Input acceptance does not mean the process is safe or approved for release.",
+        "Synthetic fixture, not a manufacturing batch."
+      ],
+      "assurance_scope": "Eligibility and scalar provenance under a supplied registry; not proof that a source is true, a use is lawful, or an open-ended generated answer is correct."
+    },
+    "expired": {
+      "decision": "refused",
+      "facts": [],
+      "missing_facts": [
+        "accepted_observations",
+        "quarantined_observations"
+      ],
+      "conflicting_facts": [],
+      "trace": [
+        {
+          "source_id": "facility-record",
+          "revision": "fixture-v1",
+          "eligible": false,
+          "reasons": [
+            "OUTSIDE_VALIDITY_WINDOW"
+          ]
+        }
+      ],
+      "purpose": "software_review",
+      "context": "synthetic-facility-run",
+      "policy_revision": "demo-policy-v1",
+      "snapshot_sha256": "d461bb554a4f7c29de48c3e529bc291dda92d7798733080b38dbfd575be0fd54",
+      "limits": [
+        "Input acceptance does not mean the process is safe or approved for release.",
+        "Synthetic fixture, not a manufacturing batch."
+      ],
+      "assurance_scope": "Eligibility and scalar provenance under a supplied registry; not proof that a source is true, a use is lawful, or an open-ended generated answer is correct."
+    },
+    "wrong_context": {
+      "decision": "refused",
+      "facts": [],
+      "missing_facts": [
+        "accepted_observations",
+        "quarantined_observations"
+      ],
+      "conflicting_facts": [],
+      "trace": [
+        {
+          "source_id": "facility-record",
+          "revision": "fixture-v1",
+          "eligible": false,
+          "reasons": [
+            "CONTEXT_MISMATCH"
+          ]
+        }
+      ],
+      "purpose": "software_review",
+      "context": "another-facility",
+      "policy_revision": "demo-policy-v1",
+      "snapshot_sha256": "5a454beb1f355426598f01494a653083da1a564390fc63afda57e55af5935991",
+      "limits": [
+        "Input acceptance does not mean the process is safe or approved for release.",
+        "Synthetic fixture, not a manufacturing batch."
+      ],
+      "assurance_scope": "Eligibility and scalar provenance under a supplied registry; not proof that a source is true, a use is lawful, or an open-ended generated answer is correct."
+    },
+    "unsupported_use": {
+      "decision": "refused",
+      "facts": [],
+      "missing_facts": [
+        "accepted_observations",
+        "quarantined_observations"
+      ],
+      "conflicting_facts": [],
+      "trace": [
+        {
+          "source_id": "facility-record",
+          "revision": "fixture-v1",
+          "eligible": false,
+          "reasons": [
+            "USE_NOT_ALLOWED"
+          ]
+        }
+      ],
+      "purpose": "clinical_release",
+      "context": "synthetic-facility-run",
+      "policy_revision": "demo-policy-v1",
+      "snapshot_sha256": "9db1a073fe30b8d24be1a2d97371a9a5cb8d7a6ca65fe48d9612ac19ff92c46b",
+      "limits": [
+        "Input acceptance does not mean the process is safe or approved for release.",
+        "Synthetic fixture, not a manufacturing batch."
+      ],
+      "assurance_scope": "Eligibility and scalar provenance under a supplied registry; not proof that a source is true, a use is lawful, or an open-ended generated answer is correct."
+    },
+    "tampered": {
+      "decision": "refused",
+      "facts": [],
+      "missing_facts": [
+        "accepted_observations",
+        "quarantined_observations"
+      ],
+      "conflicting_facts": [],
+      "trace": [
+        {
+          "source_id": "facility-record",
+          "revision": "fixture-v1",
+          "eligible": false,
+          "reasons": [
+            "DIGEST_MISMATCH"
+          ]
+        }
+      ],
+      "purpose": "software_review",
+      "context": "synthetic-facility-run",
+      "policy_revision": "demo-policy-v1",
+      "snapshot_sha256": "aa7f75198b6325f073afe5bb4e89d7a52157eb93a150379b1c14abdb2adc1787",
+      "limits": [
+        "Input acceptance does not mean the process is safe or approved for release.",
+        "Synthetic fixture, not a manufacturing batch."
+      ],
+      "assurance_scope": "Eligibility and scalar provenance under a supplied registry; not proof that a source is true, a use is lawful, or an open-ended generated answer is correct."
+    },
+    "conflict": {
+      "decision": "needs_review",
+      "facts": [],
+      "missing_facts": [],
+      "conflicting_facts": [
+        "accepted_observations"
+      ],
+      "trace": [
+        {
+          "source_id": "facility-record",
+          "revision": "fixture-v1",
+          "eligible": true,
+          "reasons": []
+        },
+        {
+          "source_id": "second-fixture-record",
+          "revision": "fixture-v1",
+          "eligible": true,
+          "reasons": []
+        }
+      ],
+      "purpose": "software_review",
+      "context": "synthetic-facility-run",
+      "policy_revision": "demo-policy-v1",
+      "snapshot_sha256": "41c13dc9b8c1eed054353bb5fb26f7cfe75b06b8306aed29ce083b87331bc954",
+      "limits": [
+        "Input acceptance does not mean the process is safe or approved for release.",
+        "Synthetic fixture, not a manufacturing batch."
+      ],
+      "assurance_scope": "Eligibility and scalar provenance under a supplied registry; not proof that a source is true, a use is lawful, or an open-ended generated answer is correct."
+    }
+  },
+  "reader_views": {
+    "learner": {
+      "decision": "supported_within_contract",
+      "facts": [
+        {
+          "key": "accepted_observations",
+          "value": 480,
+          "unit": "records",
+          "context": "synthetic-facility-run",
+          "support": [
+            {
+              "value": 480,
+              "source_id": "facility-record",
+              "revision": "fixture-v1",
+              "sha256": "ec6db0bda483e78427f68b0b7d61cdb56b3e9d4255b7bdcc5a3a9bdd2754d544",
+              "pointer": "/counts/accepted"
+            }
+          ]
+        },
+        {
+          "key": "quarantined_observations",
+          "value": 4,
+          "unit": "records",
+          "context": "synthetic-facility-run",
+          "support": [
+            {
+              "value": 4,
+              "source_id": "facility-record",
+              "revision": "fixture-v1",
+              "sha256": "ec6db0bda483e78427f68b0b7d61cdb56b3e9d4255b7bdcc5a3a9bdd2754d544",
+              "pointer": "/counts/quarantined"
+            }
+          ]
+        }
+      ],
+      "missing_facts": [],
+      "conflicting_facts": [],
+      "trace": [
+        {
+          "source_id": "facility-record",
+          "revision": "fixture-v1",
+          "eligible": true,
+          "reasons": []
+        }
+      ],
+      "purpose": "software_review",
+      "context": "synthetic-facility-run",
+      "policy_revision": "demo-policy-v1",
+      "snapshot_sha256": "4c314ffe26a16dc6a83e1fd93de6737aa5ff6773732df8ed228ef9f05a1d85f3",
+      "limits": [
+        "Input acceptance does not mean the process is safe or approved for release.",
+        "Synthetic fixture, not a manufacturing batch."
+      ],
+      "assurance_scope": "Eligibility and scalar provenance under a supplied registry; not proof that a source is true, a use is lawful, or an open-ended generated answer is correct.",
+      "audience": "learner",
+      "introduction": "Start with what the records can support, then read the limits beside it.",
+      "statements": [
+        "accepted_observations: 480 records",
+        "quarantined_observations: 4 records"
+      ],
+      "evidence_snapshot_sha256": "4c314ffe26a16dc6a83e1fd93de6737aa5ff6773732df8ed228ef9f05a1d85f3"
+    },
+    "researcher": {
+      "decision": "supported_within_contract",
+      "facts": [
+        {
+          "key": "accepted_observations",
+          "value": 480,
+          "unit": "records",
+          "context": "synthetic-facility-run",
+          "support": [
+            {
+              "value": 480,
+              "source_id": "facility-record",
+              "revision": "fixture-v1",
+              "sha256": "ec6db0bda483e78427f68b0b7d61cdb56b3e9d4255b7bdcc5a3a9bdd2754d544",
+              "pointer": "/counts/accepted"
+            }
+          ]
+        },
+        {
+          "key": "quarantined_observations",
+          "value": 4,
+          "unit": "records",
+          "context": "synthetic-facility-run",
+          "support": [
+            {
+              "value": 4,
+              "source_id": "facility-record",
+              "revision": "fixture-v1",
+              "sha256": "ec6db0bda483e78427f68b0b7d61cdb56b3e9d4255b7bdcc5a3a9bdd2754d544",
+              "pointer": "/counts/quarantined"
+            }
+          ]
+        }
+      ],
+      "missing_facts": [],
+      "conflicting_facts": [],
+      "trace": [
+        {
+          "source_id": "facility-record",
+          "revision": "fixture-v1",
+          "eligible": true,
+          "reasons": []
+        }
+      ],
+      "purpose": "software_review",
+      "context": "synthetic-facility-run",
+      "policy_revision": "demo-policy-v1",
+      "snapshot_sha256": "4c314ffe26a16dc6a83e1fd93de6737aa5ff6773732df8ed228ef9f05a1d85f3",
+      "limits": [
+        "Input acceptance does not mean the process is safe or approved for release.",
+        "Synthetic fixture, not a manufacturing batch."
+      ],
+      "assurance_scope": "Eligibility and scalar provenance under a supplied registry; not proof that a source is true, a use is lawful, or an open-ended generated answer is correct.",
+      "audience": "researcher",
+      "introduction": "Inspect the values, context, and source pointers before extending the interpretation.",
+      "statements": [
+        "accepted_observations: 480 records",
+        "quarantined_observations: 4 records"
+      ],
+      "evidence_snapshot_sha256": "4c314ffe26a16dc6a83e1fd93de6737aa5ff6773732df8ed228ef9f05a1d85f3"
+    },
+    "reviewer": {
+      "decision": "supported_within_contract",
+      "facts": [
+        {
+          "key": "accepted_observations",
+          "value": 480,
+          "unit": "records",
+          "context": "synthetic-facility-run",
+          "support": [
+            {
+              "value": 480,
+              "source_id": "facility-record",
+              "revision": "fixture-v1",
+              "sha256": "ec6db0bda483e78427f68b0b7d61cdb56b3e9d4255b7bdcc5a3a9bdd2754d544",
+              "pointer": "/counts/accepted"
+            }
+          ]
+        },
+        {
+          "key": "quarantined_observations",
+          "value": 4,
+          "unit": "records",
+          "context": "synthetic-facility-run",
+          "support": [
+            {
+              "value": 4,
+              "source_id": "facility-record",
+              "revision": "fixture-v1",
+              "sha256": "ec6db0bda483e78427f68b0b7d61cdb56b3e9d4255b7bdcc5a3a9bdd2754d544",
+              "pointer": "/counts/quarantined"
+            }
+          ]
+        }
+      ],
+      "missing_facts": [],
+      "conflicting_facts": [],
+      "trace": [
+        {
+          "source_id": "facility-record",
+          "revision": "fixture-v1",
+          "eligible": true,
+          "reasons": []
+        }
+      ],
+      "purpose": "software_review",
+      "context": "synthetic-facility-run",
+      "policy_revision": "demo-policy-v1",
+      "snapshot_sha256": "4c314ffe26a16dc6a83e1fd93de6737aa5ff6773732df8ed228ef9f05a1d85f3",
+      "limits": [
+        "Input acceptance does not mean the process is safe or approved for release.",
+        "Synthetic fixture, not a manufacturing batch."
+      ],
+      "assurance_scope": "Eligibility and scalar provenance under a supplied registry; not proof that a source is true, a use is lawful, or an open-ended generated answer is correct.",
+      "audience": "reviewer",
+      "introduction": "Check the approved revision, eligibility trace, and preserved limits against the intended use.",
+      "statements": [
+        "accepted_observations: 480 records",
+        "quarantined_observations: 4 records"
+      ],
+      "evidence_snapshot_sha256": "4c314ffe26a16dc6a83e1fd93de6737aa5ff6773732df8ed228ef9f05a1d85f3"
+    }
+  },
+  "cache_checks": {
+    "identical_snapshot_hit": true,
+    "expired_snapshot_hit": false,
+    "expired_decision": "refused"
+  },
+  "implementation_sha256": "757f74fc0e00a7375092a26d8c3e42b971662437697098e6a034d37aae681823"
+}

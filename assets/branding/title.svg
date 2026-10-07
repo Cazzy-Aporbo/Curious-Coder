@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="280" viewBox="0 0 1200 280" role="img" aria-labelledby="title desc">
+  <title id="title">Curious Coder — Cazandra Aporbo</title>
+  <desc id="desc">An iridescent plum, rose, mint, and lavender title. Biology, computation, and the work between them.</desc>
+  <defs>
+    <linearGradient id="surface" x2="1" y2="1"><stop stop-color="#281f36"/><stop offset=".55" stop-color="#453047"/><stop offset="1" stop-color="#203d43"/></linearGradient>
+    <linearGradient id="prism" x1="0" y1="0" x2="1" y2=".6"><stop stop-color="#f6c7df"/><stop offset=".28" stop-color="#d5c7ff"/><stop offset=".55" stop-color="#aee8dc"/><stop offset=".78" stop-color="#ffe0bc"/><stop offset="1" stop-color="#edbfe8"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#d5a1ce" stop-opacity=".22"/><stop offset="1" stop-color="#d5a1ce" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect x="1" y="1" width="1198" height="278" rx="26" fill="url(#surface)" stroke="#a995b8" stroke-opacity=".55"/>
+  <ellipse cx="970" cy="110" rx="245" ry="170" fill="url(#glow)"/>
+  <g fill="none" stroke="url(#prism)" stroke-width="1.2" opacity=".4">
+    <ellipse cx="1012" cy="135" rx="150" ry="58" transform="rotate(-36 1012 135)"/>
+    <ellipse cx="1012" cy="135" rx="150" ry="58" transform="rotate(36 1012 135)"/>
+    <circle cx="1012" cy="135" r="92"/>
+    <path d="M822 205C918 61 1078 32 1160 91M850 229C968 133 1078 229 1168 143"/>
+  </g>
+  <g fill="url(#prism)"><circle cx="930" cy="86" r="5"/><circle cx="1095" cy="184" r="5"/><circle cx="1012" cy="135" r="8"/></g>
+  <text x="62" y="59" fill="#e6c6d8" font-family="Verdana, sans-serif" font-size="16" letter-spacing="3">CAZANDRA APORBO</text>
+  <text x="58" y="151" fill="url(#prism)" font-family="Georgia, serif" font-size="84">Curious Coder</text>
+  <text x="62" y="205" fill="#f0e7ee" font-family="Verdana, sans-serif" font-size="20">Biology, computation, and the work between them.</text>
+  <path d="M62 239H756" stroke="url(#prism)" stroke-width="2"/>
+</svg>

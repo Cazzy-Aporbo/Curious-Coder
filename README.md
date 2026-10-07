@@ -1,4 +1,4 @@
-# Curious Coder
+# ![Curious Coder](assets/branding/title.svg)
 
 A useful result should leave the next person with more clarity, not another layer of guesswork. I use Python to explore a question that keeps returning in biological data: **what would make this result trustworthy enough to change the next experiment?** I begin with the measurement and its history, then follow the assumptions into the mathematics, the implementation, and the decision it might support.
 
@@ -7,12 +7,19 @@ I’m **Cazandra Aporbo**. Here I keep that reasoning close to the code: public-
 <div class="route-buttons">
 <a class="button" href="START_HERE.md">Start reading or running</a>
 <a class="button berry" href="biotech/README.md">Work through biotech QC</a>
+<a class="button" href="studies/learning_signals.md">See when a signal misleads</a>
+<a class="button berry" href="studies/evidence_contracts.md">Explain without changing the claim</a>
 <a class="button secondary" href="studies/protein_adaptation.md">Inspect pretrained weights</a>
 </div>
 
-[![CI](https://github.com/Cazzy-Aporbo/Curious-Coder/actions/workflows/ci.yml/badge.svg)](https://github.com/Cazzy-Aporbo/Curious-Coder/actions/workflows/ci.yml)
+[![CI](https://github.com/Cazzy-Aporbo/Curious-Coder/actions/workflows/ci.yml/badge.svg)](https://github.com/Cazzy-Aporbo/Curious-Coder/actions/workflows/ci.yml) [![Live site](https://img.shields.io/badge/live%20site-Curious%20Coder-8a5a7a)](https://cazzy-aporbo.github.io/Curious-Coder/)
 
-## Three routes through the same review habit
+| Start here | Then | Then |
+| --- | --- | --- |
+| [**Find the evidence** →](studies/evidence_retrieval.md) | [**Bound the explanation** →](studies/evidence_contracts.md) | [**Check the signal you optimize** →](studies/learning_signals.md) |
+| [**Inspect the measurement** →](biotech/README.md) | [**Follow the process record** →](biotech/facility_workflow.md) | [**Compare models honestly** →](studies/statistical_validation.md) |
+
+## ![Three routes through the same review habit](assets/branding/routes.svg)
 
 I keep these as independent evidence workflows, not as one model pretending to connect every biological scale. Each route has a concrete input, an inspectable output, and a decision that still belongs to a reviewer.
 
@@ -20,6 +27,8 @@ I keep these as independent evidence workflows, not as one model pretending to c
 | --- | --- | --- |
 | Find and appraise a method | [Literature retrieval](studies/evidence_retrieval.md) | API provenance → reusable text → lexical/encoder comparison → cited records and notice links |
 | Admit and inspect a measurement | [Facility evidence workflow](biotech/facility_workflow.md) | Sensor message → calibration gate → signed transaction → drift/particle checks → [inspection console](biotech/facility_console.html) |
+| Check what an optimizer is really chasing | [Learning signals](studies/learning_signals.md) | TD error timing → surprise vs learnable novelty → proxy rising while the real goal falls |
+| Explain without changing the claim | [Evidence contracts](studies/evidence_contracts.md) | Approved source → context/use/validity checks → conflict or refusal → reader-specific view with the same facts |
 | Test a modeling decision | [Measured classification](studies/clinical_benchmark.md) | Public snapshot → isolated fitting → paired/nested evaluation → explicit decision assumptions |
 
 <details markdown="1">
@@ -110,7 +119,7 @@ In the [distributed experiment](studies/training_math.md), I split four supervis
 
 These are established methods, not claims of new algorithms. My aim is to make the reasoning operational: a declared input, an intended quantity, a counterexample, a test, and a clear next step when the check fails.
 
-## Follow a process record through its evidence
+## ![Follow a process record through its evidence](assets/branding/process.svg)
 
 The [facility workflow](biotech/facility_workflow.md) makes the operational boundary concrete. It retains 480 accepted synthetic observations and four quarantined cases, binds decisions to signed events, and checks that the displayed relational projection agrees with a signed digest. The console exposes calibration and maintenance history, paginated observations, and inspectable event envelopes.
 

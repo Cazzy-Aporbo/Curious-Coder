@@ -12,6 +12,8 @@ import shutil
 from urllib.parse import unquote, urlsplit, urlunsplit
 
 import markdown
+from markdown.extensions import Extension
+from markdown.treeprocessors import Treeprocessor
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +49,28 @@ footer { border-top:1px solid var(--rule); padding:1.5rem; text-align:center; fo
 @media print { nav,details,.skip { display:none; } main { max-width:none; } pre { white-space:pre-wrap; } }
 @media(prefers-reduced-motion:no-preference) { html { scroll-behavior:smooth; } }
 """
+
+
+class ImageHeadingLabels(Treeprocessor):
+    def run(self, root):
+        used = {item.get("id") for item in root.iter() if item.get("id")}
+        for heading in root.iter():
+            if heading.tag not in {"h1", "h2", "h3", "h4", "h5", "h6"} or "".join(heading.itertext()).strip():
+                continue
+            label = " ".join(image.get("alt", "") for image in heading.iter("img")).strip()
+            if label:
+                heading.set("data-toc-label", label)
+                base = re.sub(r"[^\w-]+", "-", label.lower()).strip("-") or "heading"
+                identifier, suffix = base, 1
+                while identifier in used:
+                    identifier, suffix = f"{base}-{suffix}", suffix + 1
+                heading.set("id", identifier)
+                used.add(identifier)
+
+
+class AccessibleImageHeadings(Extension):
+    def extendMarkdown(self, renderer):
+        renderer.treeprocessors.register(ImageHeadingLabels(renderer), "image_heading_labels", 6)
 
 
 def content_files(root):
@@ -110,6 +134,7 @@ def search_index(root):
             continue
         text = path.read_text(encoding="utf-8")
         headings = re.findall(r"^#{1,6} (.+)$", text, re.MULTILINE)
+        headings = [re.sub(r"!\[([^]]*)\]\([^)]*\)", r"\1", heading) for heading in headings]
         entries.append({"title": headings[0] if headings else path.stem,
                         "path": page_path(path.relative_to(root)).as_posix(),
                         "text": re.sub(r"<[^>]+>", " ", text[:1800]) + " " + " ".join(headings)})
@@ -162,7 +187,7 @@ def build_site(root=ROOT, output=None):
     interactive = (root / "assets/site.mjs").exists() and (root / "assets/site.css").exists()
     index = search_index(root) if interactive else []
     route = [(path, label) for path, label in (
-        ("README.md", "Overview"), ("START_HERE.md", "Begin here"), ("studies/evidence_retrieval.md", "Find the evidence"),
+        ("README.md", "Overview"), ("START_HERE.md", "Begin here"), ("studies/evidence_retrieval.md", "Find the evidence"), ("studies/evidence_contracts.md", "Bound the explanation"), ("studies/learning_signals.md", "Check the optimized signal"),
         ("biotech/README.md", "Inspect the measurement"), ("biotech/facility_workflow.md", "Follow the process record"),
         ("studies/clinical_benchmark.md", "Compare models"), ("studies/statistical_validation.md", "Examine uncertainty"),
         ("studies/protein_adaptation.md", "Inspect weight updates"), ("studies/training_math.md", "Check distributed training"),
@@ -175,7 +200,7 @@ def build_site(root=ROOT, output=None):
         if source.suffix != ".md":
             shutil.copyfile(source, destination)
             continue
-        renderer = markdown.Markdown(extensions=["fenced_code", "tables", "toc", "sane_lists", "md_in_html"])
+        renderer = markdown.Markdown(extensions=["fenced_code", "tables", "toc", "sane_lists", "md_in_html", AccessibleImageHeadings()])
         body = renderer.convert(source.read_text(encoding="utf-8"))
         body = re.sub(r'(href|src)="([^"]*)"',
                       lambda match: f'{match[1]}="{escape(rewrite_link(unquote_html(match[2])), quote=True)}"', body)

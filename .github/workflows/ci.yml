@@ -12,13 +12,13 @@ permissions:
 jobs:
   quality:
     name: Source and learning site
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: '3.12'
       - run: python -m pip install ruff==0.13.2 -r requirements-docs.txt -r requirements-browser.txt
@@ -33,7 +33,7 @@ jobs:
           python -m playwright install --with-deps chromium
           node --test tests/site.test.mjs
           python scripts/check_site_browser.py
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: learning-site
           path: _site/
@@ -42,7 +42,7 @@ jobs:
 
   tests:
     name: Python ${{ matrix.python }} scientific regression tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     strategy:
       fail-fast: false
@@ -54,10 +54,10 @@ jobs:
       OPENBLAS_NUM_THREADS: '1'
       PYTHONHASHSEED: '0'
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: ${{ matrix.python }}
           cache: pip
@@ -81,6 +81,9 @@ jobs:
           python -m studies.execution_figures --report artifacts/reproduced-results/resource_scheduling.json --output artifacts/reproduced-figures
           python -m studies.data_movement --output artifacts/reproduced-results/data_movement.json
           python -m studies.statistical_validation --output artifacts/reproduced-results/statistical_validation.json
+          python -m studies.evidence_contracts --output artifacts/reproduced-results/evidence_contracts.json
+          python -m studies.learning_signals --output artifacts/reproduced-results/learning_signals.json
+          python -m studies.learning_figures --report artifacts/reproduced-results/learning_signals.json --output artifacts/reproduced-figures
       - name: Verify biotech QC, export, and two-process training
         if: matrix.python == '3.12'
         env:
@@ -106,7 +109,7 @@ jobs:
         run: python -m pytest tests/test_learning_lab.py --cov=patient_leakage_lab --cov-branch --cov-fail-under=85 --cov-report=term --cov-report=xml:coverage-lab.xml
       - name: Upload test evidence
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: test-evidence-python-${{ matrix.python }}
           path: |

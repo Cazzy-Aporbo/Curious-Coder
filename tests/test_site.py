@@ -29,6 +29,20 @@ def test_site_build_is_repeatable_and_only_copies_learning_content(tmp_path):
     assert 'lang="en"' in first.decode()
 
 
+def test_image_headings_keep_accessible_titles_and_unique_navigation(tmp_path):
+    assets = tmp_path / "assets"
+    assets.mkdir()
+    (assets / "heading.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
+    (tmp_path / "README.md").write_text('# ![Curious Coder](assets/heading.svg)\n\n## ![Evidence](assets/heading.svg)\n\n## ![Evidence](assets/heading.svg)')
+    output = tmp_path / "site"
+    build_site(tmp_path, output)
+    html = (output / "index.html").read_text()
+    assert '<title>Curious Coder · Curious Coder</title>' in html
+    assert 'id="curious-coder"' in html
+    assert 'href="#evidence"' in html and 'href="#evidence-1"' in html
+    assert 'alt="Curious Coder"' in html
+
+
 def test_site_rejects_broken_local_links(tmp_path):
     (tmp_path / "index.html").write_text('<a href="missing.html">Missing</a>')
     with pytest.raises(ValueError, match="missing.html"):

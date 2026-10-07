@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="144" viewBox="0 0 840 144" role="img" aria-labelledby="title">
+  <title id="title">Three routes through the same review habit</title>
+  <defs><linearGradient id="ink" x2="1" y2=".2"><stop stop-color="#f6c7df"/><stop offset=".4" stop-color="#d5c7ff"/><stop offset=".7" stop-color="#aee8dc"/><stop offset="1" stop-color="#ffe0bc"/></linearGradient><linearGradient id="paper" x2="1"><stop stop-color="#35263f"/><stop offset="1" stop-color="#29434a"/></linearGradient></defs>
+  <rect x="1" y="1" width="838" height="142" rx="16" fill="url(#paper)"/>
+  <path d="M24 26V118" stroke="url(#ink)" stroke-width="4"/>
+  <text x="48" fill="url(#ink)" font-family="Georgia, serif" font-size="44"><tspan x="48" y="59">Three routes through</tspan><tspan x="48" y="112">the same review habit</tspan></text>
+</svg>
