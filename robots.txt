@@ -1,0 +1,8 @@
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: CCBot
+Disallow: /Curious-Coder/
+
+User-agent: *
+Allow: /

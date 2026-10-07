@@ -75,10 +75,10 @@ class AccessibleImageHeadings(Extension):
 
 
 def content_files(root):
-    files = list(root.glob("*.md"))
+    files = list(root.glob("*.md")) + [root / name for name in ("robots.txt", "CITATION.cff")]
     files += [p for folder in CONTENT_DIRS for p in (root / folder).rglob("*")
               if p.is_file() and not p.is_symlink() and p.suffix in {".md", ".html", ".py", ".svg", ".png", ".gif", ".json", ".csv", ".txt", ".data", ".dly", ".fasta", ".fastq", ".vcf", ".css", ".mjs", ".sql"}]
-    return sorted(p for p in files if p.name != "AGENTS.md")
+    return sorted(p for p in files if p.name != "AGENTS.md" and p.is_file() and not p.is_symlink())
 
 
 def page_path(path):
@@ -237,13 +237,19 @@ def build_site(root=ROOT, output=None):
                     link = os.path.relpath(output / page_path(Path(path)), destination.parent).replace(os.sep, "/")
                     chapter_links.append(f'<a class="button secondary" href="{escape(link, quote=True)}">{direction} · {escape(label)}</a>')
             body += f'<nav class="chapter-nav" aria-label="Learning route"><p>Learning route · {position + 1} of {len(route)}</p>{"".join(chapter_links)}</nav>'
+        attribution = []
+        for filename, label in (("COPYRIGHT.md", "Attribution and reuse"), ("CITATION.cff", "Cite this work")):
+            if (root / filename).is_file() and not (root / filename).is_symlink():
+                target = page_path(Path(filename)) if filename.endswith(".md") else Path(filename)
+                link = os.path.relpath(output / target, destination.parent).replace(os.sep, "/")
+                attribution.append(f'<a href="{escape(link, quote=True)}">{label}</a>')
         page = f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="Cazandra Aporbo">
 <title>{escape(title)} · Curious Coder</title><style>{STYLE}</style>{resources}</head>
 <body><a class="skip" href="#main">Skip to content</a>
 <header><a class="brand" href="{home}">Curious Coder<span>Scientific computing / Cazandra Aporbo</span></a><nav aria-label="Study navigation">{' '.join(navigation)}</nav></header>
 {controls}<main id="main"><details><summary>On this page</summary>{renderer.toc}</details>{body}</main>
-<footer>Curious Coder · Methods, assumptions, evidence. <a href="{escape(source_url, quote=True)}">Read this page's source</a></footer>
+<footer>Curious Coder · Cazandra Aporbo · Methods, assumptions, evidence. <a href="{escape(source_url, quote=True)}">Read this page's source</a> {' · '.join(attribution)}</footer>
 </body></html>'''
         destination.write_text(page, encoding="utf-8")
         count += 1

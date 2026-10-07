@@ -203,3 +203,7 @@ Primary sources and reuse terms are linked next to the methods they support: [UC
 <p align="center"><img src="assets/branding/footer.svg" alt="Thanks for reading closely. Every figure has a source. Every result has a limit. The coffee had neither." width="640"></p>
 
 <p align="center"><sub>Made by <a href="https://github.com/Cazzy-Aporbo">Cazandra Aporbo</a> · questions and corrections are always welcome · <a href="https://cazzy-aporbo.github.io/Curious-Coder/">read the styled version</a></sub></p>
+
+<p align="center"><sub>Original work: permission-first reuse · <a href="https://cazzy-aporbo.github.io/Curious-Coder/COPYRIGHT.html">attribution and reuse terms</a> · <a href="CITATION.cff">cite this work</a></sub></p>
+
+Citation is not permission to reuse original material. Third-party sources keep their own licenses. The [crawler policy](robots.txt) preserves search discovery and requests exclusions for named AI/data-collection crawlers; it takes effect on Pages only when served from the domain-root `https://cazzy-aporbo.github.io/robots.txt`, not from this project's subdirectory.

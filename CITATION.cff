@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+type: software
+title: "Curious Coder: Scientific Computing and Biotech Learning"
+message: >-
+  Please cite Cazandra Aporbo and Curious Coder when discussing this work,
+  and identify the specific commit or release used. Citation does not grant
+  permission to reuse original material; see COPYRIGHT.md for reuse terms.
+authors:
+  - family-names: Aporbo
+    given-names: Cazandra
+repository-code: "https://github.com/Cazzy-Aporbo/Curious-Coder"
+url: "https://cazzy-aporbo.github.io/Curious-Coder/"

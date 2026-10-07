@@ -56,6 +56,53 @@ def test_published_site_links_are_built_as_checked_local_links(tmp_path):
         build_site(tmp_path, output)
 
 
+def test_site_copies_only_named_public_policy_files_and_links_credit(tmp_path):
+    (tmp_path / "README.md").write_text("# Home")
+    (tmp_path / "studies").mkdir()
+    (tmp_path / "studies/note.md").write_text("# Note")
+    (tmp_path / "COPYRIGHT.md").write_text("# Attribution and reuse")
+    for name in ("robots.txt", "CITATION.cff"):
+        (tmp_path / name).write_text("public policy fixture")
+    (tmp_path / "private.txt").write_text("not a publication input")
+    output = tmp_path / "site"
+    build_site(tmp_path, output)
+    for name in ("robots.txt", "CITATION.cff"):
+        assert (output / name).read_text() == "public policy fixture"
+    assert not (output / "private.txt").exists()
+    html = (output / "studies/note.html").read_text()
+    assert 'href="../COPYRIGHT.html"' in html
+    assert 'href="../CITATION.cff"' in html
+    assert '<meta name="author" content="Cazandra Aporbo">' in html
+    assert '<meta name="robots"' not in html
+
+
+def test_public_policy_symlinks_are_not_copied(tmp_path):
+    from scripts.build_site import content_files
+    private = tmp_path / "private.txt"
+    private.write_text("not for publication")
+    for name in ("robots.txt", "CITATION.cff"):
+        (tmp_path / name).symlink_to(private)
+    assert not any(path.name in {"robots.txt", "CITATION.cff"} for path in content_files(tmp_path))
+
+
+@pytest.mark.parametrize("agent", ["GPTBot", "ClaudeBot", "Google-Extended", "CCBot"])
+def test_ai_crawler_policy_excludes_only_this_project(agent):
+    from urllib.robotparser import RobotFileParser
+    policy = RobotFileParser()
+    policy.parse((Path(__file__).parents[1] / "robots.txt").read_text().splitlines())
+    assert not policy.can_fetch(agent, "https://cazzy-aporbo.github.io/Curious-Coder/index.html")
+    assert not policy.can_fetch(agent, "https://cazzy-aporbo.github.io/Curious-Coder/studies/learning_signals.html")
+    assert policy.can_fetch(agent, "https://cazzy-aporbo.github.io/Other-Project/index.html")
+
+
+@pytest.mark.parametrize("agent", ["Googlebot", "bingbot", "OAI-SearchBot", "Claude-SearchBot"])
+def test_crawler_policy_preserves_search_discovery(agent):
+    from urllib.robotparser import RobotFileParser
+    policy = RobotFileParser()
+    policy.parse((Path(__file__).parents[1] / "robots.txt").read_text().splitlines())
+    assert policy.can_fetch(agent, "https://cazzy-aporbo.github.io/Curious-Coder/index.html")
+
+
 def test_site_rejects_broken_local_links(tmp_path):
     (tmp_path / "index.html").write_text('<a href="missing.html">Missing</a>')
     with pytest.raises(ValueError, match="missing.html"):
