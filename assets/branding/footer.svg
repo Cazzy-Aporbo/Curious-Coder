@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="150" viewBox="0 0 840 150" role="img" aria-labelledby="title desc">
+  <title id="title">Thanks for reading Curious Coder</title>
+  <desc id="desc">Every figure has a source. Every result has a limit. The coffee had neither.</desc>
+  <defs>
+    <linearGradient id="paper" x2="1" y2=".4"><stop stop-color="#35263f"/><stop offset=".6" stop-color="#43304a"/><stop offset="1" stop-color="#29434a"/></linearGradient>
+    <linearGradient id="ink" x2="1"><stop stop-color="#f6c7df"/><stop offset=".35" stop-color="#d5c7ff"/><stop offset=".7" stop-color="#aee8dc"/><stop offset="1" stop-color="#ffe0bc"/></linearGradient>
+  </defs>
+  <rect x="1" y="1" width="838" height="148" rx="20" fill="url(#paper)"/>
+  <g fill="none" stroke="url(#ink)" stroke-width="1.4" opacity=".55">
+    <path d="M700 30c30 20 30 70 0 90M730 30c-30 20-30 70 0 90"/>
+    <path d="M706 46h18M701 62h28M701 88h28M706 104h18"/>
+  </g>
+  <circle cx="660" cy="44" r="3" fill="#f6c7df"/><circle cx="772" cy="112" r="3" fill="#aee8dc"/><circle cx="790" cy="40" r="2" fill="#ffe0bc"/>
+  <text x="40" y="62" fill="url(#ink)" font-family="Georgia, serif" font-size="30">Thanks for reading closely.</text>
+  <text x="40" y="96" fill="#f0e7ee" font-family="Verdana, sans-serif" font-size="15">Every figure has a source. Every result has a limit.</text>
+  <text x="40" y="120" fill="#d9c6d6" font-family="Verdana, sans-serif" font-size="13" font-style="italic">The coffee had neither.</text>
+</svg>

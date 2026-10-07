@@ -17,6 +17,7 @@ from markdown.treeprocessors import Treeprocessor
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SITE_URL = "https://cazzy-aporbo.github.io/Curious-Coder/"
 CONTENT_DIRS = ("Core-algorithms", "Biological-Systems", "Environmental", "Explore-PyTorch", "explore_stuff", "studies", "data", "assets", "biotech", "tests")
 STYLE = """
 :root { color-scheme:light; --ink:#203a3b; --paper:#faf8f2; --accent:#237b70; --rule:#d4dcd2; }
@@ -202,8 +203,14 @@ def build_site(root=ROOT, output=None):
             continue
         renderer = markdown.Markdown(extensions=["fenced_code", "tables", "toc", "sane_lists", "md_in_html", AccessibleImageHeadings()])
         body = renderer.convert(source.read_text(encoding="utf-8"))
-        body = re.sub(r'(href|src)="([^"]*)"',
-                      lambda match: f'{match[1]}="{escape(rewrite_link(unquote_html(match[2])), quote=True)}"', body)
+        def local_target(url):
+            url = unquote_html(url)
+            if url.startswith(SITE_URL):
+                target, _, fragment = url[len(SITE_URL):].partition("#")
+                url = os.path.relpath(output / (target or "index.html"), destination.parent).replace(os.sep, "/") + ("#" + fragment if fragment else "")
+                return url
+            return rewrite_link(url)
+        body = re.sub(r'(href|src)="([^"]*)"', lambda match: f'{match[1]}="{escape(local_target(match[2]), quote=True)}"', body)
         headings = renderer.toc_tokens
         title = headings[0]["name"] if headings else source.stem.replace("_", " ")
         home = os.path.relpath(output / "index.html", destination.parent).replace(os.sep, "/")

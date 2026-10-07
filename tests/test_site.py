@@ -43,6 +43,19 @@ def test_image_headings_keep_accessible_titles_and_unique_navigation(tmp_path):
     assert 'alt="Curious Coder"' in html
 
 
+def test_published_site_links_are_built_as_checked_local_links(tmp_path):
+    from scripts.build_site import SITE_URL
+    (tmp_path / "studies").mkdir()
+    (tmp_path / "studies" / "note.md").write_text("# Note")
+    (tmp_path / "README.md").write_text(f"# Home\n\n[Note]({SITE_URL}studies/note.html#part)")
+    output = tmp_path / "site"
+    build_site(tmp_path, output)
+    assert 'href="studies/note.html#part"' in (output / "index.html").read_text()
+    (tmp_path / "README.md").write_text(f"# Home\n\n[Missing]({SITE_URL}studies/missing.html)")
+    with pytest.raises(ValueError, match="missing"):
+        build_site(tmp_path, output)
+
+
 def test_site_rejects_broken_local_links(tmp_path):
     (tmp_path / "index.html").write_text('<a href="missing.html">Missing</a>')
     with pytest.raises(ValueError, match="missing.html"):
